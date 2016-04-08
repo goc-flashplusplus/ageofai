@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="tweener">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/caurina-tweener/tweener.swc!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
