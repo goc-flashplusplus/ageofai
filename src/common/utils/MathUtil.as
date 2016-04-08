@@ -32,6 +32,14 @@ package common.utils
 			return ( Math.random() * ( maximum - minimum + 1 ) );
 		}
 		
+		public static function distance(x1:Number, x2:Number,  y1:Number, y2:Number):Number 
+		{
+			var dx:Number = x1-x2;
+			var dy:Number = y1 - y2;
+			
+			return Math.sqrt(dx * dx + dy * dy);
+		}		
+		
 	}
 
 }
