@@ -3,18 +3,23 @@
  */
 package ageofai.layout.view
 {
-import common.mvc.view.base.ABaseView;
+	import ageofai.map.view.MapView;
 
-public class LayoutView extends ABaseView
-{
-    public function LayoutView()
-    {
+	import common.mvc.view.base.ABaseView;
 
-    }
+	public class LayoutView extends ABaseView
+	{
+		private var _mapView:MapView;
 
-    override public function createChildren():void
-    {
+		public function LayoutView()
+		{
 
-    }
-}
+		}
+
+		override public function createChildren():void
+		{
+			this._mapView = new MapView();
+			this.addChild( this._mapView );
+		}
+	}
 }
