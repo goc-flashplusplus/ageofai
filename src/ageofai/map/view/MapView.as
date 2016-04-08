@@ -20,8 +20,6 @@ package ageofai.map.view
 		private var _terrainLayer:Sprite;
 		private var _unitLayer:Sprite;
 
-		private var _baseBackground:Bitmap;
-
 		private var _terrainHelper:TerrainHelper;
 
 		public function MapView()
@@ -50,7 +48,7 @@ package ageofai.map.view
 
 		private function createHome():void
 		{
-			var home:HomeView = this.addChild( new HomeView() ) as HomeView;
+			var home:HomeView = this._unitLayer.addChild( new HomeView() ) as HomeView;
 			home.x = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.COLUMN_COUNT );
 			home.y = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.ROW_COUNT );
 		}
@@ -84,8 +82,8 @@ package ageofai.map.view
 			}
 
 			backgroundBitmapData.unlock();
-			this._baseBackground = new Bitmap( backgroundBitmapData );
-			addChild( this._baseBackground );
+
+			this._terrainLayer.addChild( new Bitmap( backgroundBitmapData ) );
 
 			this._terrainHelper.dispose();
 		}
