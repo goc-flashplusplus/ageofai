@@ -1,5 +1,6 @@
 package ageofai.bars 
 {
+	import ageofai.bar.BaseBarView;
 	/**
 	 * ...
 	 * @author Tibor Túri

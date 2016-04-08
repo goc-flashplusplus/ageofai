@@ -1,4 +1,4 @@
-package ageofai.bars 
+package ageofai.bar 
 {
 	import common.mvc.view.base.ABaseView;
 	import flash.display.Shape;

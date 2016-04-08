@@ -1,13 +1,13 @@
 package ageofai.unit.base 
 {
-	import ageofai.bars.LifeBarView;
 	import ageofai.map.constant.CMap;
+	import ageofai.unit.view.LifeBarView;
 	import caurina.transitions.Tweener;
 	import common.mvc.view.base.ABaseView;
 	import common.utils.MathUtil;
-
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
+
 	/**
 	 * ...
 	 * @author Tibor Túri

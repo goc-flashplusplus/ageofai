@@ -1,6 +1,5 @@
 package
 {
-	import ageofai.bars.BaseBarView;
     import ageofai.config.CommandConfig;
     import ageofai.config.ManifestConfig;
     import ageofai.config.MediatorConfig;
