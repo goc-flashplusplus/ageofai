@@ -7,10 +7,18 @@ package ageofai.game.event
 
     public class GameEvent extends Event
     {
+        public static const INIT_GAME:String = "GameEvent.initGame";
 
-        override public function clone():Event
+        public function GameEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
-            return super.clone();
+            super( type, bubbles, cancelable );
+        }
+
+        public override function clone():Event
+        {
+            var event:GameEvent = new GameEvent( type );
+
+            return event;
         }
     }
 }
