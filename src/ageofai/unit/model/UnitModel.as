@@ -16,9 +16,9 @@ package ageofai.unit.model
             return this._units;
         }
 
-        public function addUnit(unit:IUnitView):void
+        public function addUnit( unit:IUnitView ):void
         {
-            this._units.push(unit);
+            this._units.push( unit );
         }
     }
 }
