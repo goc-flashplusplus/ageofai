@@ -1,12 +1,9 @@
 package ageofai.config
 {
-<<<<<<< HEAD
 	import ageofai.layout.view.LayoutMediator;
 	import ageofai.layout.view.LayoutView;
-=======
 	import ageofai.building.view.home.HomeMediator;
 	import ageofai.building.view.home.HomeView;
->>>>>>> origin/master
 	import ageofai.map.view.MapMediator;
 	import ageofai.map.view.MapView;
 	import ageofai.unit.view.villager.VillagerMediator;
