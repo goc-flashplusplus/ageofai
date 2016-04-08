@@ -17,6 +17,9 @@ package ageofai.map.view
 
 	public class MapView extends ABaseView
 	{
+		private var _terrainLayer:Sprite;
+		private var _unitLayer:Sprite;
+
 		private var _baseBackground:Bitmap;
 
 		private var _terrainHelper:TerrainHelper;
@@ -31,7 +34,7 @@ package ageofai.map.view
 
 				for( var j:int = 0; j < CMap.COLUMN_COUNT; j++ )
 				{
-					testMap[ i ].push( new MapNode() );
+					testMap[ i ].push( new MapNode( 1 ) );
 				}
 			}
 
