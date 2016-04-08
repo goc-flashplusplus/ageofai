@@ -16,6 +16,7 @@ package ageofai.map.view
 
 		public function MapView()
 		{
+			this.addChild( new TerrainGrassUI() );
 		}
 
 		private function createMap( mapMatrix:Vector.<Vector.<MapNode>> ):void
