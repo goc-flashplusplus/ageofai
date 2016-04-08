@@ -8,12 +8,12 @@ package ageofai.unit.base
 	 * ...
 	 * @author Tibor Túri
 	 */
-	public class BaseUnit extends ABaseView
+	public class BaseUnitView extends ABaseView
 	{
 		
 		public var speed:Number;
 		
-		public function BaseUnit() 
+		public function BaseUnitView() 
 		{
 			
 		}

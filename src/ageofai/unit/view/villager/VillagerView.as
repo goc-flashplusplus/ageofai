@@ -1,7 +1,7 @@
 package ageofai.unit.view.villager 
 {
 	import ageofai.map.constant.CMap;
-	import ageofai.unit.base.BaseUnit;
+	import ageofai.unit.base.BaseUnitView;
 	import ageofai.unit.CUnitProperties;
 	import flash.display.Shape;
 	import caurina.transitions.Tweener;
@@ -10,7 +10,7 @@ package ageofai.unit.view.villager
 	 * ...
 	 * @author Tibor Túri
 	 */
-	public class VillagerView extends BaseUnit
+	public class VillagerView extends BaseUnitView
 	{
 		
 		
