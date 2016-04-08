@@ -6,7 +6,7 @@ package ageofai.map.model
     public interface IMapModel
     {
 
-        function createMap( columnCount:int, rowCount:int ):Vector.;
+        function createMap( columnCount:int, rowCount:int ):Vector.<Vector.<MapNode>>;
 
     }
 }

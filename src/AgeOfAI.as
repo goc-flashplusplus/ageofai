@@ -28,9 +28,6 @@ public class AgeOfAI extends ABaseView
     {
         if (this.stage) this.init();
         else this.addEventListener(Event.ADDED_TO_STAGE, this.init);
-        var textField:TextField = new TextField();
-        textField.text = "Hello, World";
-        addChild(textField);
     }
 
     /**
