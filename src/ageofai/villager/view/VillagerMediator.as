@@ -1,4 +1,4 @@
-package ageofai.unit.view.villager 
+package ageofai.villager.view 
 {
 	import common.mvc.view.base.ABaseMediator;
 	/**

@@ -1,4 +1,4 @@
-package ageofai.unit.view.villager
+package ageofai.villager.view
 {
 	import ageofai.unit.base.BaseUnitView;
 	import ageofai.unit.constant.CUnitProperties;

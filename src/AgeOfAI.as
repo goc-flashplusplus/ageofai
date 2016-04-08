@@ -8,7 +8,7 @@ package
     import ageofai.game.event.GameEvent;
     import ageofai.layout.view.LayoutView;
 	import ageofai.map.constant.CMap;
-	import ageofai.unit.view.villager.VillagerView;
+	import ageofai.villager.view.VillagerView;
 	import flash.geom.Point;
 
     import common.mvc.view.base.ABaseView;

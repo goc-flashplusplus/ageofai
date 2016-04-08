@@ -6,8 +6,8 @@ package ageofai.config
 	import ageofai.building.view.home.HomeView;
 	import ageofai.map.view.MapMediator;
 	import ageofai.map.view.MapView;
-	import ageofai.unit.view.villager.VillagerMediator;
-	import ageofai.unit.view.villager.VillagerView;
+	import ageofai.villager.view.VillagerMediator;
+	import ageofai.villager.view.VillagerView;
 
 	import robotlegs.bender.extensions.mediatorMap.api.IMediatorMap;
 	import robotlegs.bender.framework.api.IConfig;
