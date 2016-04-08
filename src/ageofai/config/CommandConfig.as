@@ -1,6 +1,7 @@
 package ageofai.config
 {
     import ageofai.game.controller.CreateMapCommand;
+    import ageofai.game.controller.InitGameCommand;
     import ageofai.game.event.GameEvent;
 
     import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
@@ -21,6 +22,7 @@ package ageofai.config
          */
         public function configure():void
         {
+            this.commandMap.map( GameEvent.INIT_GAME ).toCommand( InitGameCommand );
             this.commandMap.map( GameEvent.INIT_GAME ).toCommand( CreateMapCommand );
         }
 
