@@ -4,14 +4,13 @@ package
     import ageofai.config.ManifestConfig;
     import ageofai.config.MediatorConfig;
     import ageofai.config.ModelConfig;
+    import ageofai.game.event.GameEvent;
     import ageofai.layout.view.LayoutView;
 
     import common.mvc.view.base.ABaseView;
 
     import flash.display.StageAlign;
-
     import flash.display.StageScaleMode;
-
     import flash.events.Event;
 
     import robotlegs.bender.bundles.mvcs.MVCSBundle;
@@ -61,7 +60,7 @@ package
          */
         private function setupContext():void
         {
-            this._context = new Context().install(MVCSBundle)
+            this._context = new Context().install( MVCSBundle )
                     .configure(ModelConfig,
                     ManifestConfig,
                     MediatorConfig,
