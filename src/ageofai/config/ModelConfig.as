@@ -2,6 +2,8 @@ package ageofai.config
 {
 	import ageofai.map.model.IMapModel;
 	import ageofai.map.model.MapModel;
+	import ageofai.unit.model.IUnitModel;
+	import ageofai.unit.model.UnitModel;
 
 	import robotlegs.bender.framework.api.IConfig;
 import robotlegs.bender.framework.api.IInjector;
@@ -18,6 +20,7 @@ import robotlegs.bender.framework.api.IInjector;
 		public function configure():void
 		{
 			this.injector.map( IMapModel ).toSingleton( MapModel );
+			this.injector.map( IUnitModel ).toSingleton( UnitModel );
 		}
 		
 	}

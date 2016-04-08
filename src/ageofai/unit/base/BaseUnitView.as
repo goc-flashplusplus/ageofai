@@ -8,7 +8,7 @@ package ageofai.unit.base
 	 * ...
 	 * @author Tibor Túri
 	 */
-	public class BaseUnitView extends ABaseView
+	public class BaseUnitView extends ABaseView implements IUnitView
 	{
 		
 		public var speed:Number;

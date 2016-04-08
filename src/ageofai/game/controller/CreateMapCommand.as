@@ -15,7 +15,7 @@ package ageofai.game.controller
 
         override public function execute():void
         {
-            this.mapModel.createMap( CMap.ROW_COUNT, CMap.COLUMN_COUNT );
+            this.mapModel.createMap(CMap.ROW_COUNT, CMap.COLUMN_COUNT);
         }
     }
 }

@@ -3,13 +3,22 @@
  */
 package ageofai.unit.model
 {
+    import ageofai.unit.base.IUnitView;
+
     import common.mvc.model.base.BaseModel;
 
     public class UnitModel extends BaseModel implements IUnitModel
     {
-        public function UnitModel()
+        private var _units:Vector.<IUnitView>;
+
+        public function getUnits():Vector.<IUnitView>
         {
-            super();
+            return this._units;
+        }
+
+        public function addUnit(unit:IUnitView):void
+        {
+            this._units.push(unit);
         }
     }
 }

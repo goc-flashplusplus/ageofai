@@ -3,7 +3,14 @@
  */
 package ageofai.unit.model
 {
+    import ageofai.unit.base.IUnitView;
+
     public interface IUnitModel
     {
+
+        function getUnits():Vector.<IUnitView>;
+
+        function addUnit(unit:IUnitView):void;
+
     }
 }
