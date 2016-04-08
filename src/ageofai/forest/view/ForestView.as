@@ -3,8 +3,8 @@
  */
 package ageofai.forest.view
 {
-	import ageofai.bars.LifeBarView;
 	import ageofai.map.constant.CMap;
+	import ageofai.unit.view.LifeBarView;
 
 	import common.mvc.view.base.ABaseView;
 

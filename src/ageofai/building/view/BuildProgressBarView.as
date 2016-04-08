@@ -1,4 +1,4 @@
-package ageofai.bars 
+package ageofai.building.view 
 {
 	import ageofai.bar.BaseBarView;
 	/**
