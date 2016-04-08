@@ -1,5 +1,7 @@
 package ageofai.unit.base 
 {
+	import ageofai.bars.LifeBarView;
+	import ageofai.map.constant.CMap;
 	import caurina.transitions.Tweener;
 	import common.mvc.view.base.ABaseView;
 	import common.utils.MathUtil;
@@ -12,16 +14,26 @@ package ageofai.unit.base
 	{
 		
 		public var speed:Number;
+		public var lifebar:LifeBarView;
 		
 		public function BaseUnitView() 
 		{
 			
 		}
 		
+		public function createLifeBar():void
+		{
+			this.lifebar = new LifeBarView();
+			this.addChild( this.lifebar );
+			
+			this.lifebar.x = ( CMap.TILE_SIZE - this.lifebar.barWidth ) / 2 ;
+			this.lifebar.y = 5;
+		}
+		
 		public function moveTo( targetPoint:Point ):void
 		{
 			var movingTime:Number = this.calculateMovingTime( targetPoint );
-			Tweener.addTween(this, {x: targetPoint.x, y:targetPoint.y, time: movingTime} );
+			Tweener.addTween(this, {x: targetPoint.x, y:targetPoint.y, time: movingTime,  transition:"linear"  } );
 		}
 		
 		public function calculateMovingTime( point:Point):Number
@@ -32,8 +44,8 @@ package ageofai.unit.base
 			
 			distance = MathUtil.distance( currentPosition.x, currentPosition.y, point.x, point.y);
 			
-			movingTime = Math.abs(distance) / this.speed;
-			
+			movingTime = Math.abs(distance) / CMap.TILE_SIZE * this.speed;
+			trace("3: ----", movingTime);
 			return movingTime;			
 		}
 		

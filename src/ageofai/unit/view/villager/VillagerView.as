@@ -13,7 +13,6 @@ package ageofai.unit.view.villager
 	public class VillagerView extends BaseUnitView
 	{
 		
-		
 		public function VillagerView() 
 		{
 			this.speed = CUnitProperties.VILLAGER_SPEED;
@@ -26,7 +25,9 @@ package ageofai.unit.view.villager
 			rectangle.graphics.beginFill(0xFF0000);
 			rectangle.graphics.drawRect(0, 0, CMap.TILE_SIZE,CMap.TILE_SIZE);
 			rectangle.graphics.endFill();
-			addChild(rectangle);			
+			addChild(rectangle);
+			
+			this.createLifeBar();
 		}
 	}
 
