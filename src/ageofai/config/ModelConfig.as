@@ -1,6 +1,9 @@
 package ageofai.config
 {
-import robotlegs.bender.framework.api.IConfig;
+	import ageofai.map.model.IMapModel;
+	import ageofai.map.model.MapModel;
+
+	import robotlegs.bender.framework.api.IConfig;
 import robotlegs.bender.framework.api.IInjector;
 
 
@@ -14,7 +17,7 @@ import robotlegs.bender.framework.api.IInjector;
 		 */
 		public function configure():void
 		{
-			//this.injector.map( IFieldModel ).toSingleton( FieldModel );
+			this.injector.map( IMapModel ).toSingleton( MapModel );
 		}
 		
 	}

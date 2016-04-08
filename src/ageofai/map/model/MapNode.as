@@ -5,6 +5,8 @@ package ageofai.map.model
 {
 	public class MapNode
 	{
+
+
 		public function MapNode()
 		{
 		}
