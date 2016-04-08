@@ -19,7 +19,7 @@ package
     import robotlegs.bender.framework.api.IContext;
     import robotlegs.bender.framework.impl.Context;
 
-    [SWF(width="800", height="600", frameRate="60")]
+    [SWF(width="960", height="640", frameRate="60")]
     public class AgeOfAI extends ABaseView
     {
         private var _context:IContext;
