@@ -5,6 +5,8 @@ package ageofai.unit.base
 	import caurina.transitions.Tweener;
 	import common.mvc.view.base.ABaseView;
 	import common.utils.MathUtil;
+
+	import flash.display.DisplayObject;
 	import flash.geom.Point;
 	/**
 	 * ...
@@ -14,11 +16,19 @@ package ageofai.unit.base
 	{
 		
 		public var speed:Number;
+
+		private var _graphicUI:DisplayObject;
 		public var lifebar:LifeBarView;
-		
+
 		public function BaseUnitView() 
 		{
 			
+		}
+
+		protected function createUI( uiClass:Class ):void
+		{
+			this._graphicUI = new uiClass;
+			this.addChild( this._graphicUI );
 		}
 		
 		public function createLifeBar():void

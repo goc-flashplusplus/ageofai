@@ -5,11 +5,13 @@ package ageofai.building.base
 {
 	import ageofai.bars.LifeBarView;
 
+	import flash.display.DisplayObject;
+
 	import flash.display.Sprite;
 
 	public class BaseBuildingView extends Sprite
 	{
-		private var _graphicUI:HomeUI;
+		private var _graphicUI:DisplayObject;
 		private var _lifeBar:LifeBarView;
 
 		public function BaseBuildingView()
