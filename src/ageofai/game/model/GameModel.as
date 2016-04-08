@@ -4,6 +4,7 @@
 package ageofai.game.model
 {
     import ageofai.game.constant.CGame;
+    import ageofai.game.event.GameEvent;
 
     import common.mvc.model.BaseModel;
 
@@ -28,7 +29,7 @@ package ageofai.game.model
 
         private function tickHandler( event:TimerEvent ):void
         {
-            trace("ddddd")
+            this.dispatch( new GameEvent( GameEvent.TICK ) );
         }
     }
 }

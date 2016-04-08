@@ -8,6 +8,7 @@ package ageofai.game.event
     public class GameEvent extends Event
     {
         public static const INIT_GAME:String = "GameEvent.initGame";
+        public static const TICK:String = "GameEvent.tick";
 
         public function GameEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
