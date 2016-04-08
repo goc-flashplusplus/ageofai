@@ -5,8 +5,9 @@ import ageofai.config.CommandConfig;
 import ageofai.config.ManifestConfig;
 import ageofai.config.MediatorConfig;
 import ageofai.config.ModelConfig;
+    import ageofai.layout.view.LayoutView;
 
-import common.mvc.view.base.ABaseView;
+    import common.mvc.view.base.ABaseView;
 
 import flash.display.Sprite;
 import flash.display.StageAlign;
@@ -22,15 +23,12 @@ import robotlegs.bender.framework.impl.Context;
 public class AgeOfAI extends ABaseView
 {
     private var _context:IContext;
-    private var _layoutView:Sprite;
+    private var _layoutView:LayoutView;
 
     public function AgeOfAI()
     {
         if (this.stage) this.init();
         else this.addEventListener(Event.ADDED_TO_STAGE, this.init);
-        var textField:TextField = new TextField();
-        textField.text = "Hello, World";
-        addChild(textField);
     }
 
     /**
@@ -46,8 +44,8 @@ public class AgeOfAI extends ABaseView
      */
     private function createLayout():void
     {
-        this._layoutView = new Sprite();
-        //this._layoutView.createChildren();
+        this._layoutView = new LayoutView();
+        this._layoutView.createChildren();
 
         this.addChild(this._layoutView);
     }
