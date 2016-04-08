@@ -29,6 +29,9 @@ package ageofai.unit.base
 		{
 			this._graphicUI = new uiClass;
 			this.addChild( this._graphicUI );
+			
+			this._graphicUI.x = CMap.TILE_SIZE / 2;
+			this._graphicUI.y = CMap.TILE_SIZE / 2;
 		}
 		
 		public function createLifeBar():void
