@@ -1,7 +1,7 @@
 /**
  * Created by newkrok on 08/04/16.
  */
-package ageofai.building.view.home
+package ageofai.home.view
 {
 	import common.mvc.view.base.ABaseMediator;
 

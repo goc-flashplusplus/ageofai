@@ -3,7 +3,7 @@
  */
 package ageofai.map.view
 {
-	import ageofai.building.view.home.HomeView;
+	import ageofai.home.view.HomeView;
 	import ageofai.map.constant.CMap;
     import ageofai.map.constant.CMapNodeType;
 	import ageofai.map.model.MapNode;
