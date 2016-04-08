@@ -82,6 +82,15 @@ package ageofai.bars
 			return _barWidth;
 		}
 		
+		public function hide():void
+		{
+			this.visible = false;
+		}
+		
+		public function show():void
+		{
+			this.visible = true;
+		}
 	}
 
 }
