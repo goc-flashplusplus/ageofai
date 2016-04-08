@@ -1,4 +1,4 @@
-package ageofai.unit.view.scout 
+package ageofai.scout.view 
 {
 	import common.mvc.view.base.ABaseMediator;
 	/**

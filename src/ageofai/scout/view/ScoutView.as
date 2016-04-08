@@ -1,4 +1,4 @@
-package ageofai.unit.view.scout 
+package ageofai.scout.view 
 {
 	import ageofai.map.constant.CMap;
 	import ageofai.unit.base.BaseUnitView;
