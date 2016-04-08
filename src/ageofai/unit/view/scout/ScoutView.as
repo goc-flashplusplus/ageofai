@@ -2,7 +2,7 @@ package ageofai.unit.view.scout
 {
 	import ageofai.map.constant.CMap;
 	import ageofai.unit.base.BaseUnitView;
-	import ageofai.unit.CUnitProperties;
+	import ageofai.unit.constant.CUnitProperties;
 	import flash.display.Shape;
 	/**
 	 * ...

@@ -2,7 +2,7 @@ package ageofai.unit.view.villager
 {
 	import ageofai.map.constant.CMap;
 	import ageofai.unit.base.BaseUnitView;
-	import ageofai.unit.CUnitProperties;
+	import ageofai.unit.constant.CUnitProperties;
 	import flash.display.Shape;
 	import caurina.transitions.Tweener;
 	import flash.geom.Point;

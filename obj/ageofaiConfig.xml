@@ -38,6 +38,7 @@
     <library-path append="true">
       <path-element>E:\______GOC_______\ageofai\lib\robotlegs\robotlegs-framework-v2.1.0.swc</path-element>
       <path-element>E:\______GOC_______\ageofai\lib\caurina-tweener\tweener.swc</path-element>
+      <path-element>E:\______GOC_______\ageofai\lib\asset\GameAssets.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
