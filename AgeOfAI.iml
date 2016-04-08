@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="Flex" version="4">
-  <component name="FlexBuildConfigurationManager" active="AgeOfAI">
+  <component name="FlexBuildConfigurationManager" active="ageofai">
     <configurations>
-      <configuration name="AgeOfAI" pure-as="true" main-class="AgeOfAI" output-file="AgeOfAI.swf" output-folder="$MODULE_DIR$/out/production/AgeOfAI">
+      <configuration name="ageofai" main-class="AgeOfAI" output-file="ageofai.swf" output-folder="$MODULE_DIR$/out">
         <dependencies target-player="21.0">
           <entries>
-            <entry library-id="1349d51d-dbe2-4365-8a26-62aeffd34ef5">
+            <entry library-id="910cabc9-5ada-49a7-ae96-bb69830adc43">
               <dependency linkage="Merged" />
             </entry>
           </entries>
@@ -26,9 +26,10 @@
     </content>
     <orderEntry type="jdk" jdkName="4.15" jdkType="Flex SDK Type (new)" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" exported="" name="robotlegs-framework-v2.1.0" level="project" />
     <orderEntry type="module-library" exported="">
       <library type="flex">
-        <properties id="1349d51d-dbe2-4365-8a26-62aeffd34ef5" />
+        <properties id="910cabc9-5ada-49a7-ae96-bb69830adc43" />
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/robotlegs/robotlegs-framework-v2.1.0.swc!/" />
         </CLASSES>
