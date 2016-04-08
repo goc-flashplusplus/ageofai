@@ -1,10 +1,11 @@
-/**
+﻿/**
  * Created by newkrok on 08/04/16.
  */
 package ageofai.map.view
 {
 	import ageofai.building.view.home.HomeView;
 	import ageofai.map.constant.CMap;
+    import ageofai.map.constant.CMapNodeType;
 	import ageofai.map.model.MapNode;
 
 	import common.mvc.view.base.ABaseView;
@@ -16,8 +17,7 @@ package ageofai.map.view
 
 	public class MapView extends ABaseView
 	{
-		private var _terrainLayer:Sprite;
-		private var _unitLayer:Sprite;
+		private var _baseBackground:Bitmap;
 
 		private var _terrainHelper:TerrainHelper;
 
@@ -61,7 +61,7 @@ package ageofai.map.view
 			this.addChild( this._unitLayer );
 		}
 
-		private function createMap( mapMatrix:Vector.<Vector.<MapNode>> ):void
+		public function createMap( mapMatrix:Vector.<Vector.<MapNode>> ):void
 		{
 			this._terrainHelper = new TerrainHelper();
 			this._terrainHelper.createBaseTerrainBitmapDatas();
@@ -69,30 +69,31 @@ package ageofai.map.view
 			var lineCount:int = mapMatrix.length;
 			var colCount:int = mapMatrix[ 0 ].length;
 
-			var backgroundBitmapData:BitmapData = new BitmapData( lineCount * CMap.TILE_SIZE, colCount * CMap.TILE_SIZE, false, 0 );
+			var backgroundBitmapData:BitmapData = new BitmapData( lineCount * 32, colCount * 32, false, 0 );
 			backgroundBitmapData.lock();
 
 			for( var i:int = 0; i < lineCount; i++ )
 			{
 				for( var j:int = 0; j < colCount; j++ )
 				{
-					this.drawTerrainToBitmapData( i, j, backgroundBitmapData );
+					this.drawTerrainToBitmapData( i, j, backgroundBitmapData, mapMatrix[i][j].type );
 				}
 			}
 
 			backgroundBitmapData.unlock();
-			this._terrainLayer.addChild( new Bitmap( backgroundBitmapData ) );
+			this._baseBackground = new Bitmap( backgroundBitmapData );
+			addChild( this._baseBackground );
 
 			this._terrainHelper.dispose();
 		}
 
-		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData ):void
+		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void
 		{
 			var positionMatrix:Matrix = new Matrix();
 			positionMatrix.tx = col * CMap.TILE_SIZE;
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
-			backgroundBitmapData.draw( Math.random() > .5 ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
+			backgroundBitmapData.draw( type == CMapNodeType.GRASS ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
 		}
 	}
 }
