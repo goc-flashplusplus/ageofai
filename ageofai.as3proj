@@ -54,6 +54,7 @@
   <libraryPaths>
     <element path="lib\robotlegs\robotlegs-framework-v2.1.0.swc" />
     <element path="lib\caurina-tweener\tweener.swc" />
+    <element path="lib\asset\GameAssets.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
