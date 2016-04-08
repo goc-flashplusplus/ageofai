@@ -47,7 +47,7 @@ public class AgeOfAI extends BaseView
     private function createLayout():void
     {
         this._layoutView = new Sprite();
-        //this._layoutView.createChildren();
+        this._layoutView.createChildren();
 
         this.addChild( this._layoutView );
     }
