@@ -3,16 +3,14 @@
  */
 package ageofai.building.view.home
 {
-	import flash.display.Sprite;
+	import ageofai.building.base.BaseBuildingView;
 
-	public class HomeView extends Sprite
+	public class HomeView extends BaseBuildingView
 	{
-		private var _graphicUI:HomeUI;
-
 		public function HomeView()
 		{
-			this._graphicUI = new HomeUI();
-			this.addChild( this._graphicUI );
+			this.createUI( HomeUI );
+			this.createLifeBar();
 		}
 	}
 }

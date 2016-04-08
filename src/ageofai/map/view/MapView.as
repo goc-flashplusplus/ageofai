@@ -4,7 +4,6 @@
 package ageofai.map.view
 {
 	import ageofai.building.view.home.HomeView;
-	import ageofai.building.view.home.HomeView;
 	import ageofai.map.constant.CMap;
 	import ageofai.map.model.MapNode;
 
@@ -12,9 +11,7 @@ package ageofai.map.view
 
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
 	import flash.geom.Matrix;
 
 	public class MapView extends ABaseView
@@ -28,13 +25,13 @@ package ageofai.map.view
 		{
 			var testMap:Vector.<Vector.<MapNode>> = new <Vector.<MapNode>>[];
 
-			for ( var i:int = 0; i < CMap.ROW_COUNT; i++ )
+			for( var i:int = 0; i < CMap.ROW_COUNT; i++ )
 			{
 				testMap.push( new <MapNode>[] );
 
-				for ( var j:int = 0; j < CMap.COLUMN_COUNT; j++ )
+				for( var j:int = 0; j < CMap.COLUMN_COUNT; j++ )
 				{
-					testMap[i].push( new MapNode() );
+					testMap[ i ].push( new MapNode() );
 				}
 			}
 
@@ -46,8 +43,6 @@ package ageofai.map.view
 			this.createHome();
 			this.createHome();
 			this.createHome();
-
-			this.addEventListener( Event.ENTER_FRAME, this.onEnterFrameHandler );
 		}
 
 		private function createHome():void
@@ -72,12 +67,12 @@ package ageofai.map.view
 			this._terrainHelper.createBaseTerrainBitmapDatas();
 
 			var lineCount:int = mapMatrix.length;
-			var colCount:int = mapMatrix[0].length;
+			var colCount:int = mapMatrix[ 0 ].length;
 
 			var backgroundBitmapData:BitmapData = new BitmapData( lineCount * CMap.TILE_SIZE, colCount * CMap.TILE_SIZE, false, 0 );
 			backgroundBitmapData.lock();
 
-			for ( var i:int = 0; i < lineCount; i++ )
+			for( var i:int = 0; i < lineCount; i++ )
 			{
 				for( var j:int = 0; j < colCount; j++ )
 				{
@@ -98,16 +93,6 @@ package ageofai.map.view
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
 			backgroundBitmapData.draw( Math.random() > .5 ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
-		}
-
-		private function onEnterFrameHandler( event:Event ):void
-		{
-			this.zOrder();
-		}
-
-		private function zOrder():void
-		{
-
 		}
 	}
 }
