@@ -32,7 +32,7 @@ package ageofai.home.view
 
 		private function villagerCredatedEventHandler( e:HomeEvent ):void
 		{
-			this.view.createVillagerView();
+			this.view.createVillagerView( e.homeVO );
 		}
 
 		private function villagerCreatingInProgressEventHandler( e:HomeEvent ):void

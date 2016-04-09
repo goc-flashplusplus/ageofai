@@ -29,7 +29,15 @@ package ageofai.unit.utils
                 var objectFounds:Vector.<MapNodeVO> = new Vector.<MapNodeVO>();
                 for (var i:int = 0, count:int = surroundings.length; i < count; i++)
                 {
-                    newPoint = new IntPoint(villager.position.x + surroundings[i][0], villager.position.y + surroundings[i][1]);
+                    var newX:int = villager.position.x + surroundings[i][0];
+                    var newY:int = villager.position.y + surroundings[i][1];
+                    
+                    if (newX < 0 || newY < 0 || newX > mapModel.map[0].length || newY > mapModel.map.length)
+                    {
+                        continue;
+                    }
+                    
+                    newPoint = new IntPoint(newX, newY);
                     
                     if (mapModel.map[newPoint.y][newPoint.x].objectType != CMapNodeType.OBJECT_NULL)
                     {
@@ -47,8 +55,15 @@ package ageofai.unit.utils
                     // Move randomly
                     do {
                         var newPos:int = Math.round(Math.random() * 4);
+                        newX = villager.position.x + surroundings[newPos][0];
+                        newY = villager.position.y + surroundings[newPos][1];
                         
-                        newPoint = new IntPoint(villager.position.x + surroundings[newPos][0], villager.position.y + surroundings[newPos][1]);
+                        if (newX < 0 || newY < 0 || newX > mapModel.map[0].length || newY > mapModel.map.length)
+                        {
+                            continue;
+                        }
+                    
+                        newPoint = new IntPoint(newX, newY);
                     } while (newPoint.x < 0 || newPoint.y < 0 || newPoint.x >= mapModel.map[0].length || newPoint.y >= mapModel.map.length ||
                         !mapModel.map[newPoint.y][newPoint.x].walkable);
                 }

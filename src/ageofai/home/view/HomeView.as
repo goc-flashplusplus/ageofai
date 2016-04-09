@@ -31,13 +31,10 @@ package ageofai.home.view
 			this._buildProgressBar.drawProcessBar( value );
 		}
 
-		public function createVillagerView():void
+		public function createVillagerView(homeVO:HomeVO):void
 		{
 			var homeViewEvent:HomeViewEvent = new HomeViewEvent( HomeViewEvent.VILLAGER_VIEW_CREATED );
 
-			var homeVO:HomeVO = new HomeVO();
-			homeVO.wood = 0;
-			homeVO.food = 0;
 			homeVO.pos = this.getRandomMapNodePointAroundTheHome();
 
 			homeViewEvent.villagerView = new VillagerView();
