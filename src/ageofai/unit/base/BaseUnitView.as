@@ -74,6 +74,11 @@ package ageofai.unit.base
 		{
 			return new Point( this.x, this.y);
 		}
+		
+		public function get graphicUI():DisplayObject 
+		{
+			return _graphicUI;
+		}
 	}
 
 }

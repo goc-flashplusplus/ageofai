@@ -2,6 +2,7 @@ package ageofai.villager.view
 {
 	import ageofai.unit.base.BaseUnitView;
 	import ageofai.unit.constant.CUnitProperties;
+	import flash.display.MovieClip;
 
 	/**
 	 * ...
@@ -20,6 +21,11 @@ package ageofai.villager.view
 		{
 			this.createUI( VillagerUI );
 			this.createLifeBar();
+		}
+		
+		public function showHarvestAnimation():void
+		{
+			(this.graphicUI as MovieClip).gotoAndPlay("harvest");
 		}
 	}
 }

@@ -14,11 +14,6 @@ package ageofai.villager.event
 		
         public var progressPercentage:int;
 		
-		public function VillagerEvent() 
-		{
-			
-		}
-		
         public function VillagerEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
             super( type, bubbles, cancelable );

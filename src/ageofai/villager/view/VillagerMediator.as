@@ -1,5 +1,6 @@
 package ageofai.villager.view 
 {
+	import ageofai.villager.event.VillagerEvent;
 	import common.mvc.view.base.ABaseMediator;
 	/**
 	 * ...
@@ -13,7 +14,12 @@ package ageofai.villager.view
 		
 		override public function initialize () : void
 		{
-			
+			this.addContextListener( VillagerEvent.VILLAGER_HARVEST, this.villagerHarvestHandler);
+		}
+		
+		private function villagerHarvestHandler():void
+		{
+			this.view.showHarvestAnimation();
 		}
 		
 	}
