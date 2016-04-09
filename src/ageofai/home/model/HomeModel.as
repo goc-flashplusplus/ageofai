@@ -46,7 +46,7 @@ package ageofai.home.model
                         this._homes[ i ].villagerIsCreating = true;
                         this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
-                        this.updateFoodAmount( this._homes[ i ], this._homes[ i ].food - CUnitCost.VILLAGER.food );
+                        this.updateFoodAmount( this._homes[ i ], this._homes[ i ].food );
 
                         var home:HomeVO = this._homes[ i ];
 
