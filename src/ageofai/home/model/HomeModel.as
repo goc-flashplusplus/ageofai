@@ -15,7 +15,7 @@ package ageofai.home.model
 
     public class HomeModel extends BaseModel implements IHomeModel
     {
-        private var _foodAmount:int;
+        private var _foodAmount:int = 50;
         private var _villagerAmount:int;
         private var _homeAI:HomeAI;
         private var _creatingInProgress:Boolean;
@@ -64,11 +64,17 @@ package ageofai.home.model
             homeEvent.progressPercentage = this._creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
 
             this.dispatch( homeEvent );
+
+            trace("vvvv")
         }
 
         private function creationTimerCompleteHandler( event:TimerEvent ):void
         {
+            this._creatingInProgress = false;
+
             this.dispatch( new HomeEvent( HomeEvent.VILLAGER_CREATED ) );
+
+            trace("eeee")
         }
     }
 }
