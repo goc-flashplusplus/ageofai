@@ -69,7 +69,7 @@ package ageofai.unit.utils
                     
                     newPoint = new IntPoint(newX, newY);
                     
-                    var objectType:int = mapModel.map[newY][newX].objectType;
+                    objectType = mapModel.map[newY][newX].objectType;
                     if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME)
                     {
                         nextToObject = true;

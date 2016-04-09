@@ -21,11 +21,13 @@ package ageofai.home.view
 			this.addContextListener( HomeEvent.FOOD_AMOUNT_UPDATED, this.foodAmountUpdatedHandler );
 			this.addContextListener( HomeEvent.WOOD_AMOUNT_UPDATED, this.woodAmountUpdatedHandler );
 
-			this.addViewListener( HomeViewEvent.VILLAGER_VIEW_CREATED, this.villageViewCreatedHandler );
+			this.addViewListener( HomeViewEvent.VILLAGER_VIEW_CREATED, this.villagerViewCreatedHandler );
 		}
 
-		private function villageViewCreatedHandler( e:HomeViewEvent ):void
+		private function villagerViewCreatedHandler( e:HomeViewEvent ):void
 		{
+            if (e.homeVO.id != this.view.id) return;
+            
 			var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_VIEW_CREATED );
 			homeEvent.villagerView = e.villagerView;
 			homeEvent.homeVO = e.homeVO;
@@ -35,11 +37,15 @@ package ageofai.home.view
 
 		private function villagerCredatedEventHandler( e:HomeEvent ):void
 		{
+            if (e.homeVO.id != this.view.id) return;
+            
 			this.view.createVillagerView( e.homeVO );
 		}
 
 		private function villagerCreatingInProgressEventHandler( e:HomeEvent ):void
 		{
+            if (e.homeVO.id != this.view.id) return;
+            
 			this.view.showProgressValue( e.progressPercentage / 100 );
 		}
 
