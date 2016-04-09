@@ -44,10 +44,9 @@ package ageofai.home.model
                     if ( this._homeAI.isNewVillagerAvailable( this._homes[ i ].food, this._homes[ i ].villagers.length ) )
                     {
                         this._homes[ i ].villagerIsCreating = true;
+                        this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
                         this.updateFoodAmount( this._homes[ i ], this._homes[ i ].food - CUnitCost.VILLAGER.food );
-
-                        this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
                         var home:HomeVO = this._homes[ i ];
 
@@ -81,7 +80,6 @@ package ageofai.home.model
         {
             homeVO.villagerIsCreating = false;
 
-            trace( '@@@@@===============>>>>>', homeVO.id );
             var homeEvent:HomeEvent = new HomeEvent( HomeEvent.REQUEST_TO_CREATE_VILLAGER );
             homeEvent.homeVO = homeVO;
 
