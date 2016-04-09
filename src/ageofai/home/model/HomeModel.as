@@ -5,6 +5,7 @@ package ageofai.home.model
 {
     import ageofai.home.ai.HomeAI;
     import ageofai.home.constant.CHome;
+    import ageofai.home.event.HomeEvent;
 
     import common.mvc.model.base.BaseModel;
 
@@ -24,8 +25,9 @@ package ageofai.home.model
         {
             this._homeAI = new HomeAI();
 
-            this._creationTimer = new Timer( CHome.VILLAGER_CREATION_TIME / 10, 10 );
+            this._creationTimer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
             this._creationTimer.addEventListener( TimerEvent.TIMER, this.creationTimerHandler );
+            this._creationTimer.addEventListener( TimerEvent.TIMER_COMPLETE, this.creationTimerCompleteHandler );
         }
 
         public function tick():void
@@ -40,6 +42,8 @@ package ageofai.home.model
                 if ( this._homeAI.isNewVillagerAvailable( this._foodAmount, this._villagerAmount ) )
                 {
                     this._creatingInProgress = true;
+
+                    this._creationTimer.start();
                 }
             }
         }
@@ -56,7 +60,15 @@ package ageofai.home.model
 
         private function creationTimerHandler( event:TimerEvent ):void
         {
-            
+            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
+            homeEvent.progressPercentage = this._creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
+
+            this.dispatch( homeEvent );
+        }
+
+        private function creationTimerCompleteHandler( event:TimerEvent ):void
+        {
+            this.dispatch( new HomeEvent( HomeEvent.VILLAGER_CREATED ) );
         }
     }
 }

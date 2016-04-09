@@ -7,6 +7,7 @@ package ageofai.home.constant
     {
 
         public static const VILLAGER_CREATION_TIME:int = 2000;
+        public static const VILLAGER_CREATION_TIMELY:int = 20;
 
     }
 }

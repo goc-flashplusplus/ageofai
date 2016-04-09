@@ -20,6 +20,7 @@ package ageofai.home.event
         public override function clone():Event
         {
             var event:HomeEvent = new HomeEvent( type );
+            event.progressPercentage = progressPercentage;
 
             return event;
         }
