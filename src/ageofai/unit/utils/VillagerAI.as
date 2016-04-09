@@ -39,7 +39,7 @@ package ageofai.unit.utils
                     var newX:int = villager.position.x + sightOffset[i][0];
                     var newY:int = villager.position.y + sightOffset[i][1];
                     
-                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
+                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length || !mapModel.map[newY][newX].walkable)
                     {
                         continue;
                     }
@@ -62,7 +62,7 @@ package ageofai.unit.utils
                     newX = villager.position.x + surroundings[i][0];
                     newY = villager.position.y + surroundings[i][1];
                     
-                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
+                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length || !mapModel.map[newY][newX].walkable)
                     {
                         continue;
                     }
@@ -83,7 +83,7 @@ package ageofai.unit.utils
                 
                 home.objectFounds = home.objectFounds.concat(objectFounds);
                 
-                if ( home.objectFounds.length == 0 || objectFoundsAlreadyTargetted(home) )
+                if ( home.objectFounds.length == 0 || objectFoundsAlreadyTargetted(home, villager) )
                 {
                     // Move randomly
                     do {
@@ -91,7 +91,7 @@ package ageofai.unit.utils
                         newX = villager.position.x + surroundings[newPos][0];
                         newY = villager.position.y + surroundings[newPos][1];
                         
-                        if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
+                        if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length || !mapModel.map[newY][newX].walkable)
                         {
                             continue;
                         }
@@ -111,7 +111,7 @@ package ageofai.unit.utils
                     // Go to object
                     i = 0;
                     do {
-                        while (isOtherVillagerGoingTo(home, home.objectFounds[i].pos))
+                        while (isOtherVillagerGoingTo(home, home.objectFounds[i].pos, villager))
                         {
                             i++;
                         }
@@ -173,22 +173,22 @@ package ageofai.unit.utils
             return newPoint;
         }
         
-        private function objectFoundsAlreadyTargetted(home:HomeVO):Boolean
+        private function objectFoundsAlreadyTargetted(home:HomeVO, villager:VillagerVO):Boolean
         {
             for each (var objectFound:MapNodeVO in home.objectFounds)
             {
-                if (!isOtherVillagerGoingTo(home, objectFound.pos)) return false;
+                if (!isOtherVillagerGoingTo(home, objectFound.pos, villager)) return false;
             }
             return true;
         }
         
-        private function isOtherVillagerGoingTo(home:HomeVO, pos:IntPoint):Boolean
+        private function isOtherVillagerGoingTo(home:HomeVO, pos:IntPoint, curVillager:VillagerVO):Boolean
         {
             for each (var villager:VillagerVO in home.villagers)
             {
                 if (villager.destination == null) continue;
                 
-                if (villager.destination.path[villager.destination.path.length - 1] == pos)
+                if (villager.destination.path[villager.destination.path.length - 1] == pos && villager != curVillager)
                 {
                     return true;
                 }

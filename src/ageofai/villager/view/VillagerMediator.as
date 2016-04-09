@@ -31,7 +31,7 @@ package ageofai.villager.view
         
         private function villagerMove( event:VillagerEvent ):void
         {
-			if ( this != event.villager.view ) return;
+			if ( this.view != event.villager.view ) return;
 
             this.view.moveTo( event.villager );
         }
