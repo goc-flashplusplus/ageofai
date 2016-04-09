@@ -11,6 +11,6 @@ package ageofai.map.constant
 		
 		public static const TILE_SIZE:int = 32;
 
-        public static const HOME_COUNT:int = 3;
+        public static const HOME_COUNT:int = 2;
     }
 }

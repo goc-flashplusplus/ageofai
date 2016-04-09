@@ -10,7 +10,11 @@ package ageofai.home.model
     import ageofai.home.vo.HomeVO;
     import ageofai.villager.vo.VillagerVO;
 
+    import caurina.transitions.Tweener;
+
     import common.mvc.model.base.BaseModel;
+
+    import flash.display.Sprite;
 
     import flash.events.TimerEvent;
     import flash.utils.Timer;
@@ -42,17 +46,16 @@ package ageofai.home.model
 
                         this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
-                        var home:HomeVO = this._homes[ i ]
+                        var home:HomeVO = this._homes[ i ];
+                        trace('@@@@@>>>>>',home.id);
 
                         var creationTimer:Timer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
                         creationTimer.addEventListener( TimerEvent.TIMER, function ():void
                         {
-                            creationTimerHandler( creationTimer, home );
+                            creationTimerHandler( creationTimer );
                         });
-                        creationTimer.addEventListener( TimerEvent.TIMER_COMPLETE, function ():void
-                        {
-                            creationTimerCompleteHandler( creationTimer, home );
-                        });
+
+                        Tweener.addTween( this, { time: 2, onComplete: creationTimerCompleteHandler, onCompleteParams: [ home ] } );
 
                         creationTimer.start();
                     }
@@ -60,7 +63,7 @@ package ageofai.home.model
             }
         }
 
-        private function creationTimerHandler( creationTimer:Timer, homeVO:HomeVO ):void
+        private function creationTimerHandler( creationTimer:Timer ):void
         {
             var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
             homeEvent.progressPercentage = creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
@@ -68,10 +71,11 @@ package ageofai.home.model
             this.dispatch( homeEvent );
         }
 
-        private function creationTimerCompleteHandler( creationTimer:Timer, homeVO:HomeVO ):void
+        private function creationTimerCompleteHandler( homeVO:HomeVO ):void
         {
             homeVO.villagerIsCreating = false;
 
+            trace('@@@@@===============>>>>>',homeVO.id);
             var homeEvent:HomeEvent = new HomeEvent( HomeEvent.REQUEST_TO_CREATE_VILLAGER );
             homeEvent.homeVO = homeVO;
 
@@ -81,6 +85,16 @@ package ageofai.home.model
         public function setInitHomes( homes:Vector.<HomeVO> ):void
         {
             this._homes = homes;
+
+            this.setHomeVOIds();
+        }
+
+        private function setHomeVOIds():void
+        {
+            for ( var i:int = 0; i < this._homes.length; i++ )
+            {
+                this._homes[i].id = i;
+            }
         }
 
         public function addVillager( homeVO:HomeVO, villagerVO:VillagerVO ):void
