@@ -103,8 +103,8 @@ package ageofai.unit.utils
                 else if (nextToObject)
                 {
                     villager.destination = null;
-                    villager.status = CVillagerStatus.HARVEST;
-                    newPoint = null;
+                    villager.status = nodeVO.node.objectType == CMapNodeType.OBJECT_FRUIT ? CVillagerStatus.HARVEST : CVillagerStatus.WOOD_CUTTING;
+                    newPoint = villager.position;
                 }
                 else
                 {
@@ -137,6 +137,7 @@ package ageofai.unit.utils
                     if (path != null) 
                     {
                         newPoint = path[0];
+                        trace(newPoint);
                         villager.destination = new DestinationDataVO();
                         villager.destination.path = path;
                     }
@@ -148,6 +149,7 @@ package ageofai.unit.utils
                 else
                 {
                     newPoint = path[++villager.destination.currentEntry];
+                        trace(newPoint);
                 }
             }
             else
