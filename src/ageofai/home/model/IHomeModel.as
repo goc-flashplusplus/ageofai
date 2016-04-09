@@ -15,5 +15,9 @@ package ageofai.home.model
 
         function addVillager( homeVO:HomeVO, villagerVO:VillagerVO ):void;
 
+        function updateFoodAmount( homeVO:HomeVO, amount:int ):void;
+
+        function updateWoodAmount( homeVO:HomeVO, amount:int ):void;
+
     }
 }
