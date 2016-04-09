@@ -3,6 +3,7 @@
  */
 package ageofai.home.view
 {
+	import ageofai.home.event.HomeEvent;
 	import common.mvc.view.base.ABaseMediator;
 
 	public class HomeMediator extends ABaseMediator
@@ -12,6 +13,8 @@ package ageofai.home.view
 
 		override public function initialize():void
 		{
+			this.addContextListener( HomeEvent.VILLAGER_CREATED, );
+			this.addContextListener( HomeEvent.VILLAGER_CREATION_IN_PROGRESS, );
 		}
 	}
 }
