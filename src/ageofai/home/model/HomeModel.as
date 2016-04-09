@@ -68,7 +68,7 @@ package ageofai.home.model
 
             this.dispatch( homeEvent );
 
-            trace("vvvv")
+            trace("vvvv", this._creationTimer.currentCount, CHome.VILLAGER_CREATION_TIMELY, homeEvent.progressPercentage)
         }
 
         private function creationTimerCompleteHandler( event:TimerEvent ):void
