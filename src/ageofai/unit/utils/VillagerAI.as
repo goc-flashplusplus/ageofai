@@ -32,7 +32,7 @@ package ageofai.unit.utils
                     var newX:int = villager.position.x + surroundings[i][0];
                     var newY:int = villager.position.y + surroundings[i][1];
                     
-                    if (newX < 0 || newY < 0 || newX > mapModel.map[0].length || newY > mapModel.map.length)
+                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
                     {
                         continue;
                     }
@@ -58,7 +58,7 @@ package ageofai.unit.utils
                         newX = villager.position.x + surroundings[newPos][0];
                         newY = villager.position.y + surroundings[newPos][1];
                         
-                        if (newX < 0 || newY < 0 || newX > mapModel.map[0].length || newY > mapModel.map.length)
+                        if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
                         {
                             continue;
                         }
