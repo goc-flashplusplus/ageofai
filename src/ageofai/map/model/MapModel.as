@@ -11,6 +11,9 @@ package ageofai.map.model
     import ageofai.map.event.MapCreatedEvent;
     import ageofai.map.geom.IntPoint;
     import ageofai.map.vo.MapDataVO;
+    import ageofai.unit.base.BaseUnitView;
+    import ageofai.villager.view.VillagerView;
+
     import common.mvc.model.base.BaseModel;
 
     public class MapModel extends BaseModel implements IMapModel
@@ -18,6 +21,7 @@ package ageofai.map.model
         
         private var _astarMap:GeneralAStarMap;
         private var _map:Vector.<Vector.<MapNode>>;
+        private var _units:Vector.<Vector.<BaseUnitView>>;
         private var _homes:Vector.<HomeVO>;
         private var _fruits:Vector.<IntPoint>;
         private var _trees:Vector.<IntPoint>;
@@ -202,6 +206,18 @@ package ageofai.map.model
             mapData.trees = this._trees;
             
             return mapData;
+        }
+
+        public function addUnit( villager:VillagerView ):void
+        {
+            if ( !this._units )
+            {
+                this._units = new <Vector.<BaseUnitView>>[];
+            }
+
+            this._units.push( villager );
+
+            this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
         }
         
         private function getMapNode():MapNode

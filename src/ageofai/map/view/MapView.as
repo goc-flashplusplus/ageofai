@@ -12,6 +12,7 @@ package ageofai.map.view
 	import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
     import ageofai.map.vo.MapDataVO;
+	import ageofai.unit.base.IUnitView;
 
 	import common.mvc.view.base.ABaseView;
 
@@ -110,6 +111,16 @@ package ageofai.map.view
 			var home:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
 			home.x = CMap.TILE_SIZE * pos.x;
 			home.y = CMap.TILE_SIZE * pos.y;
+		}
+
+		public function addUnit( villager:IUnitView, pos:IntPoint ):void
+		{
+			var unit:DisplayObject = villager as DisplayObject;
+
+			this._dynamicsLayer.addChild( unit );
+
+			unit.x = CMap.TILE_SIZE * pos.x;
+			unit.y = CMap.TILE_SIZE * pos.y;
 		}
 
 		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void

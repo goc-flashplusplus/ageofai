@@ -3,7 +3,8 @@
  */
 package ageofai.home.view.event
 {
-	import ageofai.villager.view.VillagerView;
+    import ageofai.home.vo.HomeVO;
+    import ageofai.villager.view.VillagerView;
     import flash.events.Event;
 
     public class HomeViewEvent extends Event
@@ -11,6 +12,7 @@ package ageofai.home.view.event
         public static const VILLAGER_VIEW_CREATED:String = "HomeViewEvent.villagerViewCreated";
 
         public var villagerView:VillagerView;
+        public var homeVO:HomeVO;
 
         public function HomeViewEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
@@ -21,6 +23,7 @@ package ageofai.home.view.event
         {
             var event:HomeViewEvent = new HomeViewEvent( type );
             event.villagerView = this.villagerView;
+            event.homeVO = this.homeVO;
 
             return event;
         }

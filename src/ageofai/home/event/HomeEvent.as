@@ -3,7 +3,8 @@
  */
 package ageofai.home.event
 {
-	import ageofai.villager.view.VillagerView;
+    import ageofai.home.vo.HomeVO;
+    import ageofai.villager.view.VillagerView;
     import flash.events.Event;
 
     public class HomeEvent extends Event
@@ -15,6 +16,7 @@ package ageofai.home.event
         public var progressPercentage:int;
         public var villagerView:VillagerView;
         public var homeId:int;
+        public var homeVO:HomeVO;
 
         public function HomeEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {

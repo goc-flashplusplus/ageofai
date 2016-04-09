@@ -3,6 +3,7 @@
  */
 package ageofai.villager.model
 {
+    import ageofai.map.geom.IntPoint;
     import ageofai.unit.base.IUnitView;
 
     public interface IVillagerModel
@@ -10,7 +11,7 @@ package ageofai.villager.model
 
         function getVillagers():Vector.<IUnitView>;
 
-        function addVillager( unit:IUnitView ):void;
+        function addVillager( unit:IUnitView, pos:IntPoint ):void;
 
     }
 }
