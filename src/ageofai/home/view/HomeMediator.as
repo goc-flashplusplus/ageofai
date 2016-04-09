@@ -25,11 +25,14 @@ package ageofai.home.view
 
         private function villageViewCreatedHandler( e:HomeViewEvent ):void
         {
-            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_VIEW_CREATED );
-            homeEvent.villagerView = e.villagerView;
-            homeEvent.homeVO = e.homeVO;
+            if ( this.view.id == e.homeVO.id )
+            {
+                var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_VIEW_CREATED );
+                homeEvent.villagerView = e.villagerView;
+                homeEvent.homeVO = e.homeVO;
 
-            this.dispatch( homeEvent );
+                this.dispatch( homeEvent );
+            }
         }
 
         private function villagerCredatedEventHandler( e:HomeEvent ):void
