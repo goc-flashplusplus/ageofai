@@ -25,6 +25,7 @@ package ageofai.villager.controller
         {
             var villagerVO:VillagerVO = new VillagerVO();
             villagerVO.view = this.event.villagerView;
+            villagerVO.position = event.homeVO.pos;
 
             this.villagerModel.addVillager( villagerVO, event.homeVO.pos );
 

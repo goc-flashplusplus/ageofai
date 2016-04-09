@@ -19,5 +19,7 @@ package ageofai.map.model
         function createMap( rowCount:int, columnCount:int ):void;
         
         function getMapData():MapDataVO;
+        
+        function getPath(startPos:IntPoint, endPos:IntPoint):Vector.<IntPoint>;
     }
 }

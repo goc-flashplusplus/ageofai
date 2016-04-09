@@ -237,6 +237,13 @@ package ageofai.map.model
             this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
         }
         
+        
+        public function getPath(startPos:IntPoint, endPos:IntPoint):Vector.<IntPoint> 
+        {
+            var aStar:AStar = new AStar(this._astarMap, startPos, endPos);
+            return aStar.solve();
+        }
+        
         private function getMapNode():MapNode
         {
             var rnd:Number = Math.random() * 100;

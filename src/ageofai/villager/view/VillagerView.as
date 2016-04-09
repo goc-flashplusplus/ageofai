@@ -20,19 +20,19 @@ package ageofai.villager.view
 		override public function createChildren():void
 		{
 			this.createUI( VillagerUI );
-			(this.graphicUI as MovieClip).bag.visible = false;			
+			(this.graphicUI as MovieClip).bag.visible = false;
 			this.createLifeBar();
 		}
 		
 		public function showHarvestAnimation():void
 		{
-			(this.graphicUI as MovieClip).bag.visible = true;			
+			(this.graphicUI as MovieClip).bag.visible = true;
 			(this.graphicUI as MovieClip).gotoAndPlay("harvest");
 		}	
 		
 		public function showArriwedHomeAnimation():void
 		{
-			(this.graphicUI as MovieClip).bag.visible = false;			
+			(this.graphicUI as MovieClip).bag.visible = false;
 			(this.graphicUI as MovieClip).gotoAndPlay("move");
 		}
 	}

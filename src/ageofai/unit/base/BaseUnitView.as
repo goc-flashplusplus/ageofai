@@ -68,7 +68,7 @@ package ageofai.unit.base
 			
 			movingTime = Math.abs(distance) / CMap.TILE_SIZE * this.speed;
 			
-			return movingTime;			
+			return movingTime;
 		}
 		
 		private function getCurrentPosition():Point
