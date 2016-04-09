@@ -5,7 +5,9 @@ package ageofai.config
     import ageofai.game.controller.ProcessTickCommand;
     import ageofai.game.event.GameEvent;
     import ageofai.home.controller.SetInitHomesCommand;
+    import ageofai.home.event.HomeEvent;
     import ageofai.map.event.MapCreatedEvent;
+    import ageofai.villager.controller.AddVillagerViewCommand;
 
     import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
     import robotlegs.bender.framework.api.IConfig;
@@ -32,6 +34,9 @@ package ageofai.config
 
             //MapCreatedEvent
             this.commandMap.map( MapCreatedEvent.MAP_CREATED ).toCommand( SetInitHomesCommand );
+
+            //HomeEvent
+            this.commandMap.map( HomeEvent.VILLAGER_VIEW_CREATED ).toCommand( AddVillagerViewCommand );
         }
 
     }
