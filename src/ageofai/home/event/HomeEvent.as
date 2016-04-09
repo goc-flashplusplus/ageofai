@@ -13,6 +13,9 @@ package ageofai.home.event
         public static const REQUEST_TO_CREATE_VILLAGER:String = "HomeEvent.requestToCreateVillager";
         public static const VILLAGER_VIEW_CREATED:String = "HomeEvent.villagerViewCreated";
 
+        public static const FOOD_AMOUNT_UPDATED:String = "HomeEvent.foodAmountUpdated";
+        public static const WOOD_AMOUNT_UPDATED:String = "HomeEvent.woodAmountUpdated";
+
         public var progressPercentage:int;
         public var villagerView:VillagerView;
         public var homeVO:HomeVO;

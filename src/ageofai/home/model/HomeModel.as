@@ -90,10 +90,22 @@ package ageofai.home.model
 
         public function updateFoodAmount( homeVO:HomeVO, amount:int ):void
         {
+            homeVO.food = amount;
+
+            var event:HomeEvent = new HomeEvent( HomeEvent.FOOD_AMOUNT_UPDATED );
+            event.homeVO = homeVO;
+
+            this.dispatch( event );
         }
 
         public function updateWoodAmount( homeVO:HomeVO, amount:int ):void
         {
+            homeVO.wood = amount;
+
+            var event:HomeEvent = new HomeEvent( HomeEvent.WOOD_AMOUNT_UPDATED );
+            event.homeVO = homeVO;
+
+            this.dispatch( event );
         }
     }
 }
