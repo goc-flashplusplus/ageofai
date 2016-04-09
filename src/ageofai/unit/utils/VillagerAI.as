@@ -23,11 +23,11 @@ package ageofai.unit.utils
             [ 0, -2 ], /*[ 0, -1 ], [ 0, 1 ],*/ [ 0, 2 ],
             [ 1, -2 ], [ 1, -1 ], /*[ 1, 0 ],*/ [ 1, 1 ], [ 1, 2 ],
             [ 2, -2 ], [ 2, -1 ], [ 2, 0 ], [ 2, 1 ], [ 2, 2 ]];
-        private var surroundings:Array = [[ -1, 0 ], [ 0, -1 ], [ 1, 0 ], [ 0, 1 ]];
+        private var surroundings:Array = [[ -1, 0 ], [ 0, -1 ], [ 0, 0 ], [ 1, 0 ], [ 0, 1 ]];
             
         public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):IntPoint
         {
-            if ( villager.status == CVillagerStatus.IDLE && (villager.destination == null || villager.destination.currentEntry >= villager.destination.path.length - 1) )
+            if ( villager.status == CVillagerStatus.IDLE && (villager.destination == null || villager.destination.currentEntry <= 0) )
             {
                 var newPoint:IntPoint;
                 
@@ -70,8 +70,7 @@ package ageofai.unit.utils
                     newPoint = new IntPoint(newX, newY);
                     
                     objectType = mapModel.map[newY][newX].objectType;
-                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME
-					 && objectType != CMapNodeType.OBJECT_TREE )
+                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME )
                     {
                         nextToObject = true;
                         nodeVO = new MapNodeVO();
@@ -103,8 +102,8 @@ package ageofai.unit.utils
                 else if (nextToObject)
                 {
                     villager.destination = null;
-                    villager.status = nodeVO.node.objectType == CMapNodeType.OBJECT_FRUIT ? CVillagerStatus.HARVEST : CVillagerStatus.HARVEST;
-                    newPoint = villager.position;
+                    villager.status = nodeVO.node.objectType == CMapNodeType.OBJECT_FRUIT ? CVillagerStatus.HARVEST : CVillagerStatus.WOOD_CUTTING;
+                    newPoint = nodeVO.pos;
                 }
                 else
                 {
@@ -122,9 +121,10 @@ package ageofai.unit.utils
                     
                     if (path != null) 
                     {
-                        newPoint = path[0];
+                        newPoint = path[path.length - 1];
                         villager.destination = new DestinationDataVO();
                         villager.destination.path = path;
+                        villager.destination.currentEntry = path.length - 1;
                     }
                 }
             }
@@ -136,13 +136,14 @@ package ageofai.unit.utils
                     
                     if (path != null) 
                     {
-                        newPoint = path[0];
+                        newPoint = path[path.length - 1];
                         trace(newPoint);
                         villager.destination = new DestinationDataVO();
                         villager.destination.path = path;
+                        villager.destination.currentEntry = path.length - 1;
                     }
                 }
-                else if (villager.destination.currentEntry >= villager.destination.path.length - 1)
+                else if (villager.destination.currentEntry <= 0)
                 {
                     newPoint = null;
                 }
@@ -165,7 +166,7 @@ package ageofai.unit.utils
                     }
                     else
                     {
-                        newPoint = villager.destination.path[villager.destination.currentEntry++];
+                        newPoint = villager.destination.path[--villager.destination.currentEntry];
                     }
                 }
             }
@@ -188,7 +189,7 @@ package ageofai.unit.utils
             {
                 if (villager.destination == null) continue;
                 
-                if (villager.destination.path[villager.destination.path.length - 1] == pos && villager != curVillager)
+                if (villager.destination.path[0] == pos && villager != curVillager)
                 {
                     return true;
                 }
