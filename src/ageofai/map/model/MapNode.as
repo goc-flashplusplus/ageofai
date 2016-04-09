@@ -33,6 +33,11 @@ package ageofai.map.model
             return this._type & 0xFF00;
         }
         
+        public function get baseType():int
+        {
+            return this._type & 0xFF;
+        }
+        
         public function get baseNodeWalkable():Boolean
         {
             return (this._type & 0xFF) < CMapNodeType.WATER;
