@@ -10,6 +10,7 @@ package ageofai.map.view
 	import ageofai.map.constant.CMapNodeType;
 	import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
+    import ageofai.map.vo.MapDataVO;
 
 	import common.mvc.view.base.ABaseView;
 
@@ -43,9 +44,13 @@ package ageofai.map.view
 			this.addChild( this._dynamicsLayer );
 		}
 
-		public function createMap( mapMatrix:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint> ):void
+		public function createMap( mapData:MapDataVO ):void
 		{
-			this._terrainHelper = new TerrainHelper();
+            var mapMatrix:Vector.<Vector.<MapNode>> = mapData.map;
+            var homes:Vector.<IntPoint> = mapData.homes;
+            var fruits:Vector.<IntPoint> = mapData.fruits;
+			
+            this._terrainHelper = new TerrainHelper();
 			this._terrainHelper.createBaseTerrainBitmapDatas();
 
 			var lineCount:int = mapMatrix.length;
@@ -77,7 +82,6 @@ package ageofai.map.view
 				this.createForest( forest );
 			}
 
-			var fruits:Vector.<IntPoint> = new <IntPoint>[new IntPoint(5,2),new IntPoint(6,3),new IntPoint(7,4)];
 			for each ( var fruit:IntPoint in fruits )
 			{
 				this.createFruit( fruit );

@@ -4,6 +4,7 @@
 package ageofai.map.model
 {
     import ageofai.map.geom.IntPoint;
+    import ageofai.map.vo.MapDataVO;
     public interface IMapModel
     {
         function get map():Vector.<Vector.<MapNode>>;
@@ -11,5 +12,7 @@ package ageofai.map.model
         function get homes():Vector.<IntPoint>;
         
         function createMap( rowCount:int, columnCount:int ):void;
+        
+        function getMapData():MapDataVO;
     }
 }

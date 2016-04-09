@@ -18,7 +18,7 @@ package ageofai.home.controller
 
         override public function execute():void
         {
-            this.homeModel.setInitHomes( this.event.homes );
+            this.homeModel.setInitHomes( this.event.mapData.homes );
         }
     }
 }

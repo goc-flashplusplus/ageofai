@@ -8,6 +8,7 @@ package ageofai.map.view
     import ageofai.map.model.IMapModel;
     import ageofai.map.model.MapModel;
     import ageofai.map.model.MapNode;
+    import ageofai.map.vo.MapDataVO;
 	import common.mvc.view.base.ABaseMediator;
 
 	public class MapMediator extends ABaseMediator
@@ -22,7 +23,7 @@ package ageofai.map.view
 		{
             if (this.model.map)
             {
-                this.setViewMap(this.model.map, this.model.homes);
+                this.setViewMap(this.model.getMapData());
             }
             
             this.addContextListener(MapCreatedEvent.MAP_CREATED, this.mapCreated);
@@ -30,12 +31,12 @@ package ageofai.map.view
         
         private function mapCreated(e:MapCreatedEvent):void
         {
-            this.setViewMap(e.map, e.homes);
+            this.setViewMap(e.mapData);
         }
         
-        private function setViewMap(map:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint>):void
+        private function setViewMap(mapData:MapDataVO):void
         {
-            this.view.createMap(map, homes);
+            this.view.createMap(mapData);
         }
 	}
 }
