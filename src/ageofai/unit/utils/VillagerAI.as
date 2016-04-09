@@ -17,6 +17,11 @@ package ageofai.unit.utils
      */
     public class VillagerAI implements IUnitAI
     {
+        private var sightOffset:Array = [[ -2, -2 ], [ -2, -1 ], [ -2, 0 ], [ -2, 1 ], [ -2, 2 ],
+            [ -1, -2 ], [ -1, -1 ], /*[ -1, 0 ],*/ [ -1, 1 ], [ -1, 2 ],
+            [ 0, -2 ], /*[ 0, -1 ], [ 0, 1 ],*/ [ 0, 2 ],
+            [ 1, -2 ], [ 1, -1 ], /*[ 1, 0 ],*/ [ 1, 1 ], [ 1, 2 ],
+            [ 2, -2 ], [ 2, -1 ], [ 2, 0 ], [ 2, 1 ], [ 2, 2 ]];
         private var surroundings:Array = [[ -1, 0 ], [ 0, -1 ], [ 1, 0 ], [ 0, 1 ]];
             
         public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):IntPoint
@@ -25,9 +30,32 @@ package ageofai.unit.utils
             {
                 var newPoint:IntPoint;
                 
-                // Check surrounding
                 var objectFounds:Vector.<MapNodeVO> = new Vector.<MapNodeVO>();
-                for (var i:int = 0, count:int = surroundings.length; i < count; i++)
+                
+                // Check sight area
+                for (var i:int = 0, count:int = sightOffset.length; i < count; i++)
+                {
+                    var newX:int = villager.position.x + sightOffset[i][0];
+                    var newY:int = villager.position.y + sightOffset[i][1];
+                    
+                    if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
+                    {
+                        continue;
+                    }
+                    
+                    newPoint = new IntPoint(newX, newY);
+                    
+                    if (mapModel.map[newY][newX].objectType != CMapNodeType.OBJECT_NULL)
+                    {
+                        var nodeVO:MapNodeVO = new MapNodeVO();
+                        nodeVO.pos = newPoint;
+                        nodeVO.node = mapModel.map[newY][newX];
+                        objectFounds[objectFounds.length] = nodeVO;
+                    }
+                }
+                
+                // Check surroundings
+                for (i = 0, count = surroundings.length; i < count; i++)
                 {
                     var newX:int = villager.position.x + surroundings[i][0];
                     var newY:int = villager.position.y + surroundings[i][1];
@@ -69,8 +97,14 @@ package ageofai.unit.utils
                 }
                 else
                 {
-                    // Go to object 
-                    //mapModel.getPath(, )
+                    // Go to object
+                    i = 0;
+                    do {
+                        var path:Vector.<IntPoint> = mapModel.getPath(villager.position, home.objectFounds[0].pos);
+                        i++;
+                    } while (path == null && i < home.objectFounds.length)
+                    
+                    if (path != null) newPoint = path[0];
                 }
             }
             else
