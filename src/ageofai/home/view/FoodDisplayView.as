@@ -27,6 +27,7 @@ package ageofai.home.view
             this.addChild( this._iconView );
 
             this._amountText = new TextField();
+            this._amountText.x = 20;
             this.addChild( this._amountText );
         }
 
