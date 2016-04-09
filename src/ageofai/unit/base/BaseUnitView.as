@@ -40,7 +40,8 @@ package ageofai.unit.base
 			this.addChild( this.lifebar );
 			
 			this.lifebar.x = ( CMap.TILE_SIZE - this.lifebar.barWidth ) / 2 ;
-			this.lifebar.y = 5;
+			this.lifebar.y = -30;
+			this.lifebar.drawProcessBar( 1 );
 		}
 		
 		public function moveTo( targetPoint:Point ):void

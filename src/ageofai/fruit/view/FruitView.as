@@ -41,7 +41,10 @@ package ageofai.fruit.view
 			this.addChild( this._lifeBar );
 
 			this._lifeBar.x = ( CMap.TILE_SIZE - this._lifeBar.barWidth ) / 2 ;
-			this._lifeBar.y = 5;
+			this._lifeBar.y = -10;
+
+			this._lifeBar.barWidth = 100;
+			this._lifeBar.drawProcessBar( 1 );
 		}
 	}
 }

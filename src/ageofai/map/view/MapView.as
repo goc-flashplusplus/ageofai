@@ -12,7 +12,6 @@ package ageofai.map.view
 	import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
     import ageofai.map.vo.MapDataVO;
-	import ageofai.unit.base.IUnitView;
 	import ageofai.villager.vo.VillagerVO;
 
 	import common.mvc.view.base.ABaseView;
@@ -23,6 +22,7 @@ package ageofai.map.view
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Matrix;
+	import flash.utils.Dictionary;
 
 	public class MapView extends ABaseView
 	{
@@ -31,11 +31,26 @@ package ageofai.map.view
 
 		private var _terrainHelper:TerrainHelper;
 
+		private var _terrainManifest:Dictionary;
+
 		public function MapView()
 		{
+			this._terrainHelper = new TerrainHelper();
+			this._terrainHelper.createBaseTerrainBitmapDatas();
+
+			this.createTerrainManifest();
 			this.createLayers();
 
 			this.addEventListener( Event.ENTER_FRAME, this.onEnterFrameHandler );
+		}
+
+		private function createTerrainManifest():void
+		{
+			this._terrainManifest = new Dictionary();
+
+			this._terrainManifest[CMapNodeType.GRASS] = this._terrainHelper.terrainGrassUI;
+			this._terrainManifest[CMapNodeType.DARK_GRASS] = this._terrainHelper.terrainDarkGrassUI;
+			this._terrainManifest[CMapNodeType.WATER] = this._terrainHelper.terrainWaterUI;
 		}
 
 		private function createLayers():void
@@ -53,9 +68,6 @@ package ageofai.map.view
             var homes:Vector.<HomeVO> = mapData.homes;
             var fruits:Vector.<IntPoint> = mapData.fruits;
 			var forests:Vector.<IntPoint> = mapData.trees;
-			
-            this._terrainHelper = new TerrainHelper();
-			this._terrainHelper.createBaseTerrainBitmapDatas();
 
 			var lineCount:int = mapMatrix.length;
 			var colCount:int = mapMatrix[ 0 ].length;
@@ -67,7 +79,7 @@ package ageofai.map.view
 			{
 				for( var j:int = 0; j < colCount; j++ )
 				{
-					this.drawTerrainToBitmapData( j, i, backgroundBitmapData, mapMatrix[ i ][ j ].type );
+					this.drawTerrainToBitmapData( j, i, backgroundBitmapData, mapMatrix[ i ][ j ].baseType );
 				}
 			}
 
@@ -130,7 +142,7 @@ package ageofai.map.view
 			positionMatrix.tx = col * CMap.TILE_SIZE;
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
-			backgroundBitmapData.draw( type == CMapNodeType.GRASS ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
+			backgroundBitmapData.draw( this._terrainManifest[type], positionMatrix );
 		}
 
 		private function onEnterFrameHandler( event:Event ):void

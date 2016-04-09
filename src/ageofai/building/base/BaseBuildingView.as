@@ -40,8 +40,10 @@ package ageofai.building.base
 		protected function createProgressBar():void
 		{
 			this._buildProgressBar = new BuildProgressBarView();
-			this._buildProgressBar.width = this._graphicUI.width;
-			
+			this._buildProgressBar.width = 70;
+			this._buildProgressBar.x = -5;
+			this._buildProgressBar.y = -20;
+
 			this._buildProgressBar.drawProcessBar(Math.random());
 			
 			this.addChild( this._buildProgressBar );

@@ -11,9 +11,9 @@ package ageofai.unit.view
 		public function LifeBarView() 
 		{	
 			this.barWidth = 20;
-			this.barHeight = 5;
-			this.backgroundColor = 0xFFFFFF;
-			this.barColor = 0x00FF00;
+			this.barHeight = 3;
+			this.backgroundColor = 0x222222;
+			this.barColor = 0x669900;
 			this.createChildren( );	
 		}
 		

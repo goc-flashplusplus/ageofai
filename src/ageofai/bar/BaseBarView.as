@@ -34,6 +34,16 @@ package ageofai.bar
 		
 		public function drawProcessBar( percent:Number ):void
 		{
+			if ( percent == 1 || percent == 0 )
+			{
+				this.visible = false;
+				return;
+			}
+			else if ( !this.visible )
+			{
+				this.visible = true;
+			}
+
 			if (this._processBar.numChildren > 0)
 			{
 				this._processBar.removeChildAt(0);			

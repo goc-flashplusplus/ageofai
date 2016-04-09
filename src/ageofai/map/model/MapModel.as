@@ -229,7 +229,7 @@ package ageofai.map.model
             {
                 type = CMapNodeType.GRASS;
             }
-            else if (rnd <= 85)
+            else if (rnd <= 95)
             {
                 type = CMapNodeType.DARK_GRASS;
             }

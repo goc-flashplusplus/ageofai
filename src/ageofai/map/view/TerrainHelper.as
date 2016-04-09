@@ -10,11 +10,13 @@ package ageofai.map.view
 	{
 		private var _terrainGrassUI:BitmapData;
 		private var _terrainDarkGrassUI:BitmapData;
+		private var _terrainWaterUI:BitmapData;
 
 		public function createBaseTerrainBitmapDatas():void
 		{
 			this._terrainGrassUI = this.createBitmapDataFromTerrainUI( TerrainGrassUI );
 			this._terrainDarkGrassUI = this.createBitmapDataFromTerrainUI( TerrainDarkGrassUI );
+			this._terrainWaterUI = this.createBitmapDataFromTerrainUI( TerrainWaterUI );
 		}
 
 		private function createBitmapDataFromTerrainUI( source:Class ):BitmapData
@@ -33,6 +35,9 @@ package ageofai.map.view
 
 			this._terrainDarkGrassUI.dispose();
 			this._terrainDarkGrassUI = null;
+
+			this._terrainWaterUI.dispose();
+			this._terrainWaterUI = null;
 		}
 
 		public function get terrainGrassUI():BitmapData
@@ -43,6 +48,11 @@ package ageofai.map.view
 		public function get terrainDarkGrassUI():BitmapData
 		{
 			return this._terrainDarkGrassUI.clone();
+		}
+
+		public function get terrainWaterUI():BitmapData
+		{
+			return this._terrainWaterUI.clone();
 		}
 	}
 }
