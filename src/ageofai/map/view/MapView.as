@@ -57,7 +57,7 @@ package ageofai.map.view
 			{
 				for( var j:int = 0; j < colCount; j++ )
 				{
-					this.drawTerrainToBitmapData( i, j, backgroundBitmapData, mapMatrix[ i ][ j ].type );
+					this.drawTerrainToBitmapData( j, i, backgroundBitmapData, mapMatrix[ i ][ j ].type );
 				}
 			}
 
