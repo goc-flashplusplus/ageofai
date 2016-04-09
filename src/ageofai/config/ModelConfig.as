@@ -10,6 +10,8 @@ package ageofai.config
 	import ageofai.map.model.MapModel;
 	import ageofai.unit.model.IUnitModel;
 	import ageofai.unit.model.UnitModel;
+	import ageofai.villager.model.IVillagerModel;
+	import ageofai.villager.model.VillagerModel;
 
 	import robotlegs.bender.framework.api.IConfig;
 import robotlegs.bender.framework.api.IInjector;
@@ -30,6 +32,7 @@ import robotlegs.bender.framework.api.IInjector;
 			this.injector.map( IGameModel ).toSingleton( GameModel );
 			this.injector.map( IBuildingModel ).toSingleton( BuildingModel );
 			this.injector.map( IHomeModel ).toSingleton( HomeModel );
+			this.injector.map( IVillagerModel ).toSingleton( VillagerModel );
 		}
 		
 	}

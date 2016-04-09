@@ -9,25 +9,21 @@ package ageofai.villager.model
 
     public class VillagerModel extends BaseModel implements IVillagerModel
     {
-        private var _units:Vector.<IUnitView>;
+        private var _villagers:Vector.<IUnitView>;
+
+        public function VillagerModel()
+        {
+            this._villagers = new <IUnitView>[];
+        }
 
         public function getVillagers():Vector.<IUnitView>
         {
-            return this._units;
+            return this._villagers;
         }
 
         public function addVillager( unit:IUnitView ):void
         {
-            this._units.push( unit );
-        }
-
-        public function getUnits():Vector.<IUnitView>
-        {
-            return null;
-        }
-
-        public function addUnit( unit:IUnitView ):void
-        {
+            this._villagers.push( unit );
         }
     }
 }
