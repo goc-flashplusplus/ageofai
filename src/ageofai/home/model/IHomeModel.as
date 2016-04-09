@@ -3,6 +3,8 @@
  */
 package ageofai.home.model
 {
+    import ageofai.map.geom.IntPoint;
+
     public interface IHomeModel
     {
 
@@ -11,6 +13,8 @@ package ageofai.home.model
         function setFoodAmount( value:int ):void;
 
         function setVillagerAmount( value:int ):void;
+
+        function setInitHomes( Vector.<IntPoint> );
 
     }
 }
