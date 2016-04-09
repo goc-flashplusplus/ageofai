@@ -44,6 +44,15 @@ package ageofai.villager.model
         {
             this.calculateMovements();
         }
+        
+        
+        public function moveVillagerTo(villager:VillagerVO, newPos:IntPoint):void 
+        {
+            var ve:VillagerEvent = new VillagerEvent(VillagerEvent.VILLAGER_MOVE);
+            ve.villager = villager;
+            ve.position = newPos;
+            this.dispatch( ve );
+        }
 
         private function calculateMovements():void
         {

@@ -1,6 +1,7 @@
 package ageofai.villager.event
 {
     import ageofai.home.vo.HomeVO;
+    import ageofai.map.geom.IntPoint;
     import ageofai.villager.vo.VillagerVO;
 
     import flash.events.Event;
@@ -24,6 +25,7 @@ package ageofai.villager.event
         public var progressPercentage:int;
         public var homeVO:HomeVO;
         public var villager:VillagerVO;
+        public var position:IntPoint;
 
         public function VillagerEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {

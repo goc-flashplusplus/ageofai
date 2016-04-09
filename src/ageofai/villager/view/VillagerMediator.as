@@ -16,6 +16,7 @@ package ageofai.villager.view
 		{
 			this.addContextListener( VillagerEvent.VILLAGER_HARVEST, this.villagerHarvestHandler);
 			this.addContextListener( VillagerEvent.VILLAGER_ARRIWED_HOME, this.arriwedHomeHandler);
+			this.addContextListener( VillagerEvent.VILLAGER_MOVE, this.villagerMove);
 		}
 		
 		private function villagerHarvestHandler():void
@@ -27,6 +28,11 @@ package ageofai.villager.view
 		{
 			this.view.showArriwedHomeAnimation();
 		}
+        
+        private function villagerMove( event:VillagerEvent ):void
+        {
+            //this.view.moveTo()
+        }
 		
 	}
 

@@ -14,6 +14,8 @@ package ageofai.villager.model
         function getVillagers():Vector.<VillagerVO>;
 
         function addVillager( villagerVO:VillagerVO, pos:IntPoint ):void;
+        
+        function moveVillagerTo( villager:VillagerVO, newPos:IntPoint ):void;
 
     }
 }

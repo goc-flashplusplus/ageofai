@@ -19,7 +19,7 @@ package ageofai.unit.utils
     {
         private var surroundings:Array = [[ -1, 0 ], [ 0, -1 ], [ 1, 0 ], [ 0, 1 ]];
             
-        public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):void
+        public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):IntPoint
         {
             if ( villager.status == CVillagerStatus.IDLE )
             {
@@ -39,11 +39,11 @@ package ageofai.unit.utils
                     
                     newPoint = new IntPoint(newX, newY);
                     
-                    if (mapModel.map[newPoint.y][newPoint.x].objectType != CMapNodeType.OBJECT_NULL)
+                    if (mapModel.map[newY][newX].objectType != CMapNodeType.OBJECT_NULL)
                     {
                         var nodeVO:MapNodeVO = new MapNodeVO();
                         nodeVO.pos = newPoint;
-                        nodeVO.node = mapModel.map[newPoint.y][newPoint.x];
+                        nodeVO.node = mapModel.map[newY][newX];
                         objectFounds[objectFounds.length] = nodeVO;
                     }
                 }
@@ -77,6 +77,8 @@ package ageofai.unit.utils
             {
                 // Is current task still valid?
             }
+            
+            return newPoint;
         }
     }
 
