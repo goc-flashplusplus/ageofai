@@ -127,6 +127,28 @@ package ageofai.unit.utils
                     }
                 }
             }
+            else if (villager.status == CVillagerStatus.TAKING_BACK_COLLECT)
+            {
+                if (villager.destination == null)
+                {
+                    var path:Vector.<IntPoint> = mapModel.getPath(villager.position, home.objectFounds[i].pos);
+                    
+                    if (path != null) 
+                    {
+                        newPoint = path[0];
+                        villager.destination = new DestinationDataVO();
+                        villager.destination.path = path;
+                    }
+                }
+                else if (villager.destination.currentEntry >= villager.destination.path.length - 1)
+                {
+                    newPoint = null;
+                }
+                else
+                {
+                    newPoint = path[++villager.destination.currentEntry];
+                }
+            }
             else
             {
                 // Is current task still valid?

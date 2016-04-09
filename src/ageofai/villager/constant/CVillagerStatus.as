@@ -7,6 +7,7 @@ package ageofai.villager.constant
     {
         public static const IDLE:String = "Idle";
         public static const HARVEST:String = "Harvest";
-        public static const WOOD_CUTTING:String = "WuudCutting";
+        public static const WOOD_CUTTING:String = "WoodCutting";
+        public static const TAKING_BACK_COLLECT:String = "TakingBackCollect";
     }
 }
