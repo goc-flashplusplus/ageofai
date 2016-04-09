@@ -15,11 +15,17 @@ package ageofai.villager.view
 		override public function initialize () : void
 		{
 			this.addContextListener( VillagerEvent.VILLAGER_HARVEST, this.villagerHarvestHandler);
+			this.addContextListener( VillagerEvent.VILLAGER_ARRIWED_HOME, this.arriwedHomeHandler);
 		}
 		
 		private function villagerHarvestHandler():void
 		{
 			this.view.showHarvestAnimation();
+		}
+		
+		private function arriwedHomeHandler():void
+		{
+			this.view.showArriwedHomeAnimation();
 		}
 		
 	}
