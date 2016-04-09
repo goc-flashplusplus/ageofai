@@ -106,7 +106,7 @@ package ageofai.map.model
 					homes[ i ] = home;
 				}
 				home = new HomeVO();
-				home.pos = getRandomPoint( offsetX, columnCount, offsetY, rowCount );
+				home.pos = getRandomPoint( offsetX, columnCount - 1, offsetY, rowCount - 1 );
 				homes[ i ] = home;
 
 				var isHomeInWalkableArea:Boolean = true;

@@ -53,14 +53,14 @@ package ageofai.unit.base
         {
             if ( this == villagerVO.view )
             {
-                var movingTime:Number = this.calculateMovingTime( new Point( villagerVO.position.x, villagerVO.position.y ) );
+                var movingTime:Number = this.calculateMovingTime( new Point( villagerVO.position.x * CMap.TILE_SIZE, villagerVO.position.y * CMap.TILE_SIZE ) );
                 Tweener.addTween( this, {
-                    x: villagerVO.position.x,
-                    y: villagerVO.position.y,
+                    x: villagerVO.position.x * CMap.TILE_SIZE,
+                    y: villagerVO.position.y * CMap.TILE_SIZE,
                     time: movingTime,
                     transition: "linear"
                 } )
-                this.calculateDirection( new Point( villagerVO.position.x, villagerVO.position.y ) );
+                this.calculateDirection( new Point( villagerVO.position.x * CMap.TILE_SIZE, villagerVO.position.y * CMap.TILE_SIZE ) );
             }
         }
 
