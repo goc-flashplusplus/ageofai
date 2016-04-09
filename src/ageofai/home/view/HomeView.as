@@ -6,10 +6,9 @@ package ageofai.home.view
 	import ageofai.building.base.BaseBuildingView;
 	import ageofai.home.view.event.HomeViewEvent;
 	import ageofai.home.vo.HomeVO;
+	import ageofai.map.constant.CMap;
 	import ageofai.map.geom.IntPoint;
 	import ageofai.villager.view.VillagerView;
-
-	import ageofai.map.constant.CMap;
 
 	public class HomeView extends BaseBuildingView
 	{
@@ -36,12 +35,30 @@ package ageofai.home.view
 			var homeVO:HomeVO = new HomeVO();
 			homeVO.wood = 0;
 			homeVO.food = 0;
-			homeVO.pos = new IntPoint( this.x / CMap.TILE_SIZE, this.y / CMap.TILE_SIZE );
+			homeVO.pos = this.getRandomMapNodePointAroundTheHome();
 
 			homeViewEvent.villagerView = new VillagerView();
 			homeViewEvent.homeVO = homeVO;
 
 			this.dispatchEvent( homeViewEvent );
+		}
+
+		private function getRandomMapNodePointAroundTheHome():IntPoint
+		{
+			var result:IntPoint = new IntPoint( this.x / CMap.TILE_SIZE, this.y / CMap.TILE_SIZE );
+			var offsets:Array = [
+				[ -1, -1 ], [ 0, -1 ], [ 1, -1 ], [ 2, -1 ],
+				[ -1, 0 ], [ 2, 0 ],
+				[ -1, 1 ], [ 2, 1 ],
+				[ -1, 2 ], [ 0, 2 ], [ 1, 2 ], [ 2, 2 ],
+			];
+
+			var randomOffset:Array = offsets[Math.floor( Math.random() * offsets.length )];
+
+			result.x += randomOffset[0];
+			result.y += randomOffset[1];
+
+			return result;
 		}
 	}
 }
