@@ -17,7 +17,7 @@ package ageofai.home.model
 
     public class HomeModel extends BaseModel implements IHomeModel
     {
-        private var _homes:Vector
+        private var _homes:Vector.<IntPoint>;
         private var _foodAmount:int = 50;
         private var _villagerAmount:int;
         private var _homeAI:HomeAI;
@@ -80,7 +80,7 @@ package ageofai.home.model
 
         public function setInitHomes( homes:Vector.<IntPoint> ):void
         {
-
+            this._homes = homes;
         }
     }
 }
