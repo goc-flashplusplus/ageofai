@@ -51,8 +51,8 @@ package ageofai.unit.utils
                         var nodeVO:MapNodeVO = new MapNodeVO();
                         nodeVO.pos = newPoint;
                         nodeVO.node = mapModel.map[newY][newX];
-                        objectFounds[objectFounds.length] = nodeVO;
-                    }
+                        objectFounds[objectFounds.length] = nodeVO; 
+					}
                 }
                 
                 // Check surroundings
