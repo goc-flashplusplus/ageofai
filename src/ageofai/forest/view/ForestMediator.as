@@ -3,6 +3,7 @@
  */
 package ageofai.forest.view
 {
+	import ageofai.forest.event.ForestEvent;
 	import ageofai.forest.model.IForestModel;
 
 	import common.mvc.view.base.ABaseMediator;
@@ -17,7 +18,18 @@ package ageofai.forest.view
 
 		override public function initialize():void
 		{
+			this.addContextListener( ForestEvent.FOREST_AMOUNT_UPDATED, this.forestAmountUpdatedHandler );
+			this.addContextListener( ForestEvent.FOREST_RUN_OUT, this.forestRunOutHandler );
+		}
 
+		private function forestAmountUpdatedHandler( e:ForestEvent ):void
+		{
+			this.view.updateAmount( e.valueAmount );
+		}
+
+		private function forestRunOutHandler( e:ForestEvent ):void
+		{
+			this.view.destroy();
 		}
 	}
 }

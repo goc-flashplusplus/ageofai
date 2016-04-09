@@ -29,7 +29,7 @@ package ageofai.villager.view
 		{
             if ( this == villagerVO.view )
             {
-				//(this.graphicUI as MovieClip).alpha = 0.4;
+				(this.graphicUI as MovieClip).alpha = 0.4;
 				(this.graphicUI as MovieClip).bag.visible = true;
 				(this.graphicUI as MovieClip).gotoAndPlay("harvest");
 			}

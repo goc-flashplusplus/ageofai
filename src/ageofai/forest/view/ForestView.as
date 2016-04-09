@@ -14,6 +14,7 @@ package ageofai.forest.view
 	{
 		private var _graphicUI:DisplayObject;
 		private var _lifeBar:LifeBarView;
+		private var _lifeValueAmount:int;
 
 		public function ForestView()
 		{
@@ -45,6 +46,21 @@ package ageofai.forest.view
 
 			this._lifeBar.barWidth = 100;
 			this._lifeBar.drawProcessBar( 1 );
+		}
+
+		public function updateAmount( valueAmount:int ):void
+		{
+			this._lifeValueAmount = valueAmount;
+
+			this._lifeBar.drawProcessBar( this._lifeValueAmount / 100 );
+		}
+
+		public function destroy():void
+		{
+			if( this.parent )
+			{
+				this.parent.removeChild( this );
+			}
 		}
 	}
 }

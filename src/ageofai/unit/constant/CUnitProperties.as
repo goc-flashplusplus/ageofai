@@ -8,7 +8,7 @@ package ageofai.unit.constant
 	{
 		//speeds
         public static const VILLAGER_SPEED:int = 50;
-        public static const SCOUT_SPEED:int = 0.8;
+        public static const SCOUT_SPEED:int = 80;
 		
 		//lifes
 		public static const VILLAGER_LIFE:int = 10;

@@ -14,6 +14,7 @@ package ageofai.fruit.view
 	{
 		private var _graphicUI:DisplayObject;
 		private var _lifeBar:LifeBarView;
+		private var _lifeValueAmount:int;
 
 		public function FruitView()
 		{
@@ -40,11 +41,26 @@ package ageofai.fruit.view
 			this._lifeBar = new LifeBarView();
 			this.addChild( this._lifeBar );
 
-			this._lifeBar.x = ( CMap.TILE_SIZE - this._lifeBar.barWidth ) / 2 ;
+			this._lifeBar.x = ( CMap.TILE_SIZE - this._lifeBar.barWidth ) / 2;
 			this._lifeBar.y = -10;
 
 			this._lifeBar.barWidth = 100;
 			this._lifeBar.drawProcessBar( 1 );
+		}
+
+		public function updateAmount( valueAmount:int ):void
+		{
+			this._lifeValueAmount = valueAmount;
+
+			this._lifeBar.drawProcessBar( this._lifeValueAmount / 100 );
+		}
+
+		public function destroy():void
+		{
+			if( this.parent )
+			{
+				this.parent.removeChild( this );
+			}
 		}
 	}
 }
