@@ -2,6 +2,8 @@ package ageofai.unit.base
 {
 	import ageofai.map.constant.CMap;
 	import ageofai.unit.view.LifeBarView;
+	import ageofai.unit.vo.UnitVO;
+
 	import caurina.transitions.Tweener;
 	import common.mvc.view.base.ABaseView;
 	import common.utils.MathUtil;
@@ -19,6 +21,7 @@ package ageofai.unit.base
 
 		private var _graphicUI:DisplayObject;
 		public var lifebar:LifeBarView;
+		public var unitVO:UnitVO;
 
 		public function BaseUnitView() 
 		{
