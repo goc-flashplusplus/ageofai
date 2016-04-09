@@ -47,10 +47,6 @@ package ageofai.home.model
                         this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
                         var home:HomeVO = this._homes[ i ];
-<<<<<<< HEAD
-=======
-                        trace('@@@@@>>>>>',home.id);
->>>>>>> origin/master
 
                         var creationTimer:Timer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
                         creationTimer.addEventListener( TimerEvent.TIMER, function ():void
