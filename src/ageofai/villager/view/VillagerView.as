@@ -28,12 +28,12 @@ package ageofai.villager.view
 		public function showHarvestAnimation( villagerVO:UnitVO ):void
 		{
             if ( this == villagerVO.view )
-            {	
+            {
 				(this.graphicUI as MovieClip).alpha = 0.4;
 				(this.graphicUI as MovieClip).bag.visible = true;
 				(this.graphicUI as MovieClip).gotoAndPlay("harvest");
 			}
-		}	
+		}
 		
 		public function showArriwedHomeAnimation():void
 		{

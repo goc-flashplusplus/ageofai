@@ -60,22 +60,27 @@ package ageofai.villager.model
         {
             var event:VillagerEvent;
             var eventType:String;
+			
+			var dispatchStatus:Boolean;
 
             for ( var i:int = 0; i < this._villagers.length; i++ )
             {
                 switch ( this._villagers[ i ].status )
                 {
                     case CVillagerStatus.IDLE:
+						dispatchStatus = true;
                         eventType = VillagerEvent.REQUEST_TO_MOVE_RANDOM;
 
                         break;
 
                     case CVillagerStatus.HARVEST:
+						dispatchStatus = statusChanged(this._villagers[ i ]);
                         eventType = VillagerEvent.VILLAGER_HARVEST;
 
                         break;
 
                     case CVillagerStatus.WOOD_CUTTING:
+						dispatchStatus = true;
                         eventType = VillagerEvent.REQUEST_TO_MOVE_BACK_TO_WORK;
 
                         break;
@@ -83,12 +88,22 @@ package ageofai.villager.model
                     default:
                         throw new Error( "What this fucking villager is doing? :D" );
                 }
-
-                event = new VillagerEvent( eventType );
-                event.villager = this._villagers[ i ];
-
-                this.dispatch( event );
+				
+				this._villagers[ i ].previousStatus = this._villagers[ i ].status;
+				
+				if ( dispatchStatus )
+				{
+					event = new VillagerEvent( eventType );
+					event.villager = this._villagers[ i ];
+					this.dispatch( event );
+				}
+				
             }
         }
+		
+		private function statusChanged( villager:VillagerVO ):Boolean
+		{
+			return villager.previousStatus == villager.status ? false : true;
+		}
     }
 }

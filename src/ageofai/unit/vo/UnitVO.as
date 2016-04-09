@@ -9,6 +9,7 @@ package ageofai.unit.vo
     public class UnitVO
     {
 
+        public var previousStatus:String;
         public var status:String;
         public var view:IUnitView;
         public var position:IntPoint;
