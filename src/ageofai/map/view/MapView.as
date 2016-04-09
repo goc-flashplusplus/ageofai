@@ -12,6 +12,7 @@ package ageofai.map.view
 	import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
     import ageofai.map.vo.MapDataVO;
+	import ageofai.unit.base.IUnitView;
 
 	import common.mvc.view.base.ABaseView;
 
@@ -50,6 +51,7 @@ package ageofai.map.view
             var mapMatrix:Vector.<Vector.<MapNode>> = mapData.map;
             var homes:Vector.<HomeVO> = mapData.homes;
             var fruits:Vector.<IntPoint> = mapData.fruits;
+			var forests:Vector.<IntPoint> = mapData.trees;
 			
             this._terrainHelper = new TerrainHelper();
 			this._terrainHelper.createBaseTerrainBitmapDatas();
@@ -77,7 +79,6 @@ package ageofai.map.view
 				this.createHome( home.pos );
 			}
 
-			var forests:Vector.<IntPoint> = new <IntPoint>[new IntPoint(2,2),new IntPoint(3,3),new IntPoint(4,4)];
 			for each ( var forest:IntPoint in forests )
 			{
 				this.createForest( forest );
@@ -110,6 +111,16 @@ package ageofai.map.view
 			var home:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
 			home.x = CMap.TILE_SIZE * pos.x;
 			home.y = CMap.TILE_SIZE * pos.y;
+		}
+
+		public function addUnit( villager:IUnitView, pos:IntPoint ):void
+		{
+			var unit:DisplayObject = villager as DisplayObject;
+
+			this._dynamicsLayer.addChild( unit );
+
+			unit.x = CMap.TILE_SIZE * pos.x;
+			unit.y = CMap.TILE_SIZE * pos.y;
 		}
 
 		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void

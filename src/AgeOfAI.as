@@ -45,21 +45,6 @@ package
         override public function createChildren():void
         {
             this.createLayout();
-			
-			var villager:VillagerView = new VillagerView();
-			this.addChild( villager );
-			villager.createChildren();
-			
-			villager.y = CMap.TILE_SIZE * 1;
-			villager.moveTo( new Point( CMap.TILE_SIZE * 5, villager.y));
-			
-			var villager2:VillagerView = new VillagerView();
-			this.addChild( villager2 );
-			villager2.createChildren();
-			
-			villager2.x = CMap.TILE_SIZE * 2;
-			
-			villager2.moveTo( new Point( villager2.x,CMap.TILE_SIZE * 5));			
         }
 
         /**

@@ -12,6 +12,10 @@ package ageofai.map.model
 
         function get homes():Vector.<HomeVO>;
         
+        function get fruits():Vector.<IntPoint>
+        
+        function get trees():Vector.<IntPoint>
+        
         function createMap( rowCount:int, columnCount:int ):void;
         
         function getMapData():MapDataVO;
