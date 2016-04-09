@@ -19,14 +19,10 @@ package ageofai.villager.controller
 
         override public function execute():void
         {
-<<<<<<< HEAD
             var villagerVO:VillagerVO = new VillagerVO();
             villagerVO.view = this.event.villagerView;
 
             this.villagerModel.addVillager( villagerVO, event.homeVO.pos );
-=======
-            this.villagerModel.addVillager( this.event.villagerView, this.event.homeVO );
->>>>>>> origin/master
         }
     }
 }

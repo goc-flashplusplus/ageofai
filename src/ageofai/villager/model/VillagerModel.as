@@ -24,24 +24,16 @@ package ageofai.villager.model
             return this._villagers;
         }
 
-<<<<<<< HEAD
         public function addVillager( villagerVO:VillagerVO, pos:IntPoint ):void
-=======
-        public function addVillager( unit:IUnitView, homeVO:HomeVO ):void
->>>>>>> origin/master
         {
             this._villagers.push( villagerVO );
-
-            var villagarEvent:VillagerEvent = new VillagerEvent( VillagerEvent.VILLAGER_CREATED );
-<<<<<<< HEAD
-            villagarEvent.villager = villagerVO;
 
             var homeVO:HomeVO = new HomeVO();
             homeVO.pos = pos;
 
-=======
-            villagarEvent.villager = unit as VillagerView;
->>>>>>> origin/master
+            var villagarEvent:VillagerEvent = new VillagerEvent( VillagerEvent.VILLAGER_CREATED );
+            villagarEvent.villager = villagerVO;
+
             villagarEvent.homeVO = homeVO;
 
             this.dispatch( villagarEvent );
