@@ -15,6 +15,8 @@ package ageofai.home.view
 		private var _foodDisplayView:FoodDisplayView;
 		private var _woodDisplayView:WoodDisplayView;
 
+        public var id:int;
+        
 		public function HomeView()
 		{
 			this.createUI( HomeUI );

@@ -51,7 +51,11 @@ package ageofai.home.model
                         var creationTimer:Timer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
                         creationTimer.addEventListener( TimerEvent.TIMER, function ():void
                         {
-                            creationTimerHandler( creationTimer );
+                            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
+                            homeEvent.progressPercentage = creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
+                            homeEvent.homeVO = home;
+
+                            dispatch( homeEvent );
                         } );
 
                         Tweener.addTween( this, {
@@ -64,14 +68,6 @@ package ageofai.home.model
                     }
                 }
             }
-        }
-
-        private function creationTimerHandler( creationTimer:Timer ):void
-        {
-            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
-            homeEvent.progressPercentage = creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
-
-            this.dispatch( homeEvent );
         }
 
         private function creationTimerCompleteHandler( homeVO:HomeVO ):void
@@ -127,17 +123,13 @@ package ageofai.home.model
 
         public function getHomeByVillager( villagerVO:VillagerVO ):HomeVO
         {
-            var result:HomeVO;
-
             for ( var i:int = 0; i < this._homes.length; i++ )
             {
                 for ( var j:int = 0; j < this._homes[ i ].villagers.length; j++ )
                 {
                     if ( this._homes[ i ].villagers[ j ] == villagerVO )
                     {
-                        var result = this._homes[ i ];
-
-                        return result;
+                        return this._homes[ i ];
                     }
                 }
             }

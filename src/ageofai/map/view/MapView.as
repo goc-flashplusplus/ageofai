@@ -89,7 +89,7 @@ package ageofai.map.view
 
 			for each ( var home:HomeVO in homes )
 			{
-				this.createHome( home.pos );
+				this.createHome( home.pos, home.id );
 			}
 
 			for each ( var forest:IntPoint in forests )
@@ -105,11 +105,12 @@ package ageofai.map.view
 			this._terrainHelper.dispose();
 		}
 
-		private function createHome( pos:IntPoint ):void
+		private function createHome( pos:IntPoint, id:int ):void
 		{
 			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
 			home.x = CMap.TILE_SIZE * pos.x;
 			home.y = CMap.TILE_SIZE * pos.y;
+            home.id = id;
 		}
 
 		public function createForest( pos:IntPoint ):void
