@@ -20,6 +20,7 @@ package ageofai.map.model
         private var _map:Vector.<Vector.<MapNode>>;
         private var _homes:Vector.<HomeVO>;
         private var _fruits:Vector.<IntPoint>;
+        private var _trees:Vector.<IntPoint>;
         
         public function get map():Vector.<Vector.<MapNode>>
         {
@@ -34,6 +35,11 @@ package ageofai.map.model
         public function get fruits():Vector.<IntPoint>
         {
             return this._fruits;
+        }
+        
+        public function get trees():Vector.<IntPoint>
+        {
+            return this._trees;
         }
         
         public function createMap(rowCount:int, columnCount:int ):void
@@ -54,6 +60,9 @@ package ageofai.map.model
             
             // Fruits 
             this._fruits = getFruits(columnCount, rowCount);
+            
+            // Trees
+            this._trees = getTrees(columnCount, rowCount);
             
             this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
         }
@@ -129,6 +138,39 @@ package ageofai.map.model
             return fruits;
         }
         
+        private function getTrees(columnCount:int, rowCount:int):Vector.<IntPoint>
+        {
+            var trees:Vector.<IntPoint> = new Vector.<IntPoint>();
+            for (var i:int = 0; i < CMap.HOME_COUNT; i++)
+            {
+                var nearTreesNo:int = Math.round(Math.random() * 3) + 2;
+                
+                for (var j:int = 0; j < nearTreesNo; j++)
+                {
+                    do {
+                        var treeX:int = Math.round(Math.random() * 8) + (this._homes[i].pos.x - 3);
+                        var treeY:int = Math.round(Math.random() * 8) + (this._homes[i].pos.y - 3);
+                    } while (treeX < 0 || treeX >= columnCount || treeY < 0 || treeY >= rowCount 
+                        || (treeX >= this._homes[i].pos.x && treeX <= this._homes[i].pos.x + 2 && treeY >= this._homes[i].pos.y && treeY <= this._homes[i].pos.y + 2)
+                        || !this._map[treeY][treeX].walkable)
+                    
+                    trees[trees.length] = new IntPoint(treeX, treeY);
+                }
+            }
+            
+            var farTreesNo:int = Math.round(Math.random() * 2) + 14;
+            for (i = 0; i < farTreesNo; i++)
+            {
+                do {
+                    var treePos:IntPoint = getRandomPoint(0, columnCount, 0, rowCount);
+                } while (!this._map[treePos.y][treePos.x].walkable || distanceLessThan(8, treePos))
+                
+                trees[trees.length] = treePos;
+            }
+            
+            return trees;
+        }
+        
         /* INTERFACE ageofai.map.model.IMapModel */
         
         public function getMapData():MapDataVO 
@@ -137,6 +179,7 @@ package ageofai.map.model
             mapData.fruits = this._fruits;
             mapData.homes = this._homes;
             mapData.map = this._map;
+            mapData.trees = this._trees;
             
             return mapData;
         }
