@@ -3,14 +3,16 @@
  */
 package ageofai.unit.base
 {
+    import ageofai.unit.vo.UnitVO;
+
     import flash.geom.Point;
 
     public interface IUnitView
     {
 
-        function moveTo( targetPoint:Point ):void;
+        function moveTo( villagerVO:UnitVO ):void;
 
-        function calculateMovingTime( point:Point):Number;
+        function calculateMovingTime( point:Point ):Number;
 
     }
 }
