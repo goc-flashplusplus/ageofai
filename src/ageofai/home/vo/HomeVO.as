@@ -7,9 +7,10 @@ package ageofai.home.vo
     public class HomeVO
     {
 
-        public var food:int;
+        public var food:int = 100;
         public var wood:int;
         public var villagerAmount:int;
+        public var villagerIsCreating:Boolean;
         public var pos:IntPoint;
 
     }
