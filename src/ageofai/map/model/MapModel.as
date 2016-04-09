@@ -3,6 +3,7 @@
  */
 package ageofai.map.model
 {
+    import ageofai.home.vo.HomeVO;
     import ageofai.map.constant.CMap;
     import ageofai.map.model.GeneralAStarMap;
     import ageofai.map.astar.AStar;
@@ -17,7 +18,7 @@ package ageofai.map.model
         
         private var _astarMap:GeneralAStarMap;
         private var _map:Vector.<Vector.<MapNode>>;
-        private var _homes:Vector.<IntPoint>;
+        private var _homes:Vector.<HomeVO>;
         private var _fruits:Vector.<IntPoint>;
         
         public function get map():Vector.<Vector.<MapNode>>
@@ -25,7 +26,7 @@ package ageofai.map.model
             return this._map;
         }
         
-        public function get homes():Vector.<IntPoint>
+        public function get homes():Vector.<HomeVO>
         {
             return this._homes;
         }
@@ -37,6 +38,7 @@ package ageofai.map.model
         
         public function createMap(rowCount:int, columnCount:int ):void
         {
+            //TODO: The easy way to go, when we create the objects change the map
             this._map = new Vector.<Vector.<MapNode>>(rowCount, true);
             for (var i:int = 0; i < rowCount; i++)
             {
@@ -48,27 +50,41 @@ package ageofai.map.model
             }
             
             // Get homes
-            this._homes = new Vector.<IntPoint>(CMap.HOME_COUNT, true);
+            this._homes = getHomes(columnCount, rowCount);
+            
+            // Fruits 
+            this._fruits = getFruits(columnCount, rowCount);
+            
+            this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
+        }
+        
+        private function getHomes(columnCount:int, rowCount:int):Vector.<HomeVO>
+        {
+            var homes:Vector.<HomeVO> = new Vector.<HomeVO>(CMap.HOME_COUNT, true);
             var minDistanceX:int = columnCount / CMap.HOME_COUNT;
             var minDistanceY:int = rowCount / CMap.HOME_COUNT;
             var offsetX:int, offsetY:int;
             do
             {
                 offsetX = offsetY = 0;
-                for (i = 0; i < CMap.HOME_COUNT - 1; i++)
+                for (var i:int = 0; i < CMap.HOME_COUNT - 1; i++)
                 {
-                    this._homes[i] = getRandomPoint(offsetX, offsetX += minDistanceX, offsetY, offsetY += minDistanceY);
+                    var home:HomeVO = new HomeVO();
+                    home.pos = getRandomPoint(offsetX, offsetX += minDistanceX, offsetY, offsetY += minDistanceY);
+                    homes[i] = home;
                 }
-                this._homes[i] = getRandomPoint(offsetX, columnCount, offsetY, rowCount);
+                home = new HomeVO();
+                home.pos = getRandomPoint(offsetX, columnCount, offsetY, rowCount);
+                homes[i] = home;
                 
                 // Make sure they are valid
                 _astarMap = new GeneralAStarMap(_map);
                 for (i = 0; i < CMap.HOME_COUNT; i++)
                 {
-                    for (j = 0; j < CMap.HOME_COUNT; j++)
+                    for (var j:int = 0; j < CMap.HOME_COUNT; j++)
                     {
                         if (i == j) continue;
-                        var aStar:AStar = new AStar(_astarMap, this._homes[i], this._homes[j]);
+                        var aStar:AStar = new AStar(_astarMap, homes[i].pos, homes[j].pos);
                         var solution:Vector.<IntPoint> = aStar.solve();
                         
                         if (solution) break;
@@ -77,22 +93,26 @@ package ageofai.map.model
                 }
             } while (!solution);
             
-            // Fruits 
-            this._fruits = new Vector.<IntPoint>();
-            for (i = 0; i < CMap.HOME_COUNT; i++)
+            return homes;
+        }
+        
+        private function getFruits(columnCount:int, rowCount:int):Vector.<IntPoint>
+        {
+            var fruits:Vector.<IntPoint> = new Vector.<IntPoint>();
+            for (var i:int = 0; i < CMap.HOME_COUNT; i++)
             {
                 var nearFruitsNo:int = Math.round(Math.random() * 4) + 2;
                 
-                for (j = 0; j < nearFruitsNo; j++)
+                for (var j:int = 0; j < nearFruitsNo; j++)
                 {
                     do {
-                        var fruitX:int = Math.round(Math.random() * 8) + (this._homes[i].x - 3);
-                        var fruitY:int = Math.round(Math.random() * 8) + (this._homes[i].y - 3);
+                        var fruitX:int = Math.round(Math.random() * 8) + (this._homes[i].pos.x - 3);
+                        var fruitY:int = Math.round(Math.random() * 8) + (this._homes[i].pos.y - 3);
                     } while (fruitX < 0 || fruitX >= columnCount || fruitY < 0 || fruitY >= rowCount 
-                        || (fruitX >= this._homes[i].x && fruitX <= this._homes[i].x + 2 && fruitY >= this._homes[i].y && fruitY <= this._homes[i].y + 2)
+                        || (fruitX >= this._homes[i].pos.x && fruitX <= this._homes[i].pos.x + 2 && fruitY >= this._homes[i].pos.y && fruitY <= this._homes[i].pos.y + 2)
                         || !this._map[fruitY][fruitX].walkable)
                     
-                    this._fruits[this._fruits.length] = new IntPoint(fruitX, fruitY);
+                    fruits[fruits.length] = new IntPoint(fruitX, fruitY);
                 }
             }
             
@@ -103,12 +123,11 @@ package ageofai.map.model
                     var fruitPos:IntPoint = getRandomPoint(0, columnCount, 0, rowCount);
                 } while (!this._map[fruitPos.y][fruitPos.x].walkable || distanceLessThan(8, fruitPos))
                 
-                this._fruits[this._fruits.length] = fruitPos;
+                fruits[fruits.length] = fruitPos;
             }
             
-            this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
+            return fruits;
         }
-        
         
         /* INTERFACE ageofai.map.model.IMapModel */
         
@@ -155,7 +174,7 @@ package ageofai.map.model
         {
             for (var i:int = 0, count:int = this._homes.length; i < count; i++)
             {
-                if (Math.abs(pos.x - this._homes[i].x) + Math.abs(pos.y - this._homes[i].y) < units)
+                if (Math.abs(pos.x - this._homes[i].pos.x) + Math.abs(pos.y - this._homes[i].pos.y) < units)
                 {
                     return true;
                 }

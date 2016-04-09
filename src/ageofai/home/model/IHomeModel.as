@@ -3,6 +3,7 @@
  */
 package ageofai.home.model
 {
+    import ageofai.home.vo.HomeVO;
     import ageofai.map.geom.IntPoint;
 
     public interface IHomeModel
@@ -14,7 +15,7 @@ package ageofai.home.model
 
         function setVillagerAmount( value:int ):void;
 
-        function setInitHomes( homes:Vector.<IntPoint> ):void;
+        function setInitHomes( homes:Vector.<HomeVO> ):void;
 
     }
 }
