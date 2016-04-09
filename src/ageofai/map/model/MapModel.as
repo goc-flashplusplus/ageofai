@@ -98,7 +98,7 @@ package ageofai.map.model
 			var offsetX:int, offsetY:int;
 			do
 			{
-				offsetX = offsetY = 0;
+				offsetX = offsetY = 1;
 				for( var i:int = 0; i < CMap.HOME_COUNT - 1; i++ )
 				{
 					var home:HomeVO = new HomeVO();
