@@ -8,6 +8,7 @@ package ageofai.home.model
     import ageofai.home.constant.CHome;
     import ageofai.home.event.HomeEvent;
     import ageofai.home.vo.HomeVO;
+    import ageofai.villager.vo.VillagerVO;
 
     import common.mvc.model.base.BaseModel;
 
@@ -35,7 +36,7 @@ package ageofai.home.model
             {
                 if ( !this._homes[ i ].villagerIsCreating )
                 {
-                    if ( this._homeAI.isNewVillagerAvailable( this._homes[ i ].food, this._homes[ i ].villagerAmount ) )
+                    if ( this._homeAI.isNewVillagerAvailable( this._homes[ i ].food, this._homes[ i ].villagers.length ) )
                     {
                         this._homes[ i ].villagerIsCreating = true;
 
@@ -80,6 +81,11 @@ package ageofai.home.model
         public function setInitHomes( homes:Vector.<HomeVO> ):void
         {
             this._homes = homes;
+        }
+
+        public function addVillager( homeVO:HomeVO, villagerVO:VillagerVO ):void
+        {
+            homeVO.villagers.push( villagerVO );
         }
     }
 }

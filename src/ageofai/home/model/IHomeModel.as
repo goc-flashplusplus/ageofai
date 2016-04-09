@@ -4,6 +4,7 @@
 package ageofai.home.model
 {
     import ageofai.home.vo.HomeVO;
+    import ageofai.villager.vo.VillagerVO;
 
     public interface IHomeModel
     {
@@ -11,6 +12,8 @@ package ageofai.home.model
         function tick():void;
 
         function setInitHomes( homes:Vector.<HomeVO> ):void;
+
+        function addVillager( homeVO:HomeVO, villagerVO:VillagerVO ):void;
 
     }
 }
