@@ -146,7 +146,6 @@
 			var n:AStarNode;
 			var a:Vector.<AStarNode> = new Vector.<AStarNode>();
 			
-			
 			// N
 			if (x > 0) {
 				n = map[x-1][y];
@@ -183,8 +182,9 @@
 				}
 			}
 			
+            // We are going without diagonals
 			// NW
-			if (x > 0 && y > 0) {
+			/*if (x > 0 && y > 0) {
 				n = map[x-1][y-1];
 				if (n.walkable && map[x-1][y].walkable && map[x][y-1].walkable) {						
 					n.g += COST_DIAGONAL;
@@ -217,7 +217,7 @@
 					n.g += COST_DIAGONAL;
 					a[++i] = n;
 				}
-			}
+			}*/
 			
 			return a;
 			

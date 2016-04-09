@@ -44,8 +44,8 @@ package ageofai.unit.utils
                     }
                     
                     newPoint = new IntPoint(newX, newY);
-                    
-                    if (mapModel.map[newY][newX].objectType != CMapNodeType.OBJECT_NULL)
+                    var objectType:int = mapModel.map[newY][newX].objectType;
+                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME)
                     {
                         var nodeVO:MapNodeVO = new MapNodeVO();
                         nodeVO.pos = newPoint;
@@ -57,8 +57,8 @@ package ageofai.unit.utils
                 // Check surroundings
                 for (i = 0, count = surroundings.length; i < count; i++)
                 {
-                    var newX:int = villager.position.x + surroundings[i][0];
-                    var newY:int = villager.position.y + surroundings[i][1];
+                    newX = villager.position.x + surroundings[i][0];
+                    newY = villager.position.y + surroundings[i][1];
                     
                     if (newX < 0 || newY < 0 || newX >= mapModel.map[0].length || newY >= mapModel.map.length)
                     {
@@ -67,9 +67,10 @@ package ageofai.unit.utils
                     
                     newPoint = new IntPoint(newX, newY);
                     
-                    if (mapModel.map[newY][newX].objectType != CMapNodeType.OBJECT_NULL)
+                    var objectType:int = mapModel.map[newY][newX].objectType;
+                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME)
                     {
-                        var nodeVO:MapNodeVO = new MapNodeVO();
+                        nodeVO = new MapNodeVO();
                         nodeVO.pos = newPoint;
                         nodeVO.node = mapModel.map[newY][newX];
                         objectFounds[objectFounds.length] = nodeVO;
@@ -100,7 +101,7 @@ package ageofai.unit.utils
                     // Go to object
                     i = 0;
                     do {
-                        var path:Vector.<IntPoint> = mapModel.getPath(villager.position, home.objectFounds[0].pos);
+                        var path:Vector.<IntPoint> = mapModel.getPath(villager.position, home.objectFounds[i].pos);
                         i++;
                     } while (path == null && i < home.objectFounds.length)
                     
