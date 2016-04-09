@@ -4,6 +4,9 @@
 package ageofai.home.view
 {
 	import ageofai.building.base.BaseBuildingView;
+	import ageofai.home.view.event.HomeViewEvent;
+	import ageofai.villager.event.VillagerEvent;
+	import ageofai.villager.view.VillagerView;
 
 	public class HomeView extends BaseBuildingView
 	{
@@ -18,6 +21,13 @@ package ageofai.home.view
 		{
 			this._buildProgressBar.show();
 			this._buildProgressBar.drawProcessBar( value );
+		}
+		
+		public function createVillagerView():void
+		{
+            var homeViewEvent:HomeViewEvent = new HomeViewEvent( HomeViewEvent.VILLAGER_VIEW_CREATED );
+            homeViewEvent.villagerView = new VillagerView( );
+            this.dispatchEvent( homeViewEvent );
 		}
 	}
 }

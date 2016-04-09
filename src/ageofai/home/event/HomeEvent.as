@@ -3,6 +3,7 @@
  */
 package ageofai.home.event
 {
+	import ageofai.villager.view.VillagerView;
     import flash.events.Event;
 
     public class HomeEvent extends Event
@@ -12,6 +13,7 @@ package ageofai.home.event
         public static const VILLAGER_VIEW_CREATED:String = "HomeEvent.villagerViewCreated";
 
         public var progressPercentage:int;
+        public var villagerView:VillagerView
 
         public function HomeEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
