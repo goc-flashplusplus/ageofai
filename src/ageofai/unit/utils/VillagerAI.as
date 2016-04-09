@@ -7,6 +7,7 @@ package ageofai.unit.utils
     import ageofai.map.model.IMapModel;
     import ageofai.map.model.MapNode;
     import ageofai.unit.base.IUnitView;
+    import ageofai.unit.vo.DestinationDataVO;
     import ageofai.villager.constant.CVillagerStatus;
     import ageofai.villager.model.IVillagerModel;
     import ageofai.villager.vo.VillagerVO;
@@ -100,6 +101,7 @@ package ageofai.unit.utils
                 }
                 else if (nextToObject)
                 {
+                    villager.destination = null;
                     villager.status = CVillagerStatus.HARVEST;
                     newPoint = null;
                 }
@@ -112,12 +114,30 @@ package ageofai.unit.utils
                         i++;
                     } while (path == null && i < home.objectFounds.length)
                     
-                    if (path != null) newPoint = path[0];
+                    if (path != null) 
+                    {
+                        newPoint = path[0];
+                        villager.destination = new DestinationDataVO();
+                        villager.destination.path = path;
+                    }
                 }
             }
             else
             {
                 // Is current task still valid?
+                if (villager.destination)
+                {
+                    var destPoint:IntPoint = villager.destination.path[0];
+                    var objectType:int = mapModel.map[destPoint.y][destPoint.x].objectType;
+                    if (objectType == CMapNodeType.OBJECT_NULL || objectType == CMapNodeType.OBJECT_HOME)
+                    {
+                        villager.destination = null;
+                    }
+                    else
+                    {
+                        newPoint = villager.destination[villager.destination.currentEntry++];
+                    }
+                }
             }
             
             return newPoint;
