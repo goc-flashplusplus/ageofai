@@ -14,16 +14,16 @@ package ageofai.home.view
 		override public function initialize():void
 		{
 			this.addContextListener( HomeEvent.VILLAGER_CREATED, this.villagerCredatedEventHandler);
-			this.addContextListener( HomeEvent.VILLAGER_CREATION_IN_PROGRESS, this.villagerCreatedEventHandler );
+			this.addContextListener( HomeEvent.VILLAGER_CREATION_IN_PROGRESS, this.villagerCreatingInProgressEventHandler );
 		}
 		
-		private function villagerCredatedEventHandler():void
+		private function villagerCredatedEventHandler( e:HomeEvent ):void
 		{
 			
 		}
-		private function villagerCreatedEventHandler():void
+		private function villagerCreatingInProgressEventHandler( e:HomeEvent ):void
 		{
-			
+			trace("3: ---- ", e.progressPercentage);
 		}
 	}
 }
