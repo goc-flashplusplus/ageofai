@@ -17,12 +17,15 @@ package ageofai.villager.controller
         public var mapModel:IMapModel;
         
         [Inject]
+        public var homeModel:IHomeModel;
+        
+        [Inject]
         public var event:VillagerEvent;
 
         override public function execute():void
         {
             var villagerAI:VillagerAI = new VillagerAI();
-            villagerAI.tick(event.villager, mapModel, event.homeVO);
+            villagerAI.tick(event.villager, mapModel, homeModel.getHomeByVillager(event.villager));
         }
     }
 }

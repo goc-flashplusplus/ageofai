@@ -17,11 +17,6 @@ package ageofai.unit.utils
      */
     public class VillagerAI implements IUnitAI
     {
-        private var offsets:Array = [[ -1, -1 ], [ 0, -1 ], [ 1, -1 ],
-            [ -1, 0 ], [ 2, 0 ],
-            [ -1, 1 ], [ 0, 1 ], [ 1, 1 ]
-        ];
-            
         private var surroundings:Array = [[ -1, 0 ], [ 0, -1 ], [ 1, 0 ], [ 0, 1 ]];
             
         public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):void
@@ -52,6 +47,8 @@ package ageofai.unit.utils
                     // Move randomly
                     do {
                         var newPos:int = Math.round(Math.random() * 4);
+                        
+                        newPoint = new IntPoint(villager.position.x + surroundings[newPos][0], villager.position.y + surroundings[newPos][1]);
                     } while (newPoint.x < 0 || newPoint.y < 0 || newPoint.x >= mapModel.map[0].length || newPoint.y >= mapModel.map.length ||
                         !mapModel.map[newPoint.y][newPoint.x].walkable);
                 }
