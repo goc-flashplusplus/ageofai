@@ -19,5 +19,7 @@ package ageofai.home.model
 
         function updateWoodAmount( homeVO:HomeVO, amount:int ):void;
 
+        function getHomeByVillage( villagerVO:VillagerVO ):HomeVO;
+
     }
 }

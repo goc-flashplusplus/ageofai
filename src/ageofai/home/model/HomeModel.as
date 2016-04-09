@@ -107,5 +107,21 @@ package ageofai.home.model
 
             this.dispatch( event );
         }
+
+        public function getHomeByVillage( villagerVO:VillagerVO ):HomeVO
+        {
+            for ( var i:int = 0; i < this._homes.length; i++ )
+            {
+                for ( var j:int = 0; j < this._homes[ i ].villagers.length; j++ )
+                {
+                    if ( this._homes[ i ].villagers[ j ] == villagerVO )
+                    {
+                        return this._homes[ i ];
+                    }
+                }
+            }
+
+            return null;
+        }
     }
 }

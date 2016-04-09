@@ -12,11 +12,14 @@ package ageofai.home.view
 
 	public class HomeView extends BaseBuildingView
 	{
+		private var _foodDisplayView:FoodDisplayView;
+
 		public function HomeView()
 		{
 			this.createUI( HomeUI );
 			this.createLifeBar();
 			this.createProgressBar();
+			this.createFoodDisplayView();
 
 			this._graphicUI.x = CMap.TILE_SIZE;
 			this._graphicUI.y = CMap.TILE_SIZE;
@@ -59,6 +62,14 @@ package ageofai.home.view
 			result.y += randomOffset[1];
 
 			return result;
+		}
+
+		public function createFoodDisplayView():void
+		{
+			this._foodDisplayView = new FoodDisplayView();
+			this._foodDisplayView.x = 30;
+			this._foodDisplayView.y = 30;
+			this.addChild( this._foodDisplayView );
 		}
 	}
 }
