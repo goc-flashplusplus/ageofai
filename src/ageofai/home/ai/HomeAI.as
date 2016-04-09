@@ -15,7 +15,7 @@ package ageofai.home.ai
         {
             var result:Boolean;
 
-            if ( foodAmount > CUnitCost.VILLAGER.food )
+            if ( foodAmount >= CUnitCost.VILLAGER.food )
             {
                 result = true;
             }
