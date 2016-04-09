@@ -50,13 +50,16 @@ package
 			this.addChild( villager );
 			villager.createChildren();
 			
-			villager.moveTo( new Point( CMap.TILE_SIZE * 5, 0));
+			villager.y = CMap.TILE_SIZE * 1;
+			villager.moveTo( new Point( CMap.TILE_SIZE * 5, villager.y));
 			
 			var villager2:VillagerView = new VillagerView();
 			this.addChild( villager2 );
 			villager2.createChildren();
 			
-			villager2.moveTo( new Point( 0,CMap.TILE_SIZE * 1));			
+			villager2.x = CMap.TILE_SIZE * 2;
+			
+			villager2.moveTo( new Point( villager2.x,CMap.TILE_SIZE * 5));			
         }
 
         /**

@@ -45,8 +45,16 @@ package ageofai.unit.base
 		
 		public function moveTo( targetPoint:Point ):void
 		{
+			
 			var movingTime:Number = this.calculateMovingTime( targetPoint );
-			Tweener.addTween(this, {x: targetPoint.x, y:targetPoint.y, time: movingTime,  transition:"linear"  } );
+			Tweener.addTween(this, { x: targetPoint.x, y:targetPoint.y, time: movingTime,  transition:"linear"  } )
+			this.calculateDirection( targetPoint );
+		}
+		
+		private function calculateDirection( targetPoint:Point ):void
+		{
+			var direction:Number = targetPoint.x > this.x ? 1: -1;
+			this.scaleX = -1;
 		}
 		
 		public function calculateMovingTime( point:Point):Number
@@ -58,7 +66,7 @@ package ageofai.unit.base
 			distance = MathUtil.distance( currentPosition.x, currentPosition.y, point.x, point.y);
 			
 			movingTime = Math.abs(distance) / CMap.TILE_SIZE * this.speed;
-			trace("3: ----", movingTime);
+			
 			return movingTime;			
 		}
 		

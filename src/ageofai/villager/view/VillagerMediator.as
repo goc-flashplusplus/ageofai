@@ -13,6 +13,7 @@ package ageofai.villager.view
 		
 		override public function initialize () : void
 		{
+			
 		}
 		
 	}
