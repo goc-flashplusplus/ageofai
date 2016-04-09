@@ -54,7 +54,7 @@ package ageofai.unit.utils
                 {
                     // Move randomly
                     do {
-                        var newPos:int = Math.round(Math.random() * 4);
+                        var newPos:int = Math.round(Math.random() * 3);
                         newX = villager.position.x + surroundings[newPos][0];
                         newY = villager.position.y + surroundings[newPos][1];
                         
