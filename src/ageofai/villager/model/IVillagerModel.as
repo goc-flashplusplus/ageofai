@@ -3,15 +3,14 @@
  */
 package ageofai.villager.model
 {
-    import ageofai.map.geom.IntPoint;
-    import ageofai.unit.base.IUnitView;
+	import ageofai.home.vo.HomeVO;
+	import ageofai.unit.base.IUnitView;
 
-    public interface IVillagerModel
-    {
+	public interface IVillagerModel
+	{
 
-        function getVillagers():Vector.<IUnitView>;
+		function getVillagers():Vector.<IUnitView>;
 
-        function addVillager( unit:IUnitView, pos:IntPoint ):void;
-
-    }
+		function addVillager( unit:IUnitView, homeVO:HomeVO ):void;
+	}
 }

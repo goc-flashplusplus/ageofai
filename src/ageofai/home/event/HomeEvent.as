@@ -26,7 +26,8 @@ package ageofai.home.event
         {
             var event:HomeEvent = new HomeEvent( type );
             event.progressPercentage = progressPercentage;
-            event.homeVO = homeVO;
+            event.villagerView = villagerView;
+            event.homeVO = this.homeVO;
 
             return event;
         }

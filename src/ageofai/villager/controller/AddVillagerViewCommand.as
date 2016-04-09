@@ -18,7 +18,7 @@ package ageofai.villager.controller
 
         override public function execute():void
         {
-            this.villagerModel.addVillager( this.event.villagerView, event.homeVO.pos );
+            this.villagerModel.addVillager( this.event.villagerView, this.event.homeVO );
         }
     }
 }
