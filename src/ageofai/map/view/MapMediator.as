@@ -4,6 +4,7 @@
 package ageofai.map.view
 {
     import ageofai.map.event.MapCreatedEvent;
+    import ageofai.map.geom.IntPoint;
     import ageofai.map.model.IMapModel;
     import ageofai.map.model.MapModel;
     import ageofai.map.model.MapNode;
@@ -21,7 +22,7 @@ package ageofai.map.view
 		{
             if (this.model.map)
             {
-                this.setViewMap(this.model.map);
+                this.setViewMap(this.model.map, this.model.homes);
             }
             
             this.addContextListener(MapCreatedEvent.MAP_CREATED, this.mapCreated);
@@ -29,12 +30,12 @@ package ageofai.map.view
         
         private function mapCreated(e:MapCreatedEvent):void
         {
-            this.setViewMap(e.map);
+            this.setViewMap(e.map, e.homes);
         }
         
-        private function setViewMap(map:Vector.<Vector.<MapNode>>):void
+        private function setViewMap(map:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint>):void
         {
-            this.view.createMap(map);
+            this.view.createMap(map, homes);
         }
 	}
 }

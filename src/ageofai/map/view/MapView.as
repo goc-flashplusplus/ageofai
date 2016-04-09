@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Created by newkrok on 08/04/16.
  */
 package ageofai.map.view
@@ -7,6 +7,7 @@ package ageofai.map.view
 	import ageofai.home.view.HomeView;
 	import ageofai.map.constant.CMap;
     import ageofai.map.constant.CMapNodeType;
+    import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
 
 	import common.mvc.view.base.ABaseView;
@@ -25,33 +26,7 @@ package ageofai.map.view
 
 		public function MapView()
 		{
-			var testMap:Vector.<Vector.<MapNode>> = new <Vector.<MapNode>>[];
-
-			for( var i:int = 0; i < CMap.ROW_COUNT; i++ )
-			{
-				testMap.push( new <MapNode>[] );
-
-				for( var j:int = 0; j < CMap.COLUMN_COUNT; j++ )
-				{
-					testMap[ i ].push( new MapNode( 1 ) );
-				}
-			}
-
 			this.createLayers();
-
-			this.createMap( testMap );
-
-			this.createHome();
-			this.createHome();
-			this.createHome();
-			this.createHome();
-		}
-
-		private function createHome():void
-		{
-			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
-			home.x = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.COLUMN_COUNT );
-			home.y = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.ROW_COUNT );
 		}
 
 		private function createLayers():void
@@ -63,7 +38,7 @@ package ageofai.map.view
 			this.addChild( this._dynamicsLayer );
 		}
 
-		public function createMap( mapMatrix:Vector.<Vector.<MapNode>> ):void
+		public function createMap(mapMatrix:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint>):void
 		{
 			this._terrainHelper = new TerrainHelper();
 			this._terrainHelper.createBaseTerrainBitmapDatas();
@@ -85,6 +60,11 @@ package ageofai.map.view
 			backgroundBitmapData.unlock();
 
 			this._staticLayer.addChild( new Bitmap( backgroundBitmapData ) );
+            
+            for each (var home:IntPoint in homes)
+            {
+                this.createHome(home);
+            }
 
 			this._terrainHelper.dispose();
 		}
@@ -102,6 +82,13 @@ package ageofai.map.view
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
 			backgroundBitmapData.draw( type == CMapNodeType.GRASS ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
+		}
+        
+		private function createHome(pos:IntPoint):void
+		{
+			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
+			home.x = CMap.TILE_SIZE * pos.x;
+			home.y = CMap.TILE_SIZE * pos.y;
 		}
 	}
 }
