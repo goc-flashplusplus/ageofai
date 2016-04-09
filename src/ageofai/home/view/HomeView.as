@@ -4,9 +4,13 @@
 package ageofai.home.view
 {
 	import ageofai.building.base.BaseBuildingView;
+<<<<<<< Updated upstream
 	import ageofai.home.view.event.HomeViewEvent;
 	import ageofai.villager.event.VillagerEvent;
 	import ageofai.villager.view.VillagerView;
+=======
+	import ageofai.map.constant.CMap;
+>>>>>>> Stashed changes
 
 	public class HomeView extends BaseBuildingView
 	{
@@ -15,6 +19,9 @@ package ageofai.home.view
 			this.createUI( HomeUI );
 			this.createLifeBar();
 			this.createProgressBar();
+
+			this._graphicUI.x = CMap.TILE_SIZE;
+			this._graphicUI.y = CMap.TILE_SIZE;
 		}
 		
 		public function showProgressValue( value:Number):void

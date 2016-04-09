@@ -11,7 +11,7 @@ package ageofai.building.base
 	
 	public class BaseBuildingView extends Sprite
 	{
-		private var _graphicUI:DisplayObject;
+		protected var _graphicUI:DisplayObject;
 		public var _lifeBar:LifeBarView;
 		public var _buildProgressBar:BuildProgressBarView;
 		
