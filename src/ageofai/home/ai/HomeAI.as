@@ -7,9 +7,6 @@ package ageofai.home.ai
 
     public class HomeAI
     {
-        public function HomeAI()
-        {
-        }
 
         public function isNewVillagerAvailable( foodAmount:int, villagerAmount:int ):Boolean
         {

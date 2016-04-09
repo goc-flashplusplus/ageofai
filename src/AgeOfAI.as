@@ -5,7 +5,7 @@ package
     import ageofai.config.MediatorConfig;
     import ageofai.config.ModelConfig;
     import ageofai.game.event.GameEvent;
-    import ageofai.layout.view.LayoutView;
+    import ageofai.layout.view.view.LayoutView;
 	import ageofai.map.constant.CMap;
 	import ageofai.villager.view.VillagerView;
 	import flash.geom.Point;

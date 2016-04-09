@@ -1,7 +1,7 @@
 package ageofai.config
 {
-	import ageofai.layout.view.LayoutMediator;
-	import ageofai.layout.view.LayoutView;
+	import ageofai.layout.view.view.LayoutMediator;
+	import ageofai.layout.view.view.LayoutView;
 	import ageofai.home.view.HomeMediator;
 	import ageofai.home.view.HomeView;
 	import ageofai.map.view.MapMediator;

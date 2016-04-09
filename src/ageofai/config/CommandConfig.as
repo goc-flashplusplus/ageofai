@@ -4,6 +4,8 @@ package ageofai.config
     import ageofai.game.controller.InitGameCommand;
     import ageofai.game.controller.ProcessTickCommand;
     import ageofai.game.event.GameEvent;
+    import ageofai.home.controller.SetInitHomesCommand;
+    import ageofai.map.event.MapCreatedEvent;
 
     import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
     import robotlegs.bender.framework.api.IConfig;
@@ -23,9 +25,13 @@ package ageofai.config
          */
         public function configure():void
         {
+            //GameEvent
             this.commandMap.map( GameEvent.INIT_GAME ).toCommand( InitGameCommand );
             this.commandMap.map( GameEvent.INIT_GAME ).toCommand( CreateMapCommand );
             this.commandMap.map( GameEvent.TICK ).toCommand( ProcessTickCommand );
+
+            //MapCreatedEvent
+            this.commandMap.map( MapCreatedEvent.MAP_CREATED ).toCommand( SetInitHomesCommand );
         }
 
     }
