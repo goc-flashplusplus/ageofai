@@ -9,6 +9,7 @@ package ageofai.home.vo
 
         public var food:int;
         public var wood:int;
+        public var villagerAmount:int;
         public var pos:IntPoint;
 
     }

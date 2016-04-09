@@ -8,19 +8,15 @@ package ageofai.home.model
     import ageofai.home.constant.CHome;
     import ageofai.home.event.HomeEvent;
     import ageofai.home.vo.HomeVO;
-    import ageofai.map.geom.IntPoint;
 
     import common.mvc.model.base.BaseModel;
 
     import flash.events.TimerEvent;
-
     import flash.utils.Timer;
 
     public class HomeModel extends BaseModel implements IHomeModel
     {
         private var _homes:Vector.<HomeVO>;
-        private var _foodAmount:int = 50;
-        private var _villagerAmount:int;
         private var _homeAI:HomeAI;
         private var _creatingInProgress:Boolean;
         private var _creationTimer:Timer;
@@ -41,27 +37,20 @@ package ageofai.home.model
 
         private function calculateVillagerCreation():void
         {
-            if ( !this._creatingInProgress )
+            for ( var i:int = 0; i < this._homes.length; i++ )
             {
-                if ( this._homeAI.isNewVillagerAvailable( this._foodAmount, this._villagerAmount ) )
+                if ( !this._creatingInProgress )
                 {
-                    this._creatingInProgress = true;
+                    if ( this._homeAI.isNewVillagerAvailable( this._homes[ i ].food, this._homes[ i ].villagerAmount ) )
+                    {
+                        this._creatingInProgress = true;
 
-                    this._foodAmount -= CUnitCost.VILLAGER.food;
+                        this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
-                    this._creationTimer.start();
+                        this._creationTimer.start();
+                    }
                 }
             }
-        }
-
-        public function setFoodAmount( value:int ):void
-        {
-            this._foodAmount = value;
-        }
-
-        public function setVillagerAmount( value:int ):void
-        {
-            this._villagerAmount = value;
         }
 
         private function creationTimerHandler( event:TimerEvent ):void
