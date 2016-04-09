@@ -194,6 +194,23 @@ package ageofai.map.model
             
             return trees;
         }
+
+        private function isHomeInTheNear( col:uint, row:uint ):Boolean
+        {
+            var offsets:Array = [
+                [ -1, -1 ], [ 0, -1 ], [ 1, -1 ], [ 2, -1 ],
+                [ -1, 0 ], [ 2, 0 ],
+                [ -1, 1 ], [ 2, 1 ],
+                [ -1, 2 ], [ 0, 2 ], [ 1, 2 ], [ 2, 2 ],
+            ];
+
+            for ( var i:int = 0; i < offsets.length; i++ )
+            {
+                //if ( _this.¡ )
+            }
+
+            return false;
+        }
         
         /* INTERFACE ageofai.map.model.IMapModel */
         
