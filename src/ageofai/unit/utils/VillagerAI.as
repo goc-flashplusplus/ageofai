@@ -70,7 +70,8 @@ package ageofai.unit.utils
                     newPoint = new IntPoint(newX, newY);
                     
                     objectType = mapModel.map[newY][newX].objectType;
-                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME)
+                    if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME
+					 && objectType != CMapNodeType.OBJECT_TREE )
                     {
                         nextToObject = true;
                         nodeVO = new MapNodeVO();
