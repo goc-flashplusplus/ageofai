@@ -41,7 +41,6 @@ package ageofai.map.view
 
 		private function addVillager( e:VillagerEvent ):void
 		{
-			trace(e.homeVO.id)
 			this.view.addUnit( e.villager, e.homeVO.pos );
 		}
 	}
