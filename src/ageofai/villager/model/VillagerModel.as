@@ -51,12 +51,7 @@ package ageofai.villager.model
             var ve:VillagerEvent = new VillagerEvent(VillagerEvent.VILLAGER_MOVE);
             ve.villager = villager;
             ve.position = newPos;
-<<<<<<< HEAD
-            trace("ddddddddd ", newPos.x,newPos.y )
-
-=======
             villager.position = newPos;
->>>>>>> origin/master
             this.dispatch( ve );
         }
 
