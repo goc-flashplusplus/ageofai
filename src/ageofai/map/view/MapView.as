@@ -1,12 +1,12 @@
-﻿/**
+/**
  * Created by newkrok on 08/04/16.
  */
 package ageofai.map.view
 {
-	import ageofai.forest.view.ForestView;
-	import ageofai.home.view.HomeView;
+	import ageofai.building.view.home.HomeView;
 	import ageofai.map.constant.CMap;
     import ageofai.map.constant.CMapNodeType;
+    import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
 
 	import common.mvc.view.base.ABaseView;
@@ -18,52 +18,26 @@ package ageofai.map.view
 
 	public class MapView extends ABaseView
 	{
-		private var _staticLayer:Sprite;
-		private var _dynamicsLayer:Sprite;
+		private var _terrainLayer:Sprite;
+		private var _unitLayer:Sprite;
 
 		private var _terrainHelper:TerrainHelper;
 
 		public function MapView()
 		{
-			var testMap:Vector.<Vector.<MapNode>> = new <Vector.<MapNode>>[];
-
-			for( var i:int = 0; i < CMap.ROW_COUNT; i++ )
-			{
-				testMap.push( new <MapNode>[] );
-
-				for( var j:int = 0; j < CMap.COLUMN_COUNT; j++ )
-				{
-					testMap[ i ].push( new MapNode( 1 ) );
-				}
-			}
-
 			this.createLayers();
-
-			this.createMap( testMap );
-
-			this.createHome();
-			this.createHome();
-			this.createHome();
-			this.createHome();
-		}
-
-		private function createHome():void
-		{
-			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
-			home.x = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.COLUMN_COUNT );
-			home.y = CMap.TILE_SIZE * Math.floor( Math.random() * CMap.ROW_COUNT );
 		}
 
 		private function createLayers():void
 		{
-			this._staticLayer = new Sprite();
-			this.addChild( this._staticLayer );
+			this._terrainLayer = new Sprite();
+			this.addChild( this._terrainLayer );
 
-			this._dynamicsLayer = new Sprite();
-			this.addChild( this._dynamicsLayer );
+			this._unitLayer = new Sprite();
+			this.addChild( this._unitLayer );
 		}
 
-		public function createMap( mapMatrix:Vector.<Vector.<MapNode>> ):void
+		public function createMap(mapMatrix:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint>):void
 		{
 			this._terrainHelper = new TerrainHelper();
 			this._terrainHelper.createBaseTerrainBitmapDatas();
@@ -84,15 +58,14 @@ package ageofai.map.view
 
 			backgroundBitmapData.unlock();
 
-			this._staticLayer.addChild( new Bitmap( backgroundBitmapData ) );
+			this._terrainLayer.addChild( new Bitmap( backgroundBitmapData ) );
+            
+            for each (var home:IntPoint in homes)
+            {
+                this.createHome(home);
+            }
 
 			this._terrainHelper.dispose();
-		}
-
-		public function addForest( x:int, y:int ):void
-		{
-			var forest:ForestView = new ForestView();
-			this._dynamicsLayer.addChild( new ForestView() );
 		}
 
 		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void
@@ -102,6 +75,13 @@ package ageofai.map.view
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
 			backgroundBitmapData.draw( type == CMapNodeType.GRASS ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
+		}
+        
+		private function createHome(pos:IntPoint):void
+		{
+			var home:HomeView = this._unitLayer.addChild( new HomeView() ) as HomeView;
+			home.x = CMap.TILE_SIZE * pos.x;
+			home.y = CMap.TILE_SIZE * pos.y;
 		}
 	}
 }
