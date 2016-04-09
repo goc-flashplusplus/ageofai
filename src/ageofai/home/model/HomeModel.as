@@ -3,6 +3,7 @@
  */
 package ageofai.home.model
 {
+    import ageofai.cost.constant.CUnitCost;
     import ageofai.home.ai.HomeAI;
     import ageofai.home.constant.CHome;
     import ageofai.home.event.HomeEvent;
@@ -42,6 +43,8 @@ package ageofai.home.model
                 if ( this._homeAI.isNewVillagerAvailable( this._foodAmount, this._villagerAmount ) )
                 {
                     this._creatingInProgress = true;
+
+                    this._foodAmount -= CUnitCost.VILLAGER.food;
 
                     this._creationTimer.start();
                 }
