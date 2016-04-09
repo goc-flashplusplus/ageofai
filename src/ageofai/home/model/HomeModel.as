@@ -42,7 +42,7 @@ package ageofai.home.model
 
                         this._homes[ i ].food -= CUnitCost.VILLAGER.food;
 
-                        var home:HomeVO = this._homes[ i ]
+                        var home:HomeVO = this._homes[ i ];
 
                         var creationTimer:Timer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
                         creationTimer.addEventListener( TimerEvent.TIMER, function ():void
@@ -110,13 +110,17 @@ package ageofai.home.model
 
         public function getHomeByVillager( villagerVO:VillagerVO ):HomeVO
         {
+            var result:HomeVO;
+
             for ( var i:int = 0; i < this._homes.length; i++ )
             {
                 for ( var j:int = 0; j < this._homes[ i ].villagers.length; j++ )
                 {
                     if ( this._homes[ i ].villagers[ j ] == villagerVO )
                     {
-                        return this._homes[ i ];
+                        var result = this._homes[ i ];
+
+                        return result;
                     }
                 }
             }
