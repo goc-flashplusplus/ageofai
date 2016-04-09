@@ -67,7 +67,7 @@ package ageofai.unit.base
         private function calculateDirection( targetPoint:Point ):void
         {
             var direction:Number = targetPoint.x > this.x ? 1 : -1;
-            this.scaleX = direction;
+            this._graphicUI.scaleX = direction;
         }
 
         public function calculateMovingTime( point:Point ):Number
