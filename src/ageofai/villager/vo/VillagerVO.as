@@ -3,18 +3,16 @@
  */
 package ageofai.villager.vo
 {
-    import ageofai.map.geom.IntPoint;
-    import ageofai.unit.base.IUnitView;
-    import ageofai.unit.vo.DestinationDataVO;
+    import ageofai.unit.vo.UnitVO;
     import ageofai.villager.constant.CVillagerStatus;
 
-    public class VillagerVO
+    public class VillagerVO extends UnitVO
     {
 
-        public var status:String = CVillagerStatus.IDLE;
-        public var view:IUnitView;
-        public var position:IntPoint;
-        public var destination:DestinationDataVO;
+        public function VillagerVO()
+        {
+            this.status = CVillagerStatus.IDLE;
+        }
 
     }
 }
