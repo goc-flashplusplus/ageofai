@@ -87,5 +87,13 @@ package ageofai.home.model
         {
             homeVO.villagers.push( villagerVO );
         }
+
+        public function updateFoodAmount( homeVO:HomeVO, amount:int ):void
+        {
+        }
+
+        public function updateWoodAmount( homeVO:HomeVO, amount:int ):void
+        {
+        }
     }
 }
