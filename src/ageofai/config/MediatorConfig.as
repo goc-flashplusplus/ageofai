@@ -1,5 +1,7 @@
 package ageofai.config
 {
+	import ageofai.fruit.view.FruitMediator;
+	import ageofai.fruit.view.FruitView;
 	import ageofai.layout.view.view.LayoutMediator;
 	import ageofai.layout.view.view.LayoutView;
 	import ageofai.home.view.HomeMediator;
@@ -31,6 +33,7 @@ package ageofai.config
 		{
 			this.mediatorMap.map( LayoutView ).toMediator( LayoutMediator );
 			this.mediatorMap.map( MapView ).toMediator( MapMediator );
+			this.mediatorMap.map( FruitView ).toMediator( FruitMediator );
 			this.mediatorMap.map( VillagerView ).toMediator( VillagerMediator );
 			this.mediatorMap.map( ScoutView ).toMediator( ScoutMediator );
 			this.mediatorMap.map( HomeView ).toMediator( HomeMediator );
