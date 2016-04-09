@@ -108,7 +108,7 @@ package ageofai.home.model
             this.dispatch( event );
         }
 
-        public function getHomeByVillage( villagerVO:VillagerVO ):HomeVO
+        public function getHomeByVillager( villagerVO:VillagerVO ):HomeVO
         {
             for ( var i:int = 0; i < this._homes.length; i++ )
             {
