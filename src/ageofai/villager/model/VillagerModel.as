@@ -71,7 +71,7 @@ package ageofai.villager.model
                         break;
 
                     case CVillagerStatus.HARVEST:
-                        eventType = VillagerEvent.REQUEST_TO_MOVE_BACK_TO_WORK;
+                        eventType = VillagerEvent.VILLAGER_HARVEST;
 
                         break;
 

@@ -2,6 +2,7 @@ package ageofai.villager.view
 {
 	import ageofai.unit.base.BaseUnitView;
 	import ageofai.unit.constant.CUnitProperties;
+	import ageofai.unit.vo.UnitVO;
 	import flash.display.MovieClip;
 
 	/**
@@ -24,10 +25,14 @@ package ageofai.villager.view
 			this.createLifeBar();
 		}
 		
-		public function showHarvestAnimation():void
+		public function showHarvestAnimation( villagerVO:UnitVO ):void
 		{
-			(this.graphicUI as MovieClip).bag.visible = true;
-			(this.graphicUI as MovieClip).gotoAndPlay("harvest");
+            if ( this == villagerVO.view )
+            {	
+				(this.graphicUI as MovieClip).alpha = 0.4;
+				(this.graphicUI as MovieClip).bag.visible = true;
+				(this.graphicUI as MovieClip).gotoAndPlay("harvest");
+			}
 		}	
 		
 		public function showArriwedHomeAnimation():void

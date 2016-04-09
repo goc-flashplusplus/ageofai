@@ -19,9 +19,9 @@ package ageofai.villager.view
 			this.addContextListener( VillagerEvent.VILLAGER_MOVE, this.villagerMove);
 		}
 		
-		private function villagerHarvestHandler():void
+		private function villagerHarvestHandler( event:VillagerEvent ):void
 		{
-			this.view.showHarvestAnimation();
+			this.view.showHarvestAnimation( event.villager );
 		}
 		
 		private function arriwedHomeHandler():void
