@@ -3,6 +3,7 @@
  */
 package ageofai.map.model
 {
+	import ageofai.fruit.vo.FruitVO;
 	import ageofai.home.vo.HomeVO;
 	import ageofai.map.astar.AStar;
 	import ageofai.map.constant.CMap;
@@ -22,7 +23,7 @@ package ageofai.map.model
 		private var _map:Vector.<Vector.<MapNode>>;
 		private var _units:Vector.<Vector.<BaseUnitView>>;
 		private var _homes:Vector.<HomeVO>;
-		private var _fruits:Vector.<IntPoint>;
+		private var _fruits:Vector.<FruitVO>;
 		private var _trees:Vector.<IntPoint>;
 
 		public function get map():Vector.<Vector.<MapNode>>
@@ -35,7 +36,7 @@ package ageofai.map.model
 			return this._homes;
 		}
 
-		public function get fruits():Vector.<IntPoint>
+		public function get fruits():Vector.<FruitVO>
 		{
 			return this._fruits;
 		}
@@ -74,9 +75,9 @@ package ageofai.map.model
 			// Fruits
 			 this._fruits = this.getFruits(columnCount, rowCount);
 
-			 for each (var fruit:IntPoint in this._fruits)
+			 for each (var fruit:FruitVO in this._fruits)
 			 {
-			 this._map[fruit.y][fruit.x].objectType = CMapNodeType.OBJECT_FRUIT;
+			 this._map[fruit.pos.y][fruit.pos.x].objectType = CMapNodeType.OBJECT_FRUIT;
 			 }
 
 			 // Trees
@@ -185,9 +186,9 @@ package ageofai.map.model
 			return !this._map[ pos.x ][ pos.y ].walkable;
 		}
 
-		private function getFruits( columnCount:int, rowCount:int ):Vector.<IntPoint>
+		private function getFruits( columnCount:int, rowCount:int ):Vector.<FruitVO>
 		{
-			var fruits:Vector.<IntPoint> = new Vector.<IntPoint>();
+			var fruits:Vector.<FruitVO> = new Vector.<FruitVO>();
 			for( var i:int = 0; i < CMap.HOME_COUNT; i++ )
 			{
 				var nearFruitsNo:int = Math.round( Math.random() * 4 ) + 2;
@@ -202,7 +203,8 @@ package ageofai.map.model
 					|| !this._map[ fruitY ][ fruitX ].walkable
 					|| this.isHomeInTheNear( fruitY, fruitX ) )
 
-					fruits[ fruits.length ] = new IntPoint( fruitX, fruitY );
+					fruits[ fruits.length ] = new FruitVO();
+					fruits[ fruits.length - 1].pos = new IntPoint( fruitX, fruitY );
 				}
 			}
 
@@ -213,7 +215,8 @@ package ageofai.map.model
 					var fruitPos:IntPoint = getRandomPoint( 0, columnCount, 0, rowCount );
 				}while( !this._map[ fruitPos.y ][ fruitPos.x ].walkable || distanceLessThan( 8, fruitPos ) )
 
-				fruits[ fruits.length ] = fruitPos;
+				fruits[ fruits.length ] = new FruitVO();
+				fruits[ fruits.length - 1].pos = fruitPos;
 			}
 
 			return fruits;

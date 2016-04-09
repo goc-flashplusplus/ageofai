@@ -16,6 +16,7 @@ package ageofai.fruit.model
 
 		public function FruitModel()
 		{
+			this._fruits = new Vector.<FruitVO>();
 		}
 
 		public function updateValueAmount( value:Number ):void
@@ -55,6 +56,11 @@ package ageofai.fruit.model
 		public function addFruit( fruitVO:FruitVO ):void
 		{
 			this._fruits.push( fruitVO );
+		}
+
+		public function getFruits():Vector.<FruitVO>
+		{
+			return this._fruits;
 		}
 	}
 }

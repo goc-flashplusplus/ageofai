@@ -3,6 +3,7 @@
  */
 package ageofai.map.model
 {
+    import ageofai.fruit.vo.FruitVO;
     import ageofai.home.vo.HomeVO;
     import ageofai.map.geom.IntPoint;
     import ageofai.map.vo.MapDataVO;
@@ -12,7 +13,7 @@ package ageofai.map.model
 
         function get homes():Vector.<HomeVO>;
         
-        function get fruits():Vector.<IntPoint>
+        function get fruits():Vector.<FruitVO>
         
         function get trees():Vector.<IntPoint>
         

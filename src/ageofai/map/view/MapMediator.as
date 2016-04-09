@@ -38,11 +38,7 @@ package ageofai.map.view
 				this.setViewMap( this.model.getMapData() );
 			}
 
-			this.addContextListener( MapCreatedEvent.MAP_CREATED, this.mapCreated );
-			this.addContextListener( VillagerEvent.VILLAGER_CREATED, this.addVillager );
 
-			this.addViewListener( FruitViewEvent.FRUIT_CREATED, this.addFruit );
-			this.addViewListener( ForestViewEvent.FOREST_CREATED, this.addForest );
 		}
 
 		private function mapCreated( e:MapCreatedEvent ):void
@@ -52,6 +48,12 @@ package ageofai.map.view
 
 		private function setViewMap( mapData:MapDataVO ):void
 		{
+			this.addContextListener( MapCreatedEvent.MAP_CREATED, this.mapCreated );
+			this.addContextListener( VillagerEvent.VILLAGER_CREATED, this.addVillager );
+
+			this.addViewListener( FruitViewEvent.FRUIT_CREATED, this.addFruit );
+			this.addViewListener( ForestViewEvent.FOREST_CREATED, this.addForest );
+
 			this.view.createMap( mapData );
 		}
 

@@ -10,5 +10,7 @@ package ageofai.fruit.model
 		function getFruitAmountById( id:int ):int;
 
 		function addFruit( fruitVO:FruitVO ):void;
+
+		function getFruits():Vector.<FruitVO>;
 	}
 }

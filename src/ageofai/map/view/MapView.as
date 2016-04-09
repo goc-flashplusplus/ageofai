@@ -69,7 +69,7 @@ package ageofai.map.view
 		{
 			var mapMatrix:Vector.<Vector.<MapNode>> = mapData.map;
 			var homes:Vector.<HomeVO> = mapData.homes;
-			var fruits:Vector.<IntPoint> = mapData.fruits;
+			var fruits:Vector.<FruitVO> = mapData.fruits;
 			var forests:Vector.<IntPoint> = mapData.trees;
 
 			var lineCount:int = mapMatrix.length;
@@ -100,7 +100,7 @@ package ageofai.map.view
 				this.createForest( forest );
 			}
 
-			for each ( var fruit:IntPoint in fruits )
+			for each ( var fruit:FruitVO in fruits )
 			{
 				this.createFruit( fruit );
 			}
@@ -123,18 +123,18 @@ package ageofai.map.view
 			home.y = CMap.TILE_SIZE * pos.y;
 		}
 
-		public function createFruit( pos:IntPoint ):void
+		public function createFruit( fruit:FruitVO ):void
 		{
-			var fruit:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
-			fruit.x = CMap.TILE_SIZE * pos.x;
-			fruit.y = CMap.TILE_SIZE * pos.y;
+			var pos:IntPoint = fruit.pos;
+			var fruitView:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
+			fruitView.x = CMap.TILE_SIZE * pos.x;
+			fruitView.y = CMap.TILE_SIZE * pos.y;
 
-			var fruitVO:FruitVO = new FruitVO();
-			fruitVO.view = fruit;
-			fruitVO.id = Math.floor( Math.random() * int.MAX_VALUE );
+			fruit.view = fruitView;
+			fruit.id = Math.floor( Math.random() * int.MAX_VALUE );
 
 			var event:FruitViewEvent = new FruitViewEvent( FruitViewEvent.FRUIT_CREATED );
-			event.fruitVO = fruitVO;
+			event.fruitVO = fruit;
 
 			this.dispatchEvent( event );
 		}
