@@ -51,8 +51,6 @@ package ageofai.unit.base
 
         public function moveTo( villagerVO:UnitVO ):void
         {
-            if ( this == villagerVO.view )
-            {
                 var movingTime:Number = this.calculateMovingTime( new Point( villagerVO.position.x * CMap.TILE_SIZE, villagerVO.position.y * CMap.TILE_SIZE ) );
                 Tweener.addTween( this, {
                     x: villagerVO.position.x * CMap.TILE_SIZE,
@@ -61,7 +59,6 @@ package ageofai.unit.base
                     transition: "linear"
                 } )
                 this.calculateDirection( new Point( villagerVO.position.x * CMap.TILE_SIZE, villagerVO.position.y * CMap.TILE_SIZE ) );
-            }
         }
 
         private function calculateDirection( targetPoint:Point ):void
