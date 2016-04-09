@@ -69,7 +69,7 @@ package ageofai.home.view
 		{
 			this._foodDisplayView = new FoodDisplayView();
 			this._foodDisplayView.x = 40;
-			this._foodDisplayView.y = 25;
+			this._foodDisplayView.y = 15;
 			this.addChild( this._foodDisplayView );
 		}
 
@@ -77,7 +77,7 @@ package ageofai.home.view
 		{
 			this._woodDisplayView = new WoodDisplayView();
 			this._woodDisplayView.x = 40;
-			this._woodDisplayView.y = 40;
+			this._woodDisplayView.y = 35;
 			this.addChild( this._woodDisplayView );
 		}
 
