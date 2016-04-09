@@ -3,8 +3,8 @@
  */
 package ageofai.home.controller
 {
-    import ageofai.game.model.IGameModel;
     import ageofai.home.model.IHomeModel;
+    import ageofai.map.event.MapCreatedEvent;
 
     import common.mvc.controller.base.BaseCommand;
 
@@ -13,9 +13,12 @@ package ageofai.home.controller
         [Inject]
         public var homeModel:IHomeModel;
 
+        [Inject]
+        public var event:MapCreatedEvent;
+
         override public function execute():void
         {
-            this.homeModel.
+            this.homeModel.setInitHomes( this.event.homes );
         }
     }
 }

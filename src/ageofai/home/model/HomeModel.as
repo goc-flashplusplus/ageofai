@@ -7,6 +7,7 @@ package ageofai.home.model
     import ageofai.home.ai.HomeAI;
     import ageofai.home.constant.CHome;
     import ageofai.home.event.HomeEvent;
+    import ageofai.map.geom.IntPoint;
 
     import common.mvc.model.base.BaseModel;
 
@@ -16,6 +17,7 @@ package ageofai.home.model
 
     public class HomeModel extends BaseModel implements IHomeModel
     {
+        private var _homes:Vector
         private var _foodAmount:int = 50;
         private var _villagerAmount:int;
         private var _homeAI:HomeAI;
@@ -74,6 +76,11 @@ package ageofai.home.model
             this._creatingInProgress = false;
 
             this.dispatch( new HomeEvent( HomeEvent.VILLAGER_CREATED ) );
+        }
+
+        public function setInitHomes( homes:Vector.<IntPoint> ):void
+        {
+
         }
     }
 }

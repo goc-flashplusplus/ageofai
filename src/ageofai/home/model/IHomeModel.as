@@ -14,7 +14,7 @@ package ageofai.home.model
 
         function setVillagerAmount( value:int ):void;
 
-        function setInitHomes( Vector.<IntPoint> );
+        function setInitHomes( homes:Vector.<IntPoint> ):void;
 
     }
 }
