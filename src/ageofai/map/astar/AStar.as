@@ -57,12 +57,23 @@
 			
 			var solved:Boolean = false;
 			
-			if (!goal.equals(start) && !map[goal.x - 1][goal.y].walkable && !map[goal.x - 1][goal.y - 1].walkable && 
-					!map[goal.x][goal.y - 1].walkable && !map[goal.x + 1][goal.y - 1].walkable && 
-					!map[goal.x + 1][goal.y].walkable && !map[goal.x + 1][goal.y + 1].walkable && 
-					!map[goal.x][goal.y + 1].walkable && !map[goal.x - 1][goal.y + 1].walkable) {
-				
-				return null;
+			if (!goal.equals(start)) {
+                var accessible:Boolean;
+                for (i = goal.x - 1; i != goal.x + 1; i++)
+                {
+                    for (var j:int = goal.y - 1; j != goal.y + 1; j++)
+                    {
+                        if (i == goal.x && j == goal.y) continue;
+                        if (i >= 0 && j >= 0 && i < this.width && j < this.height && this.map[i][j].walkable)
+                        {
+                            accessible = true;
+                            break;
+                        }
+                    }
+                    if (accessible) break;
+                }
+                
+                if (!accessible) return null;
 			}
 			while (!solved) {
 				open.sort(sortVector);
