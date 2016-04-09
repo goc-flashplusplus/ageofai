@@ -4,6 +4,10 @@
 package ageofai.home.model
 {
     import ageofai.home.vo.HomeVO;
+<<<<<<< HEAD
+=======
+    import ageofai.map.geom.IntPoint;
+>>>>>>> origin/master
 
     public interface IHomeModel
     {

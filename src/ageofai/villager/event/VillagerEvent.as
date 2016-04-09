@@ -11,6 +11,7 @@ package ageofai.villager.event
         public static const VILLAGER_DIED:String = "VillagerEvent.died";
         public static const VILLAGER_MOVE:String = "VillagerEvent.move";
         public static const VILLAGER_HARVEST:String = "VillagerEvent.harvest";
+        public static const VILLAGER_ARRIWED_HOME:String = "VillagerEvent.arriwedHome";
 		
         public var progressPercentage:int;
 		
