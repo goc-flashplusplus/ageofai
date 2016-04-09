@@ -6,8 +6,8 @@ package ageofai.map.constant
     public class CMap
     {
 
-        public static const ROW_COUNT:int = 30;
-        public static const COLUMN_COUNT:int = 20;
+        public static const COLUMN_COUNT:int = 30;
+        public static const ROW_COUNT:int = 20;
 		
 		public static const TILE_SIZE:int = 32;
 

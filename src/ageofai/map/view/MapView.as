@@ -50,7 +50,7 @@ package ageofai.map.view
 			var lineCount:int = mapMatrix.length;
 			var colCount:int = mapMatrix[ 0 ].length;
 
-			var backgroundBitmapData:BitmapData = new BitmapData( lineCount * 32, colCount * 32, false, 0 );
+			var backgroundBitmapData:BitmapData = new BitmapData( colCount * CMap.TILE_SIZE, lineCount * CMap.TILE_SIZE, false, 0 );
 			backgroundBitmapData.lock();
 
 			for( var i:int = 0; i < lineCount; i++ )
