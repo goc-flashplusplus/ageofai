@@ -8,6 +8,8 @@ package ageofai.config
 	import ageofai.home.event.HomeEvent;
 	import ageofai.map.event.MapCreatedEvent;
 	import ageofai.villager.controller.AddVillagerViewCommand;
+	import ageofai.villager.controller.StartRandomVillagerMovementCommand;
+	import ageofai.villager.event.VillagerEvent;
 
 	import robotlegs.bender.extensions.eventCommandMap.api.IEventCommandMap;
 	import robotlegs.bender.framework.api.IConfig;
@@ -37,6 +39,9 @@ package ageofai.config
 
 			//HomeEvent
 			this.commandMap.map( HomeEvent.VILLAGER_VIEW_CREATED ).toCommand( AddVillagerViewCommand );
+
+			//VillagerEvent
+			this.commandMap.map( VillagerEvent.REQUEST_TO_MOVE_RANDOM ).toCommand( StartRandomVillagerMovementCommand );
 		}
 
 	}

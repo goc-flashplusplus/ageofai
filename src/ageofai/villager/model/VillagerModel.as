@@ -5,6 +5,7 @@ package ageofai.villager.model
 {
     import ageofai.home.vo.HomeVO;
     import ageofai.map.geom.IntPoint;
+    import ageofai.villager.constant.CVillagerStatus;
     import ageofai.villager.event.VillagerEvent;
     import ageofai.villager.vo.VillagerVO;
 
@@ -41,6 +42,42 @@ package ageofai.villager.model
 
         public function tick():void
         {
+            this.calculateMovements();
+        }
+
+        private function calculateMovements():void
+        {
+            var event:VillagerEvent;
+            var eventType:String;
+
+            for ( var i:int = 0; i < this._villagers.length; i++ )
+            {
+                switch ( this._villagers[ i ].status )
+                {
+                    case CVillagerStatus.IDLE:
+                        eventType = VillagerEvent.REQUEST_TO_MOVE_RANDOM;
+
+                        break;
+
+                    case CVillagerStatus.HARVEST:
+                        eventType = VillagerEvent.REQUEST_TO_MOVE_BACK_TO_WORK;
+
+                        break;
+
+                    case CVillagerStatus.WOOD_CUTTING:
+                        eventType = VillagerEvent.REQUEST_TO_MOVE_BACK_TO_WORK;
+
+                        break;
+
+                    default:
+                        throw new Error( "What this fucking villager is doing? :D" );
+                }
+
+                event = new VillagerEvent( eventType );
+                event.villager = this._villagers[ i ];
+
+                this.dispatch( event );
+            }
         }
     }
 }
