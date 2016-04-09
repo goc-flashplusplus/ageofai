@@ -8,7 +8,7 @@ package ageofai.villager.event
 	public class VillagerEvent extends Event
 	{
         public static const VILLAGER_BORN:String = "VillagerEvent.born";
-        public static const VILLAGER_DIED:String = "VillagerEvent.villagerDied";
+        public static const VILLAGER_DIED:String = "VillagerEvent.died";
         public static const VILLAGER_MOVE:String = "VillagerEvent.move";
         public static const VILLAGER_HARVEST:String = "VillagerEvent.harvest";
 		
