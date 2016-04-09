@@ -55,6 +55,7 @@ package ageofai.unit.utils
                 }
                 
                 // Check surroundings
+                var nextToObject:Boolean;
                 for (i = 0, count = surroundings.length; i < count; i++)
                 {
                     newX = villager.position.x + surroundings[i][0];
@@ -70,6 +71,7 @@ package ageofai.unit.utils
                     var objectType:int = mapModel.map[newY][newX].objectType;
                     if (objectType != CMapNodeType.OBJECT_NULL && objectType != CMapNodeType.OBJECT_HOME)
                     {
+                        nextToObject = true;
                         nodeVO = new MapNodeVO();
                         nodeVO.pos = newPoint;
                         nodeVO.node = mapModel.map[newY][newX];
@@ -95,6 +97,11 @@ package ageofai.unit.utils
                         newPoint = new IntPoint(newX, newY);
                     } while (newPoint.x < 0 || newPoint.y < 0 || newPoint.x >= mapModel.map[0].length || newPoint.y >= mapModel.map.length ||
                         !mapModel.map[newPoint.y][newPoint.x].walkable);
+                }
+                else if (nextToObject)
+                {
+                    villager.status = CVillagerStatus.HARVEST;
+                    newPoint = null;
                 }
                 else
                 {
