@@ -4,6 +4,7 @@
 package ageofai.map.view
 {
 	import ageofai.forest.view.ForestView;
+	import ageofai.fruit.view.FruitView;
 	import ageofai.home.view.HomeView;
 	import ageofai.map.constant.CMap;
 	import ageofai.map.constant.CMapNodeType;
@@ -70,13 +71,40 @@ package ageofai.map.view
 				this.createHome( home );
 			}
 
+			var forests:Vector.<IntPoint> = new <IntPoint>[new IntPoint(2,2),new IntPoint(3,3),new IntPoint(4,4)];
+			for each ( var forest:IntPoint in forests )
+			{
+				this.createForest( forest );
+			}
+
+			var fruits:Vector.<IntPoint> = new <IntPoint>[new IntPoint(5,2),new IntPoint(6,3),new IntPoint(7,4)];
+			for each ( var fruit:IntPoint in fruits )
+			{
+				this.createFruit( fruit );
+			}
+
 			this._terrainHelper.dispose();
 		}
 
-		public function addForest( x:int, y:int ):void
+		private function createHome( pos:IntPoint ):void
 		{
-			var forest:ForestView = new ForestView();
-			this._dynamicsLayer.addChild( new ForestView() );
+			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
+			home.x = CMap.TILE_SIZE * pos.x;
+			home.y = CMap.TILE_SIZE * pos.y;
+		}
+
+		public function createForest( pos:IntPoint ):void
+		{
+			var home:ForestView = this._dynamicsLayer.addChild( new ForestView() ) as ForestView;
+			home.x = CMap.TILE_SIZE * pos.x;
+			home.y = CMap.TILE_SIZE * pos.y;
+		}
+
+		public function createFruit( pos:IntPoint ):void
+		{
+			var home:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
+			home.x = CMap.TILE_SIZE * pos.x;
+			home.y = CMap.TILE_SIZE * pos.y;
 		}
 
 		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void
@@ -86,13 +114,6 @@ package ageofai.map.view
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
 			backgroundBitmapData.draw( type == CMapNodeType.GRASS ? this._terrainHelper.terrainGrassUI : this._terrainHelper.terrainDarkGrassUI, positionMatrix );
-		}
-
-		private function createHome( pos:IntPoint ):void
-		{
-			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
-			home.x = CMap.TILE_SIZE * pos.x;
-			home.y = CMap.TILE_SIZE * pos.y;
 		}
 
 		private function onEnterFrameHandler( event:Event ):void
