@@ -3,7 +3,8 @@
  */
 package ageofai.map.view
 {
-	import ageofai.building.view.home.HomeView;
+	import ageofai.forest.view.ForestView;
+	import ageofai.home.view.HomeView;
 	import ageofai.map.constant.CMap;
     import ageofai.map.constant.CMapNodeType;
     import ageofai.map.geom.IntPoint;
@@ -18,8 +19,8 @@ package ageofai.map.view
 
 	public class MapView extends ABaseView
 	{
-		private var _terrainLayer:Sprite;
-		private var _unitLayer:Sprite;
+		private var _staticLayer:Sprite;
+		private var _dynamicsLayer:Sprite;
 
 		private var _terrainHelper:TerrainHelper;
 
@@ -30,11 +31,11 @@ package ageofai.map.view
 
 		private function createLayers():void
 		{
-			this._terrainLayer = new Sprite();
-			this.addChild( this._terrainLayer );
+			this._staticLayer = new Sprite();
+			this.addChild( this._staticLayer );
 
-			this._unitLayer = new Sprite();
-			this.addChild( this._unitLayer );
+			this._dynamicsLayer = new Sprite();
+			this.addChild( this._dynamicsLayer );
 		}
 
 		public function createMap(mapMatrix:Vector.<Vector.<MapNode>>, homes:Vector.<IntPoint>):void
@@ -58,7 +59,7 @@ package ageofai.map.view
 
 			backgroundBitmapData.unlock();
 
-			this._terrainLayer.addChild( new Bitmap( backgroundBitmapData ) );
+			this._staticLayer.addChild( new Bitmap( backgroundBitmapData ) );
             
             for each (var home:IntPoint in homes)
             {
@@ -66,6 +67,12 @@ package ageofai.map.view
             }
 
 			this._terrainHelper.dispose();
+		}
+
+		public function addForest( x:int, y:int ):void
+		{
+			var forest:ForestView = new ForestView();
+			this._dynamicsLayer.addChild( new ForestView() );
 		}
 
 		private function drawTerrainToBitmapData( col:uint, row:uint, backgroundBitmapData:BitmapData, type:int ):void
@@ -79,7 +86,7 @@ package ageofai.map.view
         
 		private function createHome(pos:IntPoint):void
 		{
-			var home:HomeView = this._unitLayer.addChild( new HomeView() ) as HomeView;
+			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
 			home.x = CMap.TILE_SIZE * pos.x;
 			home.y = CMap.TILE_SIZE * pos.y;
 		}
