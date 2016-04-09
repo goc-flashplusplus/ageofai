@@ -15,7 +15,7 @@ package ageofai.home.view
 
 		override public function initialize():void
 		{
-			this.addContextListener( HomeEvent.VILLAGER_CREATED, this.villagerCredatedEventHandler);
+			this.addContextListener( HomeEvent.REQUEST_TO_CREATE_VILLAGER, this.villagerCredatedEventHandler);
 			this.addContextListener( HomeEvent.VILLAGER_CREATION_IN_PROGRESS, this.villagerCreatingInProgressEventHandler );
 			
 			this.addViewListener( HomeViewEvent.VILLAGER_VIEW_CREATED, this.villageViewCreatedHandler);

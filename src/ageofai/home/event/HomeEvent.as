@@ -9,11 +9,12 @@ package ageofai.home.event
     public class HomeEvent extends Event
     {
         public static const VILLAGER_CREATION_IN_PROGRESS:String = "HomeEvent.villagerCreationInProgress";
-        public static const VILLAGER_CREATED:String = "HomeEvent.villagerCreated";
+        public static const REQUEST_TO_CREATE_VILLAGER:String = "HomeEvent.requestToCreateVillager";
         public static const VILLAGER_VIEW_CREATED:String = "HomeEvent.villagerViewCreated";
 
         public var progressPercentage:int;
-        public var villagerView:VillagerView
+        public var villagerView:VillagerView;
+        public var homeId:int;
 
         public function HomeEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {

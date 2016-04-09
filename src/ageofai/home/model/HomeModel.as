@@ -75,7 +75,7 @@ package ageofai.home.model
         {
             this._creatingInProgress = false;
 
-            this.dispatch( new HomeEvent( HomeEvent.VILLAGER_CREATED ) );
+            this.dispatch( new HomeEvent( HomeEvent.REQUEST_TO_CREATE_VILLAGER ) );
         }
 
         public function setInitHomes( homes:Vector.<IntPoint> ):void
