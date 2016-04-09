@@ -15,10 +15,6 @@ package ageofai.home.event
 
         public var progressPercentage:int;
         public var villagerView:VillagerView;
-<<<<<<< HEAD
-=======
-        public var homeId:int;
->>>>>>> origin/master
         public var homeVO:HomeVO;
 
         public function HomeEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
