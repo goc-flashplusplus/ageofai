@@ -72,15 +72,12 @@ package ageofai.unit.base
 
         public function calculateMovingTime( point:Point ):Number
         {
-            var distance:Number;
-            var movingTime:Number;
-            var currentPosition:Point = this.getCurrentPosition();
+            var distanceX:Number = this.x - point.x;
+            var distanceY:Number = this.y - point.y;
 
-            distance = MathUtil.distance( currentPosition.x, currentPosition.y, point.x, point.y );
+            var distance:Number = Math.sqrt( Math.pow( distanceX, 2 ) + Math.pow( distanceY, 2 ) );
 
-            movingTime = Math.abs( distance ) / CMap.TILE_SIZE * this.speed;
-
-            return movingTime;
+            return distance / this.speed;
         }
 
         private function getCurrentPosition():Point

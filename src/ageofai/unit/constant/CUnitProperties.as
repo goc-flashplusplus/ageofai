@@ -7,7 +7,7 @@ package ageofai.unit.constant
 	public class CUnitProperties 
 	{
 		//speeds
-        public static const VILLAGER_SPEED:int = 1;
+        public static const VILLAGER_SPEED:int = 50;
         public static const SCOUT_SPEED:int = 0.8;
 		
 		//lifes
