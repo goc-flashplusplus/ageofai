@@ -44,25 +44,45 @@ package ageofai.map.model
         
         public function createMap(rowCount:int, columnCount:int ):void
         {
-            //TODO: The easy way to go, when we create the objects change the map
             this._map = new Vector.<Vector.<MapNode>>(rowCount, true);
             for (var i:int = 0; i < rowCount; i++)
             {
-                _map[i] = new Vector.<MapNode>(columnCount, true);
+                this._map[i] = new Vector.<MapNode>(columnCount, true);
                 for (var j:int = 0; j < columnCount; j++ )
                 {
-                    _map[i][j] = getMapNode();
+                    this._map[i][j] = this.getMapNode();
                 }
             }
             
             // Get homes
-            this._homes = getHomes(columnCount, rowCount);
+            this._homes = this.getHomes(columnCount, rowCount);
+            
+            for each (var home:HomeVO in this._homes)
+            {
+                for (i = home.pos.y; i < home.pos.y + 1; i++ )
+                {
+                    for (j = home.pos.x; j < home.pos.x + 1; j++ )
+                    {
+                        this._map[i][j].objectType = CMapNodeType.OBJECT_HOME;
+                    }
+                }
+            }
             
             // Fruits 
-            this._fruits = getFruits(columnCount, rowCount);
+            this._fruits = this.getFruits(columnCount, rowCount);
+            
+            for each (var fruit:IntPoint in this._fruits)
+            {
+                this._map[fruit.y][fruit.x].objectType = CMapNodeType.OBJECT_FRUIT;
+            }
             
             // Trees
-            this._trees = getTrees(columnCount, rowCount);
+            this._trees = this.getTrees(columnCount, rowCount);
+            
+            for each (var tree:IntPoint in this._trees)
+            {
+                this._map[tree.y][tree.x].objectType = CMapNodeType.OBJECT_TREE;
+            }
             
             this.eventDispatcher.dispatchEvent(new MapCreatedEvent(MapCreatedEvent.MAP_CREATED, this.getMapData()));
         }
