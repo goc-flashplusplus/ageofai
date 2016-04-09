@@ -23,7 +23,7 @@ package ageofai.home.view
 		}
 		private function villagerCreatingInProgressEventHandler( e:HomeEvent ):void
 		{
-			trace("3: ---- ", e.progressPercentage);
+			this.view.showProgressValue( e.progressPercentage / 100);
 		}
 	}
 }

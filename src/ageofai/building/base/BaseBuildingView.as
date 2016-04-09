@@ -3,6 +3,7 @@
  */
 package ageofai.building.base
 {
+	import ageofai.building.view.BuildProgressBarView;
 	import ageofai.unit.view.LifeBarView;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
@@ -11,7 +12,8 @@ package ageofai.building.base
 	public class BaseBuildingView extends Sprite
 	{
 		private var _graphicUI:DisplayObject;
-		private var _lifeBar:LifeBarView;
+		public var _lifeBar:LifeBarView;
+		public var _buildProgressBar:BuildProgressBarView;
 		
 		public function BaseBuildingView()
 		{
@@ -28,9 +30,23 @@ package ageofai.building.base
 			this._lifeBar = new LifeBarView();
 			this._lifeBar.width = this._graphicUI.width;
 			
-			this._lifeBar.drawProcessBar(Math.random());
+			this._lifeBar.drawProcessBar( Math.random());
 			
 			this.addChild(this._lifeBar);
+			
+			this._lifeBar.hide();
+		}
+		
+		protected function createProgressBar():void
+		{
+			this._buildProgressBar = new BuildProgressBarView();
+			this._buildProgressBar.width = this._graphicUI.width;
+			
+			this._buildProgressBar.drawProcessBar(Math.random());
+			
+			this.addChild( this._buildProgressBar );
+			
+			this._buildProgressBar.hide();
 		}
 	}
 }

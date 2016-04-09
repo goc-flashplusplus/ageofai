@@ -11,6 +11,13 @@ package ageofai.home.view
 		{
 			this.createUI( HomeUI );
 			this.createLifeBar();
+			this.createProgressBar();
+		}
+		
+		public function showProgressValue( value:Number):void
+		{
+			this._buildProgressBar.show();
+			this._buildProgressBar.drawProcessBar( value );
 		}
 	}
 }

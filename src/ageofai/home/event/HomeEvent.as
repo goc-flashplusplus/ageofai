@@ -9,6 +9,7 @@ package ageofai.home.event
     {
         public static const VILLAGER_CREATION_IN_PROGRESS:String = "HomeEvent.villagerCreationInProgress";
         public static const VILLAGER_CREATED:String = "HomeEvent.villagerCreated";
+        public static const VILLAGER_VIEW_CREATED:String = "HomeEvent.villagerViewCreated";
 
         public var progressPercentage:int;
 

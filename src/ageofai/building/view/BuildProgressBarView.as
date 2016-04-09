@@ -5,10 +5,10 @@ package ageofai.building.view
 	 * ...
 	 * @author Tibor Túri
 	 */
-	public class BuildProgressBar extends BaseBarView
+	public class BuildProgressBarView extends BaseBarView
 	{
 		
-		public function BuildProgressBar() 
+		public function BuildProgressBarView() 
 		{
 			this.barWidth = 20;
 			this.barHeight = 5;
