@@ -103,7 +103,7 @@ package ageofai.unit.utils
                 else if (nextToObject)
                 {
                     villager.destination = null;
-                    villager.status = nodeVO.node.objectType == CMapNodeType.OBJECT_FRUIT ? CVillagerStatus.HARVEST : CVillagerStatus.WOOD_CUTTING;
+                    villager.status = nodeVO.node.objectType == CMapNodeType.OBJECT_FRUIT ? CVillagerStatus.HARVEST : CVillagerStatus.HARVEST;
                     newPoint = villager.position;
                 }
                 else
