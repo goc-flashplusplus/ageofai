@@ -9,7 +9,7 @@ package ageofai.home.vo
 	public class HomeVO
 	{
 		public var id:int;
-		public var food:int = 112;
+		public var food:int = 50;
 		public var wood:int;
 		public var villagers:Vector.<VillagerVO> = new Vector.<VillagerVO>();
 		public var villagerIsCreating:Boolean;
