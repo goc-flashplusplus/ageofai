@@ -27,12 +27,12 @@ package ageofai.unit.utils
             
         public function tick(villager:VillagerVO, mapModel:IMapModel, home:HomeVO):IntPoint
         {
-            if ( villager.status == CVillagerStatus.IDLE )
+            if ( villager.status == CVillagerStatus.IDLE && (villager.destination == null || villager.destination.currentEntry >= villager.destination.path.length - 1) )
             {
                 var newPoint:IntPoint;
                 
                 var objectFounds:Vector.<MapNodeVO> = new Vector.<MapNodeVO>();
-                
+                // Ahead there be some code duplication we could avoid!
                 // Check sight area
                 for (var i:int = 0, count:int = sightOffset.length; i < count; i++)
                 {
@@ -82,7 +82,7 @@ package ageofai.unit.utils
                 
                 home.objectFounds = home.objectFounds.concat(objectFounds);
                 
-                if ( home.objectFounds.length == 0 )
+                if ( home.objectFounds.length == 0 || objectFoundsAlreadyTargetted(home) )
                 {
                     // Move randomly
                     do {
@@ -110,6 +110,11 @@ package ageofai.unit.utils
                     // Go to object
                     i = 0;
                     do {
+                        while (isOtherVillagerGoingTo(home, home.objectFounds[i].pos))
+                        {
+                            i++;
+                        }
+                        if (i >= home.objectFounds.length - 1) break;
                         var path:Vector.<IntPoint> = mapModel.getPath(villager.position, home.objectFounds[i].pos);
                         i++;
                     } while (path == null && i < home.objectFounds.length)
@@ -128,19 +133,42 @@ package ageofai.unit.utils
                 if (villager.destination)
                 {
                     var destPoint:IntPoint = villager.destination.path[0];
-                    var objectType:int = mapModel.map[destPoint.y][destPoint.x].objectType;
+                    objectType = mapModel.map[destPoint.y][destPoint.x].objectType;
                     if (objectType == CMapNodeType.OBJECT_NULL || objectType == CMapNodeType.OBJECT_HOME)
                     {
                         villager.destination = null;
                     }
                     else
                     {
-                        newPoint = villager.destination[villager.destination.currentEntry++];
+                        newPoint = villager.destination.path[villager.destination.currentEntry++];
                     }
                 }
             }
             
             return newPoint;
+        }
+        
+        private function objectFoundsAlreadyTargetted(home:HomeVO):Boolean
+        {
+            for each (var objectFound:MapNodeVO in home.objectFounds)
+            {
+                if (!isOtherVillagerGoingTo(home, objectFound.pos)) return false;
+            }
+            return true;
+        }
+        
+        private function isOtherVillagerGoingTo(home:HomeVO, pos:IntPoint):Boolean
+        {
+            for each (var villager:VillagerVO in home.villagers)
+            {
+                if (villager.destination == null) continue;
+                
+                if (villager.destination.path[villager.destination.path.length - 1] == pos)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 
