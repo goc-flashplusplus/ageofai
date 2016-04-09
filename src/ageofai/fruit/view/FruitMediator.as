@@ -5,6 +5,7 @@ package ageofai.fruit.view
 {
 	import ageofai.fruit.event.FruitEvent;
 	import ageofai.fruit.model.IFruitModel;
+	import ageofai.villager.event.VillagerEvent;
 
 	import common.mvc.view.base.ABaseMediator;
 
@@ -20,6 +21,7 @@ package ageofai.fruit.view
 		{
 			this.addContextListener( FruitEvent.FRUIT_AMOUNT_UPDATED, this.fruitAmountUpdatedHandler );
 			this.addContextListener( FruitEvent.FRUIT_RUN_OUT, this.forestRunOutHandler );
+			this.addContextListener( VillagerEvent.VILLAGER_HARVEST, this.villagerHarvestHandler );
 		}
 
 		private function fruitAmountUpdatedHandler( e:FruitEvent ):void
@@ -30,6 +32,13 @@ package ageofai.fruit.view
 		private function forestRunOutHandler( e:FruitEvent ):void
 		{
 			this.view.destroy();
+		}
+
+		private function villagerHarvestHandler( event:VillagerEvent):void
+		{
+			if ( this.view != event.fruitVO.view ) return;
+
+			this.view.updateAmount( this.view.fruitVO.amount );
 		}
 	}
 }

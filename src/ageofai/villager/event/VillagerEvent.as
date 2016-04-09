@@ -1,5 +1,6 @@
 package ageofai.villager.event
 {
+    import ageofai.fruit.vo.FruitVO;
     import ageofai.home.vo.HomeVO;
     import ageofai.map.geom.IntPoint;
     import ageofai.villager.vo.VillagerVO;
@@ -26,6 +27,7 @@ package ageofai.villager.event
         public var homeVO:HomeVO;
         public var villager:VillagerVO;
         public var position:IntPoint;
+        public var fruitVO:FruitVO;
 
         public function VillagerEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {
@@ -35,6 +37,7 @@ package ageofai.villager.event
         public override function clone():Event
         {
             var event:VillagerEvent = new VillagerEvent( type );
+            event.fruitVO = this.fruitVO;
 
             return event;
         }

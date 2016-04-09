@@ -4,14 +4,17 @@
 package ageofai.map.view
 {
 	import ageofai.forest.view.ForestView;
+	import ageofai.fruit.event.FruitEvent;
+	import ageofai.fruit.event.FruitViewEvent;
 	import ageofai.fruit.view.FruitView;
+	import ageofai.fruit.vo.FruitVO;
 	import ageofai.home.view.HomeView;
-    import ageofai.home.vo.HomeVO;
+	import ageofai.home.vo.HomeVO;
 	import ageofai.map.constant.CMap;
 	import ageofai.map.constant.CMapNodeType;
 	import ageofai.map.geom.IntPoint;
 	import ageofai.map.model.MapNode;
-    import ageofai.map.vo.MapDataVO;
+	import ageofai.map.vo.MapDataVO;
 	import ageofai.villager.vo.VillagerVO;
 
 	import common.mvc.view.base.ABaseView;
@@ -48,9 +51,9 @@ package ageofai.map.view
 		{
 			this._terrainManifest = new Dictionary();
 
-			this._terrainManifest[CMapNodeType.GRASS] = this._terrainHelper.terrainGrassUI;
-			this._terrainManifest[CMapNodeType.DARK_GRASS] = this._terrainHelper.terrainDarkGrassUI;
-			this._terrainManifest[CMapNodeType.WATER] = this._terrainHelper.terrainWaterUI;
+			this._terrainManifest[ CMapNodeType.GRASS ] = this._terrainHelper.terrainGrassUI;
+			this._terrainManifest[ CMapNodeType.DARK_GRASS ] = this._terrainHelper.terrainDarkGrassUI;
+			this._terrainManifest[ CMapNodeType.WATER ] = this._terrainHelper.terrainWaterUI;
 		}
 
 		private function createLayers():void
@@ -64,9 +67,9 @@ package ageofai.map.view
 
 		public function createMap( mapData:MapDataVO ):void
 		{
-            var mapMatrix:Vector.<Vector.<MapNode>> = mapData.map;
-            var homes:Vector.<HomeVO> = mapData.homes;
-            var fruits:Vector.<IntPoint> = mapData.fruits;
+			var mapMatrix:Vector.<Vector.<MapNode>> = mapData.map;
+			var homes:Vector.<HomeVO> = mapData.homes;
+			var fruits:Vector.<IntPoint> = mapData.fruits;
 			var forests:Vector.<IntPoint> = mapData.trees;
 
 			var lineCount:int = mapMatrix.length;
@@ -110,7 +113,7 @@ package ageofai.map.view
 			var home:HomeView = this._dynamicsLayer.addChild( new HomeView() ) as HomeView;
 			home.x = CMap.TILE_SIZE * pos.x;
 			home.y = CMap.TILE_SIZE * pos.y;
-            home.id = id;
+			home.id = id;
 		}
 
 		public function createForest( pos:IntPoint ):void
@@ -122,9 +125,18 @@ package ageofai.map.view
 
 		public function createFruit( pos:IntPoint ):void
 		{
-			var home:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
-			home.x = CMap.TILE_SIZE * pos.x;
-			home.y = CMap.TILE_SIZE * pos.y;
+			var fruit:FruitView = this._dynamicsLayer.addChild( new FruitView() ) as FruitView;
+			fruit.x = CMap.TILE_SIZE * pos.x;
+			fruit.y = CMap.TILE_SIZE * pos.y;
+
+			var fruitVO:FruitVO = new FruitVO();
+			fruitVO.view = fruit;
+			fruitVO.id = Math.floor( Math.random() * int.MAX_VALUE );
+
+			var event:FruitViewEvent = new FruitViewEvent( FruitViewEvent.FRUIT_CREATED );
+			event.fruitVO = fruitVO;
+
+			this.dispatchEvent( event );
 		}
 
 		public function addUnit( villager:VillagerVO, pos:IntPoint ):void
@@ -143,7 +155,7 @@ package ageofai.map.view
 			positionMatrix.tx = col * CMap.TILE_SIZE;
 			positionMatrix.ty = row * CMap.TILE_SIZE;
 
-			backgroundBitmapData.draw( this._terrainManifest[type], positionMatrix );
+			backgroundBitmapData.draw( this._terrainManifest[ type ], positionMatrix );
 		}
 
 		private function onEnterFrameHandler( event:Event ):void

@@ -5,11 +5,13 @@ package ageofai.fruit.model
 {
 	import ageofai.constant.CCollectableValues;
 	import ageofai.fruit.event.FruitEvent;
+	import ageofai.fruit.vo.FruitVO;
 
 	import common.mvc.model.base.BaseModel;
 
 	public class FruitModel extends BaseModel implements IFruitModel
 	{
+		private var _fruits:Vector.<FruitVO>;
 		private var _remainValue:int = CCollectableValues.FRUIT_AMOUNT_VALUE;
 
 		public function FruitModel()
@@ -31,6 +33,28 @@ package ageofai.fruit.model
 			}
 
 			this.dispatch( event );
+		}
+
+		public function getFruitAmountById( id:int ):int
+		{
+			var result:int;
+
+			for ( var i:int = 0; i < this._fruits.length; i++ )
+			{
+				if ( this._fruits[ i ].id == id )
+				{
+					result = this._fruits[ i ].amount;
+
+					break;
+				}
+			}
+
+			return result;
+		}
+
+		public function addFruit( fruitVO:FruitVO ):void
+		{
+			this._fruits.push( fruitVO );
 		}
 	}
 }

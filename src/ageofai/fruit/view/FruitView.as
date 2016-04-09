@@ -3,6 +3,7 @@
  */
 package ageofai.fruit.view
 {
+	import ageofai.fruit.vo.FruitVO;
 	import ageofai.map.constant.CMap;
 	import ageofai.unit.view.LifeBarView;
 
@@ -12,6 +13,7 @@ package ageofai.fruit.view
 
 	public class FruitView extends ABaseView
 	{
+		public var fruitVO:FruitVO;
 		private var _graphicUI:DisplayObject;
 		private var _lifeBar:LifeBarView;
 		private var _lifeValueAmount:int;
