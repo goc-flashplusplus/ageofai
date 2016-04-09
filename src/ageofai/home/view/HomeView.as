@@ -78,5 +78,15 @@ package ageofai.home.view
 			this._woodDisplayView.y = 40;
 			this.addChild( this._woodDisplayView );
 		}
+
+		public function updateFoodAmount( amount:int ):void
+		{
+			this._foodDisplayView.updateAmount( amount );
+		}
+
+		public function updateWoodAmount( amount:int ):void
+		{
+			this._woodDisplayView.updateAmount( amount );
+		}
 	}
 }

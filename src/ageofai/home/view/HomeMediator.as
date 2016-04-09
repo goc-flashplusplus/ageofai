@@ -5,6 +5,7 @@ package ageofai.home.view
 {
 	import ageofai.home.event.HomeEvent;
 	import ageofai.home.view.event.HomeViewEvent;
+	import ageofai.home.vo.HomeVO;
 
 	import common.mvc.view.base.ABaseMediator;
 
@@ -17,6 +18,8 @@ package ageofai.home.view
 		{
 			this.addContextListener( HomeEvent.REQUEST_TO_CREATE_VILLAGER, this.villagerCredatedEventHandler );
 			this.addContextListener( HomeEvent.VILLAGER_CREATION_IN_PROGRESS, this.villagerCreatingInProgressEventHandler );
+			this.addContextListener( HomeEvent.FOOD_AMOUNT_UPDATED, this.foodAmountUpdatedHandler );
+			this.addContextListener( HomeEvent.WOOD_AMOUNT_UPDATED, this.woodAmountUpdatedHandler );
 
 			this.addViewListener( HomeViewEvent.VILLAGER_VIEW_CREATED, this.villageViewCreatedHandler );
 		}
@@ -38,6 +41,16 @@ package ageofai.home.view
 		private function villagerCreatingInProgressEventHandler( e:HomeEvent ):void
 		{
 			this.view.showProgressValue( e.progressPercentage / 100 );
+		}
+
+		private function foodAmountUpdatedHandler( home:HomeVO ):void
+		{
+			this.view.updateFoodAmount( home.food );
+		}
+
+		private function woodAmountUpdatedHandler( home:HomeVO ):void
+		{
+			this.view.updateWoodAmount( home.wood );
 		}
 	}
 }

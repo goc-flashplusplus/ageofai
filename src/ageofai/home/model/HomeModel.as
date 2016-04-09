@@ -14,8 +14,6 @@ package ageofai.home.model
 
     import common.mvc.model.base.BaseModel;
 
-    import flash.display.Sprite;
-
     import flash.events.TimerEvent;
     import flash.utils.Timer;
 
@@ -52,9 +50,13 @@ package ageofai.home.model
                         creationTimer.addEventListener( TimerEvent.TIMER, function ():void
                         {
                             creationTimerHandler( creationTimer );
-                        });
+                        } );
 
-                        Tweener.addTween( this, { time: 2, onComplete: creationTimerCompleteHandler, onCompleteParams: [ home ] } );
+                        Tweener.addTween( this, {
+                            time: 2,
+                            onComplete: creationTimerCompleteHandler,
+                            onCompleteParams: [ home ]
+                        } );
 
                         creationTimer.start();
                     }
@@ -74,7 +76,7 @@ package ageofai.home.model
         {
             homeVO.villagerIsCreating = false;
 
-            trace('@@@@@===============>>>>>',homeVO.id);
+            trace( '@@@@@===============>>>>>', homeVO.id );
             var homeEvent:HomeEvent = new HomeEvent( HomeEvent.REQUEST_TO_CREATE_VILLAGER );
             homeEvent.homeVO = homeVO;
 
@@ -92,7 +94,7 @@ package ageofai.home.model
         {
             for ( var i:int = 0; i < this._homes.length; i++ )
             {
-                this._homes[i].id = i;
+                this._homes[ i ].id = i;
             }
         }
 
