@@ -9,6 +9,7 @@ package ageofai.home.model
     import ageofai.home.event.HomeEvent;
     import ageofai.home.vo.HomeVO;
     import ageofai.villager.vo.VillagerVO;
+    import flash.utils.Dictionary;
 
     import caurina.transitions.Tweener;
 
@@ -22,6 +23,8 @@ package ageofai.home.model
         private var _homes:Vector.<HomeVO>;
         private var _homeAI:HomeAI;
 
+        private var _progressDic:Dictionary = new Dictionary(true);
+        
         public function HomeModel()
         {
             this._homeAI = new HomeAI();
@@ -49,14 +52,8 @@ package ageofai.home.model
                         var home:HomeVO = this._homes[ i ];
 
                         var creationTimer:Timer = new Timer( CHome.VILLAGER_CREATION_TIME / CHome.VILLAGER_CREATION_TIMELY, CHome.VILLAGER_CREATION_TIMELY );
-                        creationTimer.addEventListener( TimerEvent.TIMER, function ():void
-                        {
-                            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
-                            homeEvent.progressPercentage = creationTimer.currentCount * CHome.VILLAGER_CREATION_TIMELY;
-                            homeEvent.homeVO = home;
-
-                            dispatch( homeEvent );
-                        } );
+                        creationTimer.addEventListener( TimerEvent.TIMER, creationTimerHandler );
+                        _progressDic[creationTimer] = home;
 
                         Tweener.addTween( this, {
                             time: 2,
@@ -70,6 +67,16 @@ package ageofai.home.model
             }
         }
 
+        private function creationTimerHandler(e:TimerEvent):void
+        {
+            var home:HomeVO = _progressDic[e.currentTarget];
+            var homeEvent:HomeEvent = new HomeEvent( HomeEvent.VILLAGER_CREATION_IN_PROGRESS );
+            homeEvent.progressPercentage = e.currentTarget.currentCount * CHome.VILLAGER_CREATION_TIMELY;
+            homeEvent.homeVO = home;
+
+            dispatch( homeEvent );
+        }
+        
         private function creationTimerCompleteHandler( homeVO:HomeVO ):void
         {
             homeVO.villagerIsCreating = false;
