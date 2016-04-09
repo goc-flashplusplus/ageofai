@@ -5,6 +5,7 @@ package ageofai.villager.controller
 {
     import ageofai.home.event.HomeEvent;
     import ageofai.villager.model.IVillagerModel;
+    import ageofai.villager.vo.VillagerVO;
 
     import common.mvc.controller.base.BaseCommand;
 
@@ -18,7 +19,10 @@ package ageofai.villager.controller
 
         override public function execute():void
         {
-            this.villagerModel.addVillager( this.event.villagerView, event.homeVO.pos );
+            var villagerVO:VillagerVO = new VillagerVO();
+            villagerVO.view = this.event.villagerView;
+
+            this.villagerModel.addVillager( villagerVO, event.homeVO.pos );
         }
     }
 }

@@ -4,14 +4,16 @@
 package ageofai.villager.model
 {
     import ageofai.map.geom.IntPoint;
-    import ageofai.unit.base.IUnitView;
+    import ageofai.villager.vo.VillagerVO;
 
     public interface IVillagerModel
     {
 
-        function getVillagers():Vector.<IUnitView>;
+        function tick():void;
 
-        function addVillager( unit:IUnitView, pos:IntPoint ):void;
+        function getVillagers():Vector.<VillagerVO>;
+
+        function addVillager( villagerVO:VillagerVO, pos:IntPoint ):void;
 
     }
 }

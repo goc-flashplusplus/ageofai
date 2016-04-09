@@ -3,6 +3,7 @@ package ageofai.villager.event
     import ageofai.home.vo.HomeVO;
     import ageofai.unit.base.IUnitView;
     import ageofai.villager.view.VillagerView;
+    import ageofai.villager.vo.VillagerVO;
 
     import flash.events.Event;
 	/**
@@ -19,7 +20,7 @@ package ageofai.villager.event
 		
         public var progressPercentage:int;
         public var homeVO:HomeVO;
-        public var villager:IUnitView;
+        public var villager:VillagerVO;
 
         public function VillagerEvent( type:String, bubbles:Boolean = false, cancelable:Boolean = false )
         {

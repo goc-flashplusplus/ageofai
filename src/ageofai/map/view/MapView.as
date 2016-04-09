@@ -13,6 +13,7 @@ package ageofai.map.view
 	import ageofai.map.model.MapNode;
     import ageofai.map.vo.MapDataVO;
 	import ageofai.unit.base.IUnitView;
+	import ageofai.villager.vo.VillagerVO;
 
 	import common.mvc.view.base.ABaseView;
 
@@ -113,9 +114,9 @@ package ageofai.map.view
 			home.y = CMap.TILE_SIZE * pos.y;
 		}
 
-		public function addUnit( villager:IUnitView, pos:IntPoint ):void
+		public function addUnit( villager:VillagerVO, pos:IntPoint ):void
 		{
-			var unit:DisplayObject = villager as DisplayObject;
+			var unit:DisplayObject = villager.view as DisplayObject;
 
 			this._dynamicsLayer.addChild( unit );
 
